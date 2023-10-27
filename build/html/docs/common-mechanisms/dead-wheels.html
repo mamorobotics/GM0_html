@@ -1,0 +1,787 @@
+<!doctype html>
+<html class="no-js">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+<meta property="og:title" content="Dead Wheels" />
+  
+<meta property="og:type" content="website" />
+  
+<meta property="og:url" content="docs/common-mechanisms/dead-wheels.html" />
+  
+<meta property="og:site_name" content="Game Manual 0" />
+  
+<meta property="og:description" content="The term dead wheels, tracking wheels, odometry pods, and odometry are often conflated in the FTC community. However, there are a few key differences one must keep in mind. Odometry is an umbrella ..." />
+  
+<meta property="og:image" content="https://raw.githubusercontent.com/gamemanual0/gm0/main/source/_static/assets/gm0-logo.png" />
+  
+<meta property="og:image:alt" content="Game Manual 0" />
+  
+<meta property="og:ignore_canonical" content="true" />
+<meta name="theme-color" content="#F47F27" /><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Turrets" href="turrets/index.html" /><link rel="prev" title="Types of Transfers" href="transfers/transfer-types.html" />
+
+    <link rel="shortcut icon" href="../../_static/gm0-logo.ico"/><meta name="generator" content="sphinx-4.5.0, furo 2022.04.07"/>
+        <title>Dead Wheels - Game Manual 0</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?digest=68f4518137b9aefe99b631505a2064c3c42c9852" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/micromodal.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  --font-stack: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+  --admonition-font-size: 1rem;
+  --admonition-title-font-size: 1rem;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-background-primary: #1f2022;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-background-primary: #1f2022;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">Game Manual 0</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo only-light" src="../../_static/assets/gm0-logo.png" alt="Light Logo"/>
+    <img class="sidebar-logo only-dark" src="../../_static/assets/gm0-logo_white.png" alt="Dark Logo"/>
+  </div>
+  
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Game Manual 0 Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../mission-statement.html">Mission Statement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../start-here.html">Start Here</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../know-your-lingo.html">Know Your Lingo</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../being-a-team/index.html">Being a Team</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../being-a-team/starting-a-team.html">Starting a Team</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../being-a-team/team-organization.html">Team Organization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../being-a-team/collaboration-and-efficiency.html">Collaboration and Efficiency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../being-a-team/outreach-basics.html">Outreach Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../being-a-team/pitching-your-team.html">Pitching Your Team</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../design-skills/index.html">Design Skills</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../design-skills/engineering-design-process.html">Engineering Design Process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../design-skills/design-strategy.html">Design Strategy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../design-skills/cad.html">Computer-aided design (CAD)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../design-skills/cad-tutorials.html">CAD Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../design-skills/design-glossary.html">Design Glossary</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../hardware-components/index.html">Hardware Components</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../hardware-components/kit-and-hardware-guide/index.html">Kit and Hardware Guide</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../hardware-components/kit-and-hardware-guide/gobilda.html">goBILDA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../hardware-components/kit-and-hardware-guide/rev-robotics.html">REV Robotics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../hardware-components/kit-and-hardware-guide/tetrix.html">TETRIX</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../hardware-components/kit-and-hardware-guide/actobotics.html">Actobotics (Discontinued)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../hardware-components/kit-and-hardware-guide/custom.html">Custom</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../hardware-components/kit-and-hardware-guide/kit-glossary.html">Kit Glossary</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../hardware-components/tools-list.html">Tools List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hardware-components/tips-and-tricks.html">Tips and Tricks</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../custom-manufacturing/index.html">Custom Manufacturing</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../custom-manufacturing/materials-guide.html">Materials Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../custom-manufacturing/3d-printing.html">3D Printing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../custom-manufacturing/machining.html">Machining</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../custom-manufacturing/laser-cutting.html">Laser Cutting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../custom-manufacturing/manufacturing-glossary.html">Manufacturing Glossary</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">Common Mechanisms</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="design-tradeoffs.html">Design Tradeoffs</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="drivetrains/index.html">Drivetrains</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="drivetrains/tank.html">Tank (Skid-Steer) Drivetrains</a></li>
+<li class="toctree-l3"><a class="reference internal" href="drivetrains/holonomic.html">Holonomic Drivetrains</a></li>
+<li class="toctree-l3"><a class="reference internal" href="drivetrains/drivetrain-gallery.html">Sample Drivetrains</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="power-transmission/index.html">Power Transmission</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="power-transmission/motion-mounting.html">Motion Mounting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="power-transmission/direct-drive.html">Direct Drive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="power-transmission/gears.html">Gears</a></li>
+<li class="toctree-l3"><a class="reference internal" href="power-transmission/chain.html">Roller Chain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="power-transmission/belt.html">Timing Belt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="power-transmission/power-transmission-glossary.html">Power Transmission Glossary</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="linear-motion-guide/index.html">Linear Motion Guide</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="linear-motion-guide/drawer-slides.html">Drawer Slides</a></li>
+<li class="toctree-l3"><a class="reference internal" href="linear-motion-guide/extrusion-slides.html">Extrusion Slides</a></li>
+<li class="toctree-l3"><a class="reference internal" href="linear-motion-guide/linear-bearing-slides.html">Linear Bearing Slides</a></li>
+<li class="toctree-l3"><a class="reference internal" href="linear-motion-guide/custom.html">Custom Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="linear-motion-guide/lead-screws.html">Lead Screws</a></li>
+<li class="toctree-l3"><a class="reference internal" href="linear-motion-guide/rack-and-pinion.html">Rack and Pinion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="linear-motion-guide/rigging.html">Rigging</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="arms.html">Arms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linkages.html">Linkages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="passive-intake-claw.html">Passive Intake/Claw</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="active-intake/index.html">Active Intake</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="active-intake/principles-of-an-intake.html">Principles of an Intake</a></li>
+<li class="toctree-l3"><a class="reference internal" href="active-intake/types-of-intakes.html">Types of Intake</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="transfers/index.html">Transfers</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" role="switch" type="checkbox"/><label for="toctree-checkbox-11"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="transfers/transfer-design.html">Transfer Design Fundamentals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="transfers/transfer-types.html">Types of Transfers</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Dead Wheels</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="turrets/index.html">Turrets</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" role="switch" type="checkbox"/><label for="toctree-checkbox-12"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="turrets/full-turret.html">Full Turrets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="turrets/mini-turret.html">Mini Turrets</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../power-and-electronics/index.html">Electronics and Motion Components</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" role="switch" type="checkbox"/><label for="toctree-checkbox-13"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../power-and-electronics/wiring.html">Wiring Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../power-and-electronics/connectors-and-wires.html">Connectors and Wires</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../power-and-electronics/control-system.html">Control Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../power-and-electronics/driver-station-guide.html">Driver Station Guide</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../power-and-electronics/motor-guide/index.html">Motor Guide</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" role="switch" type="checkbox"/><label for="toctree-checkbox-14"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../power-and-electronics/motor-guide/choosing-motor.html">Choosing a Motor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../power-and-electronics/motor-guide/gearbox-anatomy.html">Gearbox Internals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../power-and-electronics/motor-guide/wiring-mounting-motors.html">Motor Wiring And Mounting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../power-and-electronics/motor-guide/motor-power.html">Motor Power</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../power-and-electronics/motor-guide/motor-glossary.html">Motor Glossary</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../power-and-electronics/servo-guide/index.html">Servo Guide</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" role="switch" type="checkbox"/><label for="toctree-checkbox-15"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../power-and-electronics/servo-guide/choosing-servo.html">Choosing a Servo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../power-and-electronics/servo-guide/usage-tips.html">Servo Usage Tips</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../power-and-electronics/sensor-glossary.html">Sensor Glossary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../power-and-electronics/tips-and-tricks.html">Tips and Tricks</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../software/index.html">Software</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" role="switch" type="checkbox"/><label for="toctree-checkbox-16"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../software/getting-started/index.html">Getting Started</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" role="switch" type="checkbox"/><label for="toctree-checkbox-17"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../software/getting-started/fundamental-concepts.html">Fundamental Concepts of Programming</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/getting-started/options-for-programming.html">Options for Programming</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/getting-started/linear-opmode-vs-opmode.html">LinearOpMode vs OpMode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/getting-started/common-hardware-components.html">Reading and Writing to Hardware</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/getting-started/using-android-studio.html">Using Android Studio</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/getting-started/common-issues.html">Common Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../software/tutorials/index.html">Tutorials</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" role="switch" type="checkbox"/><label for="toctree-checkbox-18"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../software/tutorials/mecanum-drive.html">Mecanum TeleOp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/tutorials/gamepad.html">Gamepad Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/tutorials/using-telemetry.html">Using Telemetry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/tutorials/encoders.html">Encoders</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/tutorials/bulk-reads.html">Bulk Reads</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/tutorials/vision.html">Computer Vision</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../software/concepts/index.html">Programming Concepts</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" role="switch" type="checkbox"/><label for="toctree-checkbox-19"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../software/concepts/control-loops.html">Control Loops</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/concepts/finite-state-machines.html">Finite State Machines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/concepts/kinematics.html">Kinematics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/concepts/odometry.html">Odometry</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../software/adv-control-system/index.html">Advanced Control System</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" role="switch" type="checkbox"/><label for="toctree-checkbox-20"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../software/adv-control-system/control-system-internals.html">Control System Electronics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/adv-control-system/sdk-communication.html">SDK Communication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/adv-control-system/sdk-motors.html">SDK Motors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/adv-control-system/sdk-servos.html">SDK Servos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/adv-control-system/sdk-sensors.html">SDK Sensors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/adv-control-system/lynx-module.html">Lynx Module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../software/software-glossary.html">Software Glossary</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../awards/index.html">Awards</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" role="switch" type="checkbox"/><label for="toctree-checkbox-21"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../awards/award-types.html">Award Categories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../awards/portfolio.html">Engineering Portfolio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../awards/judging-presentation.html">The Judging Process and Presentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../awards/notebook.html">Notebook Designs and Decisions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../useful-resources.html">Useful Resources</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../appendix/index.html">Appendix</a><input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" role="switch" type="checkbox"/><label for="toctree-checkbox-22"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../appendix/gallery.html">Gallery Of Robot Designs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../appendix/vendor-list.html">Vendor List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../appendix/vendor-guide.html">Vendor Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../appendix/license.html">License</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../contributing/index.html">Contributor’s Guide</a><input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" role="switch" type="checkbox"/><label for="toctree-checkbox-23"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/style-guide.html">Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/methods-of-contributing.html">Methods of Contributing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/contributors.html">Contributors</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container"><div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="dead-wheels">
+<h1>Dead Wheels<a class="headerlink" href="#dead-wheels" title="Permalink to this headline">#</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This is a very niche aspect of design in FTC. Generally it is something done by more experienced teams who have had time to repeatedly test their designs and mechanisms with software during the off-season.</p>
+</div>
+<p>The term dead wheels, tracking wheels, odometry pods, and odometry are often conflated in the FTC community. However, there are a few key differences one must keep in mind. Odometry is an umbrella term and refers to the general use of motion sensors for localization purposes. Meanwhile, dead wheels, tracking wheels, and odometry pods are all synonymous terms.</p>
+<div class="admonition-term admonition">
+<p class="admonition-title">Term</p>
+<dl class="glossary">
+<dt id="term-Dead-Wheel">Dead Wheel<a class="headerlink" href="#term-Dead-Wheel" title="Permalink to this term">#</a></dt><dd><p>A small unpowered wheel (usually an <a class="hoverxref tooltip reference internal" href="drivetrains/index.html#term-Omni-Wheel"><span class="xref std std-term">omni wheel</span></a>) that tracks the distance the robot has traveled through the encoder attached to the wheel’s axle.</p>
+<p>Usually, there will be two or three wheels - one or two on the x and y axis each to track the front-back and left-right position relative to the starting point. Generally, odometry wheels are sprung so that the wheel is in contact with the floor tiles at all times to ensure accuracy.</p>
+</dd>
+</dl>
+</div>
+<p>Odometry refers to the use of motion sensors for localization. Localization is a means for being able to locate the position of the bot at some point in time. Localization is crucial in path following and advanced autonomous modes as one needs to know where they are to generate the necessary movements needed to reach a desired destination. <a class="reference internal" href="../software/concepts/odometry.html"><span class="doc">Localization software</span></a> plays a major role in odometry; however, in order to produce accurate results, reliable and accurate hardware design is a necessity.</p>
+<p>The simplest form of odometry is drive encoder localization. This is the use of encoders measuring the rotation of motors that power the drive train. One is able to read the encoder data and feed it through the kinematic equation for that specific drive train to derive the body’s velocity. Drive encoder localization is generally quite simple and easy to setup as almost all of the FTC legal motors have built-in encoders. Getting drive encoder localization setup is simply a matter of plugging in wires, no additional hardware needed.</p>
+<p>Many teams in the community have converged on a unique solution that isn’t seen very much outside of FTC: the use of “dead wheels,” “tracking wheels,” or “odometry pods” (these terms are all synonymous). These refer to small “dead” or non-driven (not powered by a motor) wheels attached to an <a class="reference external" href="#encoders">encoder sensor</a>. Two or three dead wheel pods are often sprung to the ground to ensure accurate tracking. The two-wheel design utilizes one parallel and one perpendicular pod (parallel and perpendicular with respect to the drive wheel axis), measuring x and y movement respectively. Change in heading is measured via a gyroscope. The three-wheel design utilizes two parallel and one perpendicular pod, measuring x and y movement respectively. However, this design forgoes the gyroscope and instead measures heading via the difference with the two parallel wheels. This is often more accurate in the context of the FTC control system because the BNO055 IMU (used for the gyroscope in the two-wheel design) utilizes I2C which is slower than the rest of the I/O on the REV Hub and cannot be bulk read. These two issues lead to minute drift issues which can compound over time, thus leading to a more inaccurate localization system when using the two-wheel design.</p>
+<p>However, designing consistently accurate dead wheels proves to be a difficult design challenge. It is often quite pricey. A set of three dead wheels will cost a minimum of $100 for the encoders alone, prior to any hardware.</p>
+<p>Let’s go through the advantages and disadvantages of each system.</p>
+<section id="drive-encoder-localization">
+<h2>Drive Encoder Localization<a class="headerlink" href="#drive-encoder-localization" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><strong>Pros</strong>:</p>
+<ul>
+<li><p>Cheap (the motors you’re using most likely already have encoders built in)</p></li>
+<li><p>Accessible</p></li>
+<li><p>Very little configuration necessary</p></li>
+</ul>
+</li>
+<li><p><strong>Cons</strong>:</p>
+<ul>
+<li><p>Drive encoder localization on mecanum drive can be quite inaccurate due to lack on traction on mecanum wheels.</p></li>
+<li><p>Will drift on high acceleration on mecanum drive. Accuracy will be good enough for basic autonomous modes if acceleration is limited</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="two-wheel-odometry-pods">
+<h2>Two-Wheel Odometry Pods<a class="headerlink" href="#two-wheel-odometry-pods" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><strong>Pros</strong>:</p>
+<ul>
+<li><p>Cheaper than 3-wheel design</p></li>
+<li><p>Pretty good accuracy</p></li>
+<li><p>No tuning of the heading necessary</p></li>
+</ul>
+</li>
+<li><p><strong>Cons</strong>:</p>
+<ul>
+<li><p>Subject to more drift than the 3-wheel design</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="three-wheel-odometry-pods">
+<h2>Three-Wheel Odometry Pods<a class="headerlink" href="#three-wheel-odometry-pods" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><strong>Pros</strong>:</p>
+<ul>
+<li><p>Relatively accurate tracking. Great accuracy in a 30-second autonomous mode</p></li>
+</ul>
+</li>
+<li><p><strong>Cons</strong>:</p>
+<ul>
+<li><p>Quite pricey</p></li>
+<li><p>Tuning of the heading is very important</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="encoders">
+<h2>Encoders<a class="headerlink" href="#encoders" title="Permalink to this headline">#</a></h2>
+<p>A lot of the localization done in software relies on readings from encoders. <a class="reference internal" href="../power-and-electronics/motor-guide/wiring-mounting-motors.html#encoders"><span class="std std-ref">Encoders</span></a> are sensors that track “counts” or “ticks,” which are values that represent a certain amount of a rotation. Different encoders might have a different number of counts per revolution (CPR), which is also sometimes also called ticks per revolution. The greater the number of counts, the more precise the data.</p>
+<p>Encoders are plugged into the JST-PH ports in the REV hubs. These encoders can either be built-in to the motors or external. External encoders will still need to be plugged into an encoder port but are not related to the motor in that port. Through software, we can use the motor object to determine the position of the encoder. This should be done with motors that do not use encoders. If you’re using dead wheels, you will not need the drive motor encoder ports, so those are potential ports you might want to use.</p>
+<p>If one chooses to design dead wheels, there are only two recommended encoders that one should use for FTC: REV Through-Bore Encoders and U.S. Digital S4T Encoders.</p>
+<section id="rev-through-bore">
+<h3>REV Through-Bore<a class="headerlink" href="#rev-through-bore" title="Permalink to this headline">#</a></h3>
+<p>Often short-handed to “REVcoders” or “revcoders,” the <a class="reference external" href="https://www.revrobotics.com/rev-11-1271/">REV Through-Bore encoders</a> has quickly become the de facto option the FTC community. The REV encoders have gained such a reputation due to its relative affordability, much improved reliability, and ease of use. The through-bore design proves to be a <em>significant</em> improvement over previous optical disc encoder designs. Optical disc encoders are very fragile, prone to scratching, and are much less tolerant to design flaws.</p>
+<figure class="align-default" id="id2">
+<a class="reference internal image-reference" href="../../_images/through-bore.png"><img alt="A REV Through-Bore Encoder" class="align-center" src="../../_images/through-bore.png" style="width: 20em;"/></a>
+<figcaption>
+<p><span class="caption-text">REV Through-Bore Encoder</span><a class="headerlink" href="#id2" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p><strong>Advantages:</strong></p>
+<ul class="simple">
+<li><p>Through-bore design is very robust and easy to design with</p></li>
+<li><p>Relatively cheap</p></li>
+<li><p>High CPR</p></li>
+<li><p>Easy wiring</p></li>
+</ul>
+<p><strong>Disadvantages:</strong></p>
+<ul class="simple">
+<li><p>Quite large relative to other encoders. May be challenging to create a compact design</p></li>
+<li><p>Many Through-Bores seem to experience slight, uneven resistance when rotating. REV says this is normal and will subside as the encoder wears in</p>
+<ul>
+<li><p>To forcefully wear in a REV Through-Bore encoder a 1/2” hex shaft can be spun on a drill through the encoder for a couple of minutes</p></li>
+</ul>
+</li>
+<li><p>Odd mounting points</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The Through-Bore encoders have a very high CPR (8k). The REV Hub transmits velocity in a 16-bit signed integer. This means it can only communicate a maximum value of 2^15 (which is 32768). Thus, it only takes 4 rotations a second (32k / 8k = 4) for the velocity value on the REV Hub to experience an <a class="reference external" href="https://en.wikipedia.org/wiki/Integer_overflow?oldformat=true">integer overflow</a>. This is primarily a concern when dealing with motion profiling. The popular, existing tools (Road Runner and FTCLib) have <a class="reference external" href="https://github.com/acmerobotics/road-runner-ftc/blob/e79f8a900f45c9058b67716b5289a52e17769e40/RoadRunner/src/main/java/com/acmerobotics/roadrunner/ftc/Encoders.kt#L66">mechanisms for dealing with this issue</a> so this is not a concern and should not sway your design decision. Just keep this detail in mind once you start programming.</p>
+</div>
+</section>
+<section id="u-s-digital-s4t">
+<h3>U.S. Digital S4T<a class="headerlink" href="#u-s-digital-s4t" title="Permalink to this headline">#</a></h3>
+<p>The <a class="reference external" href="https://www.usdigital.com/products/encoders/incremental/shaft/S4T">S4T</a> miniature shaft encoder is another viable option used in dead wheel designs. These encoders are very small and may significantly reduce the footprint of your dead wheel design. Gearing these encoders is ideal to prevent shock loads.</p>
+<figure class="align-default" id="id3">
+<a class="reference internal image-reference" href="../../_images/s4t.jpg"><img alt="An US Digital S4T encoder" class="align-center" src="../../_images/s4t.jpg" style="width: 20em;"/></a>
+<figcaption>
+<p><span class="caption-text">S4T Encoder</span><a class="headerlink" href="#id3" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p><strong>***Advantages:</strong></p>
+<ul class="simple">
+<li><p>Very compact</p></li>
+</ul>
+<p><strong>Disadvantages:</strong></p>
+<ul class="simple">
+<li><p>More expensive (nearly double the price)</p></li>
+<li><p>Less durable</p>
+<ul>
+<li><p>Very thin wires. Prone to breaking easily if not secured properly</p></li>
+</ul>
+</li>
+<li><p>Ideally requires external gearing</p></li>
+</ul>
+</section>
+<section id="srx-mag-encoder">
+<h3>SRX Mag Encoder<a class="headerlink" href="#srx-mag-encoder" title="Permalink to this headline">#</a></h3>
+<p>The <a class="reference external" href="https://store.ctr-electronics.com/srx-mag-encoder/">SRX Mag Encoder</a> from Cross The Road Electronics is a magnetic encoder. It is not used by many FTC teams due to its slightly higher complexity to use and lack of FTC-centric documentation. It is more popular in FRC.</p>
+<figure class="align-default" id="id4">
+<a class="reference internal image-reference" href="../../_images/srx-mag.jpg"><img alt="A CTRE SRX Mag encoder" class="align-center" src="../../_images/srx-mag.jpg" style="width: 20em;"/></a>
+<figcaption>
+<p><span class="caption-text">CTRE SRX Mag Encoder</span><a class="headerlink" href="#id4" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p><strong>Advantages:</strong></p>
+<ul class="simple">
+<li><p>Very compact</p></li>
+<li><p>Relatively cheap</p></li>
+</ul>
+<p><strong>Disadvantages:</strong></p>
+<ul class="simple">
+<li><p>Requires assembly</p></li>
+<li><p>Not much information exists for use in FTC</p></li>
+</ul>
+</section>
+<section id="u-s-digital-e8t-deprecated">
+<h3>U.S. Digital E8T (deprecated)<a class="headerlink" href="#u-s-digital-e8t-deprecated" title="Permalink to this headline">#</a></h3>
+<p>Once the de facto option for most FTC teams, the <a class="reference external" href="https://www.usdigital.com/products/encoders/incremental/kit/E8T">E8T</a> optical encoders are no longer recommended as the REV Through-Bores are a superior option at an equivalent price. The open-hole optical disc design of these encoders face a number of frustrating design flaws that made them very fragile and prone to breaking. The only advantage that they have relative to the REV Through-Bores is their smaller footprint.</p>
+<figure class="align-default" id="id5">
+<a class="reference internal image-reference" href="../../_images/e8t.jpg"><img alt="An US Digital E8T encoder" class="align-center" src="../../_images/e8t.jpg" style="width: 20em;"/></a>
+<figcaption>
+<p><span class="caption-text">E8T Encoder</span><a class="headerlink" href="#id5" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="design">
+<h2>Design<a class="headerlink" href="#design" title="Permalink to this headline">#</a></h2>
+<p>There are few open source dead wheel designs. Dead wheels are often designed around a team’s own drive train and FTC teams seldom publicly release their own robot CADs.</p>
+<p>Here are a few publicly available dead wheel designs:</p>
+<ul class="simple">
+<li><p><strong>Open Odometry by 18219</strong></p>
+<ul>
+<li><p><a class="reference external" href="https://openodometry.weebly.com">https://openodometry.weebly.com</a></p></li>
+<li><p>Utilizes the REV Through-Bore Encoder</p></li>
+<li><p>Most popular and robust publicly available design</p></li>
+<li><p>Compact enough to fit into a goBILDA channel</p></li>
+<li><p><strong>Things to consider</strong>:</p>
+<ul>
+<li><p>Utilizes Rotacaster 35mm wheels from Australia. Shipping may take a while</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>goREVdometry</strong></p>
+<ul>
+<li><p><a class="reference external" href="https://discord.com/invite/Cvz3MbM9dX">https://discord.com/invite/Cvz3MbM9dX</a></p></li>
+<li><p>Utilizes the REV Through-Bore Encoder</p></li>
+<li><p>Compact enough to fit into a goBILDA channel</p></li>
+<li><p><strong>Things to consider</strong>:</p>
+<ul>
+<li><p>Information only available through their Discord channel</p></li>
+<li><p>Hasn’t been iterated on in a while</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>11115 Gluten Free Design - 2019</strong></p>
+<ul>
+<li><p><a class="reference external" href="https://drive.google.com/file/d/16ZQRSiWdzTKSH92VpKrxKpXy3TTh0sA5/view?usp=sharing">https://drive.google.com/file/d/16ZQRSiWdzTKSH92VpKrxKpXy3TTh0sA5/view?usp=sharing</a></p></li>
+<li><p>The above link the entire robot assembly for 11115’s CAD for the 2018-19 season</p></li>
+<li><p><strong>Things to consider</strong>:</p>
+<ul>
+<li><p>Uses LEGO gears</p></li>
+<li><p>Uses US Digital S4T’s. Quite pricey</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>9794 Wizards.exe Design</strong></p>
+<ul>
+<li><p><a class="reference external" href="https://www.youtube.com/watch?list=PLICNg-rquurYgWAQGhu6iC0At75vgqFJp&amp;v=OjNvAD350M4&amp;feature=emb_title">https://www.youtube.com/watch?list=PLICNg-rquurYgWAQGhu6iC0At75vgqFJp&amp;v=OjNvAD350M4&amp;feature=emb_title</a></p></li>
+<li><p>Compact enough to fit into a goBILDA channel</p></li>
+<li><p><strong>No longer recommended as it utilizes the E8T</strong></p></li>
+</ul>
+</li>
+</ul>
+<section id="spring-tensioning">
+<h3>Spring Tensioning<a class="headerlink" href="#spring-tensioning" title="Permalink to this headline">#</a></h3>
+<p>It is <em>highly</em> recommended that your dead wheel design includes some form of spring tensioning that pushes the wheel into the ground. This ensures that the wheel is always in contact with ground and has adequate traction. Sufficient force is required to ensure constant traction to prevent the wheels from slipping. Keep in mind that too much force may lift a light drive train off the ground and disrupt driving.</p>
+<p>The most popular method of spring tensioning is to pivot your pod around a point and provide a rotational force via a spring or rubber band.</p>
+<figure class="align-default" id="id6">
+<a class="reference internal image-reference" href="../../_images/14320-pivot-half.jpg"><img alt="A demonstration of pivoting spring tensioning" class="align-center" src="../../_images/14320-pivot-half.jpg" style="width: 40em;"/></a>
+<figcaption>
+<p><span class="caption-text">FTC 14320’s spring tensioning</span><a class="headerlink" href="#id6" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>A much more niche option is to vertically spring odometry pods. The idea is that springing around a pivot will cause the dead wheels to move in the axis parallel to the ground if the height of the dead wheels relative to the ground changes. Vertically sprung odometry pods will not experience such an issue. However, this is not really an issue that most teams will experience. Vertically springing is much harder to design well and is not recommended for the relatively minor improvement in accuracy it yields.</p>
+<figure class="align-default" id="id7">
+<a class="reference internal image-reference" href="../../_images/18172-vertical-odo.jpg"><img alt="An example of vertical spring tensioning" class="align-center" src="../../_images/18172-vertical-odo.jpg" style="width: 40em;"/></a>
+<figcaption>
+<p><span class="caption-text">FTC 18172’s vertical springing</span><a class="headerlink" href="#id7" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="gallery">
+<h2>Gallery<a class="headerlink" href="#gallery" title="Permalink to this headline">#</a></h2>
+<section id="open-odometry-rev-through-bore-encoder">
+<h3>Open Odometry (REV Through Bore Encoder)<a class="headerlink" href="#open-odometry-rev-through-bore-encoder" title="Permalink to this headline">#</a></h3>
+<a class="reference internal image-reference" href="../../_images/openodo-bom.png"><img alt="Exploded drawing of Open Odometry design" class="align-center" src="../../_images/openodo-bom.png" style="width: 40em;"/></a>
+<a class="reference internal image-reference" href="../../_images/openodo-sectionview.png"><img alt="Section view of Open Odometry" class="align-center" src="../../_images/openodo-sectionview.png" style="width: 40em;"/></a>
+</section>
+<section id="ftc-team-14310-rev-through-bore-encoder">
+<h3>FTC Team 14310 (REV Through Bore Encoder)<a class="headerlink" href="#ftc-team-14310-rev-through-bore-encoder" title="Permalink to this headline">#</a></h3>
+<a class="reference internal image-reference" href="../../_images/14310.jpg"><img alt="14130's odometry" class="align-center" src="../../_images/14310.jpg" style="width: 40em;"/></a>
+</section>
+<section id="ftc-team-8802-rev-through-bore-encoder">
+<h3>FTC Team 8802 (REV Through Bore Encoder)<a class="headerlink" href="#ftc-team-8802-rev-through-bore-encoder" title="Permalink to this headline">#</a></h3>
+<a class="reference internal image-reference" href="../../_images/8802.jpg"><img alt="8802's odometry" class="align-center" src="../../_images/8802.jpg" style="width: 40em;"/></a>
+</section>
+<section id="ftc-team-14320-us-digital-s4t">
+<h3>FTC Team 14320 (US Digital S4T)<a class="headerlink" href="#ftc-team-14320-us-digital-s4t" title="Permalink to this headline">#</a></h3>
+<a class="reference internal image-reference" href="../../_images/14320.png"><img alt="14320's odometry" class="align-center" src="../../_images/14320.png" style="width: 40em;"/></a>
+</section>
+<section id="ftc-team-11115-us-digital-s4t">
+<h3>FTC Team 11115 (US Digital S4T)<a class="headerlink" href="#ftc-team-11115-us-digital-s4t" title="Permalink to this headline">#</a></h3>
+<figure class="align-default" id="id8">
+<a class="reference internal image-reference" href="../../_images/11115-cover.jpg"><img alt="11115's odometry" class="align-center" src="../../_images/11115-cover.jpg" style="width: 40em;"/></a>
+<figcaption>
+<p><span class="caption-text"><a class="reference external" href="https://photos.google.com/share/AF1QipPx5inCdVxK6wAqtIznFE-KqvnuzgRq9rFxrhzI50r0DeYYo2o11hWB4hroYObm8A?key=UWwxd3hFdXpYaHFqaFhTSFJnWFlEWjgtV1FTN3Zn">FTC Team 11115 Photo Album</a></span><a class="headerlink" href="#id8" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="ftc-team-14481-rev-through-bore-encoder">
+<h3>FTC Team 14481 (REV Through Bore Encoder)<a class="headerlink" href="#ftc-team-14481-rev-through-bore-encoder" title="Permalink to this headline">#</a></h3>
+<a class="reference internal image-reference" href="../../_images/14481.png"><img alt="14481's odometry" class="align-center" src="../../_images/14481.png" style="width: 40em;"/></a>
+</section>
+<section id="ftc-team-3658-rev-through-bore-encoder">
+<h3>FTC Team 3658 (REV Through Bore Encoder)<a class="headerlink" href="#ftc-team-3658-rev-through-bore-encoder" title="Permalink to this headline">#</a></h3>
+<figure class="align-default" id="id9">
+<a class="reference internal image-reference" href="../../_images/3658.png"><img alt="Render of 3658's odometry" class="align-center" src="../../_images/3658.png" style="width: 40em;"/></a>
+<figcaption>
+<p><span class="caption-text">FTC Team 3658 CAD</span><a class="headerlink" href="#id9" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="ftc-team-7236-rev-through-bore-encoder">
+<h3>FTC Team 7236 (REV Through Bore Encoder)<a class="headerlink" href="#ftc-team-7236-rev-through-bore-encoder" title="Permalink to this headline">#</a></h3>
+<figure class="align-default" id="id10">
+<a class="reference internal image-reference" href="../../_images/7236-cad-exploded.png"><img alt="Exploded view of 7236's odometry" class="align-center" src="../../_images/7236-cad-exploded.png" style="width: 40em;"/></a>
+<figcaption>
+<p><span class="caption-text">FTC Team 7236 CAD</span><a class="headerlink" href="#id10" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<a class="reference internal image-reference" href="../../_images/7236.jpg"><img alt="7236's odometry" class="align-center" src="../../_images/7236.jpg" style="width: 40em;"/></a>
+</section>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="turrets/index.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Turrets</div>
+              </div>
+              <svg><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="transfers/transfer-types.html">
+              <svg><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Types of Transfers</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; Game Manual 0 Contributors |  Hosting Graciously Provided By //Copperforge
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            Contents
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Dead Wheels</a><ul>
+<li><a class="reference internal" href="#drive-encoder-localization">Drive Encoder Localization</a></li>
+<li><a class="reference internal" href="#two-wheel-odometry-pods">Two-Wheel Odometry Pods</a></li>
+<li><a class="reference internal" href="#three-wheel-odometry-pods">Three-Wheel Odometry Pods</a></li>
+<li><a class="reference internal" href="#encoders">Encoders</a><ul>
+<li><a class="reference internal" href="#rev-through-bore">REV Through-Bore</a></li>
+<li><a class="reference internal" href="#u-s-digital-s4t">U.S. Digital S4T</a></li>
+<li><a class="reference internal" href="#srx-mag-encoder">SRX Mag Encoder</a></li>
+<li><a class="reference internal" href="#u-s-digital-e8t-deprecated">U.S. Digital E8T (deprecated)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#design">Design</a><ul>
+<li><a class="reference internal" href="#spring-tensioning">Spring Tensioning</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#gallery">Gallery</a><ul>
+<li><a class="reference internal" href="#open-odometry-rev-through-bore-encoder">Open Odometry (REV Through Bore Encoder)</a></li>
+<li><a class="reference internal" href="#ftc-team-14310-rev-through-bore-encoder">FTC Team 14310 (REV Through Bore Encoder)</a></li>
+<li><a class="reference internal" href="#ftc-team-8802-rev-through-bore-encoder">FTC Team 8802 (REV Through Bore Encoder)</a></li>
+<li><a class="reference internal" href="#ftc-team-14320-us-digital-s4t">FTC Team 14320 (US Digital S4T)</a></li>
+<li><a class="reference internal" href="#ftc-team-11115-us-digital-s4t">FTC Team 11115 (US Digital S4T)</a></li>
+<li><a class="reference internal" href="#ftc-team-14481-rev-through-bore-encoder">FTC Team 14481 (REV Through Bore Encoder)</a></li>
+<li><a class="reference internal" href="#ftc-team-3658-rev-through-bore-encoder">FTC Team 3658 (REV Through Bore Encoder)</a></li>
+<li><a class="reference internal" href="#ftc-team-7236-rev-through-bore-encoder">FTC Team 7236 (REV Through Bore Encoder)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/scripts/furo.js"></script>
+    <script src="../../_static/js/hoverxref.js"></script>
+    <script src="../../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../../_static/js/micromodal.min.js"></script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </body>
+</html>

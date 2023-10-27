@@ -1,0 +1,940 @@
+<!doctype html>
+<html class="no-js">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+<meta property="og:title" content="Encoders" />
+  
+<meta property="og:type" content="website" />
+  
+<meta property="og:url" content="docs/software/tutorials/encoders.html" />
+  
+<meta property="og:site_name" content="Game Manual 0" />
+  
+<meta property="og:description" content="What Are Encoders?: Very commonly in FTC, you want to know where something is. Whether that is how many times your drivetrain wheel has rotated, what angle your arm is at, or how far your string sl..." />
+  
+<meta property="og:image" content="https://raw.githubusercontent.com/gamemanual0/gm0/main/source/_static/assets/gm0-logo.png" />
+  
+<meta property="og:image:alt" content="Game Manual 0" />
+  
+<meta property="og:ignore_canonical" content="true" />
+<meta name="theme-color" content="#F47F27" /><link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" /><link rel="next" title="Bulk Reads" href="bulk-reads.html" /><link rel="prev" title="Using Telemetry" href="using-telemetry.html" />
+
+    <link rel="shortcut icon" href="../../../_static/gm0-logo.ico"/><meta name="generator" content="sphinx-4.5.0, furo 2022.04.07"/>
+        <title>Encoders - Game Manual 0</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?digest=68f4518137b9aefe99b631505a2064c3c42c9852" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/micromodal.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  --font-stack: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+  --admonition-font-size: 1rem;
+  --admonition-title-font-size: 1rem;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-background-primary: #1f2022;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-background-primary: #1f2022;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../../index.html"><div class="brand">Game Manual 0</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../../index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo only-light" src="../../../_static/assets/gm0-logo.png" alt="Light Logo"/>
+    <img class="sidebar-logo only-dark" src="../../../_static/assets/gm0-logo_white.png" alt="Dark Logo"/>
+  </div>
+  
+  
+</a><form class="sidebar-search-container" method="get" action="../../../search.html" role="search">
+  <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Game Manual 0 Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../mission-statement.html">Mission Statement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../start-here.html">Start Here</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../know-your-lingo.html">Know Your Lingo</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../being-a-team/index.html">Being a Team</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../being-a-team/starting-a-team.html">Starting a Team</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../being-a-team/team-organization.html">Team Organization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../being-a-team/collaboration-and-efficiency.html">Collaboration and Efficiency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../being-a-team/outreach-basics.html">Outreach Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../being-a-team/pitching-your-team.html">Pitching Your Team</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../design-skills/index.html">Design Skills</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../design-skills/engineering-design-process.html">Engineering Design Process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../design-skills/design-strategy.html">Design Strategy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../design-skills/cad.html">Computer-aided design (CAD)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../design-skills/cad-tutorials.html">CAD Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../design-skills/design-glossary.html">Design Glossary</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../hardware-components/index.html">Hardware Components</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../hardware-components/kit-and-hardware-guide/index.html">Kit and Hardware Guide</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../hardware-components/kit-and-hardware-guide/gobilda.html">goBILDA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../hardware-components/kit-and-hardware-guide/rev-robotics.html">REV Robotics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../hardware-components/kit-and-hardware-guide/tetrix.html">TETRIX</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../hardware-components/kit-and-hardware-guide/actobotics.html">Actobotics (Discontinued)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../hardware-components/kit-and-hardware-guide/custom.html">Custom</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../hardware-components/kit-and-hardware-guide/kit-glossary.html">Kit Glossary</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../hardware-components/tools-list.html">Tools List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../hardware-components/tips-and-tricks.html">Tips and Tricks</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../custom-manufacturing/index.html">Custom Manufacturing</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../custom-manufacturing/materials-guide.html">Materials Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../custom-manufacturing/3d-printing.html">3D Printing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../custom-manufacturing/machining.html">Machining</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../custom-manufacturing/laser-cutting.html">Laser Cutting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../custom-manufacturing/manufacturing-glossary.html">Manufacturing Glossary</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../common-mechanisms/index.html">Common Mechanisms</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../common-mechanisms/design-tradeoffs.html">Design Tradeoffs</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../common-mechanisms/drivetrains/index.html">Drivetrains</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../common-mechanisms/drivetrains/tank.html">Tank (Skid-Steer) Drivetrains</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../common-mechanisms/drivetrains/holonomic.html">Holonomic Drivetrains</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../common-mechanisms/drivetrains/drivetrain-gallery.html">Sample Drivetrains</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../common-mechanisms/power-transmission/index.html">Power Transmission</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../common-mechanisms/power-transmission/motion-mounting.html">Motion Mounting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../common-mechanisms/power-transmission/direct-drive.html">Direct Drive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../common-mechanisms/power-transmission/gears.html">Gears</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../common-mechanisms/power-transmission/chain.html">Roller Chain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../common-mechanisms/power-transmission/belt.html">Timing Belt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../common-mechanisms/power-transmission/power-transmission-glossary.html">Power Transmission Glossary</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../common-mechanisms/linear-motion-guide/index.html">Linear Motion Guide</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../common-mechanisms/linear-motion-guide/drawer-slides.html">Drawer Slides</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../common-mechanisms/linear-motion-guide/extrusion-slides.html">Extrusion Slides</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../common-mechanisms/linear-motion-guide/linear-bearing-slides.html">Linear Bearing Slides</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../common-mechanisms/linear-motion-guide/custom.html">Custom Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../common-mechanisms/linear-motion-guide/lead-screws.html">Lead Screws</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../common-mechanisms/linear-motion-guide/rack-and-pinion.html">Rack and Pinion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../common-mechanisms/linear-motion-guide/rigging.html">Rigging</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../common-mechanisms/arms.html">Arms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../common-mechanisms/linkages.html">Linkages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../common-mechanisms/passive-intake-claw.html">Passive Intake/Claw</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../common-mechanisms/active-intake/index.html">Active Intake</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../common-mechanisms/active-intake/principles-of-an-intake.html">Principles of an Intake</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../common-mechanisms/active-intake/types-of-intakes.html">Types of Intake</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../common-mechanisms/transfers/index.html">Transfers</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" role="switch" type="checkbox"/><label for="toctree-checkbox-11"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../common-mechanisms/transfers/transfer-design.html">Transfer Design Fundamentals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../common-mechanisms/transfers/transfer-types.html">Types of Transfers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../common-mechanisms/dead-wheels.html">Dead Wheels</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../common-mechanisms/turrets/index.html">Turrets</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" role="switch" type="checkbox"/><label for="toctree-checkbox-12"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../common-mechanisms/turrets/full-turret.html">Full Turrets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../common-mechanisms/turrets/mini-turret.html">Mini Turrets</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../power-and-electronics/index.html">Electronics and Motion Components</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" role="switch" type="checkbox"/><label for="toctree-checkbox-13"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../power-and-electronics/wiring.html">Wiring Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../power-and-electronics/connectors-and-wires.html">Connectors and Wires</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../power-and-electronics/control-system.html">Control Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../power-and-electronics/driver-station-guide.html">Driver Station Guide</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../power-and-electronics/motor-guide/index.html">Motor Guide</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" role="switch" type="checkbox"/><label for="toctree-checkbox-14"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../power-and-electronics/motor-guide/choosing-motor.html">Choosing a Motor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../power-and-electronics/motor-guide/gearbox-anatomy.html">Gearbox Internals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../power-and-electronics/motor-guide/wiring-mounting-motors.html">Motor Wiring And Mounting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../power-and-electronics/motor-guide/motor-power.html">Motor Power</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../power-and-electronics/motor-guide/motor-glossary.html">Motor Glossary</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../power-and-electronics/servo-guide/index.html">Servo Guide</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" role="switch" type="checkbox"/><label for="toctree-checkbox-15"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../power-and-electronics/servo-guide/choosing-servo.html">Choosing a Servo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../power-and-electronics/servo-guide/usage-tips.html">Servo Usage Tips</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../power-and-electronics/sensor-glossary.html">Sensor Glossary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../power-and-electronics/tips-and-tricks.html">Tips and Tricks</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../index.html">Software</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" role="switch" type="checkbox"/><label for="toctree-checkbox-16"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="../getting-started/index.html">Getting Started</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" role="switch" type="checkbox"/><label for="toctree-checkbox-17"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting-started/fundamental-concepts.html">Fundamental Concepts of Programming</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting-started/options-for-programming.html">Options for Programming</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting-started/linear-opmode-vs-opmode.html">LinearOpMode vs OpMode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting-started/common-hardware-components.html">Reading and Writing to Hardware</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting-started/using-android-studio.html">Using Android Studio</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting-started/common-issues.html">Common Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current has-children"><a class="reference internal" href="index.html">Tutorials</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" role="switch" type="checkbox"/><label for="toctree-checkbox-18"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="mecanum-drive.html">Mecanum TeleOp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gamepad.html">Gamepad Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="using-telemetry.html">Using Telemetry</a></li>
+<li class="toctree-l3 current current-page"><a class="current reference internal" href="#">Encoders</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bulk-reads.html">Bulk Reads</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vision.html">Computer Vision</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../concepts/index.html">Programming Concepts</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" role="switch" type="checkbox"/><label for="toctree-checkbox-19"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../concepts/control-loops.html">Control Loops</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../concepts/finite-state-machines.html">Finite State Machines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../concepts/kinematics.html">Kinematics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../concepts/odometry.html">Odometry</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../adv-control-system/index.html">Advanced Control System</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" role="switch" type="checkbox"/><label for="toctree-checkbox-20"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../adv-control-system/control-system-internals.html">Control System Electronics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../adv-control-system/sdk-communication.html">SDK Communication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../adv-control-system/sdk-motors.html">SDK Motors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../adv-control-system/sdk-servos.html">SDK Servos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../adv-control-system/sdk-sensors.html">SDK Sensors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../adv-control-system/lynx-module.html">Lynx Module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../software-glossary.html">Software Glossary</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../awards/index.html">Awards</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" role="switch" type="checkbox"/><label for="toctree-checkbox-21"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../awards/award-types.html">Award Categories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../awards/portfolio.html">Engineering Portfolio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../awards/judging-presentation.html">The Judging Process and Presentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../awards/notebook.html">Notebook Designs and Decisions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../useful-resources.html">Useful Resources</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../appendix/index.html">Appendix</a><input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" role="switch" type="checkbox"/><label for="toctree-checkbox-22"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../appendix/gallery.html">Gallery Of Robot Designs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../appendix/vendor-list.html">Vendor List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../appendix/vendor-guide.html">Vendor Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../appendix/license.html">License</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../contributing/index.html">Contributor’s Guide</a><input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" role="switch" type="checkbox"/><label for="toctree-checkbox-23"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../contributing/style-guide.html">Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../contributing/methods-of-contributing.html">Methods of Contributing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../contributing/contributors.html">Contributors</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container"><div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="encoders">
+<h1>Encoders<a class="headerlink" href="#encoders" title="Permalink to this headline">#</a></h1>
+<section id="what-are-encoders">
+<h2>What Are Encoders?<a class="headerlink" href="#what-are-encoders" title="Permalink to this headline">#</a></h2>
+<p>Very commonly in FTC, you want to know where something is. Whether that is how many times your drivetrain wheel has rotated, what angle your arm is at, or how far your string slides have gone, rotational encoders can help you. In FTC, an encoder refers to any sensor that tracks the rotational angle of a mechanism.</p>
+<p>There are two types of encoders commonly used in FTC, relative and absolute encoders. Relative encoders are the ones covered here as they are the more common type.</p>
+<section id="relative-encoders">
+<h3>Relative Encoders<a class="headerlink" href="#relative-encoders" title="Permalink to this headline">#</a></h3>
+<p>Ranging from the built in encoder in every FTC legal motor to common external encoders like the REV Through Bore encoder, these encoders track the relative position of the shaft or mechanism they are attached to. <strong>What this means is that the position output is relative to the initial position at robot power on, meaning position information is lost between power cycles</strong>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Relative encoders don’t reset to zero at the beginning of OpModes! You can use STOP_AND_RESET_ENCODERS to ensure that your encoders are always at zero at the beginning of an OpMode (see below).</p>
+</div>
+<p>All relative encoders in FTC use the “quadrature” protocol to send position information to the expansion hub. As a result, relative encoders must be plugged into the encoder ports located near the motor ports in order to function.</p>
+</section>
+</section>
+<section id="terminology">
+<h2>Terminology<a class="headerlink" href="#terminology" title="Permalink to this headline">#</a></h2>
+<p><strong>Count</strong>: A “count” (sometimes referred to as a “tick”) refers to one increment of the encoder’s position. Relative encoders report their position as a number equal to the number of “ticks” or “counts” the encoder has moved from its starting angle.</p>
+<p><strong>Counts Per Revolution</strong>: The number of “counts” that an encoder reports after it has gone exactly one revolution. This value is commonly used to convert encoder “counts” into degrees or revolutions.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Quadrature terminology can get very confusing! Some encoders may report “pulses per revolution.” One pulse can either equal 1 or 4 counts. Other encoders may report “cycles per revolution”, which confusingly have the same acronym as counts per revolution. The best way to check is to plug the encoder into the REV Hub and turn it 1 full revolution, then check what it reports.</p>
+</div>
+</section>
+<section id="programming-encoders">
+<h2>Programming Encoders<a class="headerlink" href="#programming-encoders" title="Permalink to this headline">#</a></h2>
+<section id="reading-encoders">
+<h3>Reading Encoders<a class="headerlink" href="#reading-encoders" title="Permalink to this headline">#</a></h3>
+<p>In FTC software, quadrature encoders and motors are accessed with the same motor object. What this means is that we can access an encoder’s position like so:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="0976975c-3c40-43ad-bf0f-3dfde5cce140" name="322f2417-7cda-473a-b38a-e9ebe694854e" type="radio"/>
+<label class="sd-tab-label" data-sync-id="java" for="0976975c-3c40-43ad-bf0f-3dfde5cce140">
+Java</label><div class="sd-tab-content docutils">
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">motor</span><span class="p">.</span><span class="na">getCurrentPosition</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<input id="658c18e4-0acd-4269-b8ad-00e44c056bcc" name="322f2417-7cda-473a-b38a-e9ebe694854e" type="radio"/>
+<label class="sd-tab-label" data-sync-id="blocks" for="658c18e4-0acd-4269-b8ad-00e44c056bcc">
+Blocks</label><div class="sd-tab-content docutils">
+<a class="reference internal image-reference" href="../../../_images/encoder-opmode-1.png"><img alt="../../../_images/encoder-opmode-1.png" class="align-center" src="../../../_images/encoder-opmode-1.png" style="width: 45em;"/></a>
+</div>
+</div>
+<p>While convenient if one uses the built-in motor encoder, this can easily become confusing if using external encoders. To use external encoders, you must use the motor object associated with the port. For example, if there is a motor in port 1 named “Arm Motor” and an external encoder plugged into encoder port 1, you must do the following to get the encoder’s position:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="25e69bf4-cf31-4a67-8238-36a10685bb83" name="7d5aaf57-073e-46be-a7ad-1ca5bfdca9e4" type="radio"/>
+<label class="sd-tab-label" data-sync-id="java" for="25e69bf4-cf31-4a67-8238-36a10685bb83">
+Java</label><div class="sd-tab-content docutils">
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">DcMotor</span><span class="w"> </span><span class="n">motor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hardwareMap</span><span class="p">.</span><span class="na">dcmotor</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">"Arm Motor"</span><span class="p">);</span>
+<span class="kt">double</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">motor</span><span class="p">.</span><span class="na">getCurrentPosition</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<input id="2de428d0-ed48-45ae-a25e-9c5c83a7e07c" name="7d5aaf57-073e-46be-a7ad-1ca5bfdca9e4" type="radio"/>
+<label class="sd-tab-label" data-sync-id="blocks" for="2de428d0-ed48-45ae-a25e-9c5c83a7e07c">
+Blocks</label><div class="sd-tab-content docutils">
+<a class="reference internal image-reference" href="../../../_images/encoder-opmode-1.png"><img alt="../../../_images/encoder-opmode-1.png" class="align-center" src="../../../_images/encoder-opmode-1.png" style="width: 45em;"/></a>
+</div>
+</div>
+<p>Great! We now have the relative position of our encoder, reported in the number of “counts” it is from what it considers to be zero. However, it is often convenient to have the encoder start at zero at the beginning of the OpMode. While it technically does not change anything, it can help with debugging and simplify future code. To do this, we can add a call to reset the encoders before we read them.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="6fc2a401-90f0-4e04-825e-ad72e77d8adb" name="9e24d3f0-a2e3-421a-862a-ba73a916ab2a" type="radio"/>
+<label class="sd-tab-label" data-sync-id="java" for="6fc2a401-90f0-4e04-825e-ad72e77d8adb">
+Java</label><div class="sd-tab-content docutils">
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">DcMotor</span><span class="w"> </span><span class="n">motor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hardwareMap</span><span class="p">.</span><span class="na">dcMotor</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">"Arm Motor"</span><span class="p">);</span>
+<span class="n">motor</span><span class="p">.</span><span class="na">setMode</span><span class="p">(</span><span class="n">DcMotor</span><span class="p">.</span><span class="na">RunMode</span><span class="p">.</span><span class="na">STOP_AND_RESET_ENCODER</span><span class="p">);</span><span class="w"> </span><span class="c1">// Reset the motor encoder</span>
+<span class="n">motor</span><span class="p">.</span><span class="na">setMode</span><span class="p">(</span><span class="n">DcMotor</span><span class="p">.</span><span class="na">RunMode</span><span class="p">.</span><span class="na">RUN_WITHOUT_ENCODER</span><span class="p">);</span><span class="w"> </span><span class="c1">// Turn the motor back on when we are done</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">motor</span><span class="p">.</span><span class="na">getCurrentPosition</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<input id="97ec20c1-1b3d-49c9-bfda-c4c589617296" name="9e24d3f0-a2e3-421a-862a-ba73a916ab2a" type="radio"/>
+<label class="sd-tab-label" data-sync-id="blocks" for="97ec20c1-1b3d-49c9-bfda-c4c589617296">
+Blocks</label><div class="sd-tab-content docutils">
+<a class="reference internal image-reference" href="../../../_images/encoder-opmode-2.png"><img alt="../../../_images/encoder-opmode-2.png" class="align-center" src="../../../_images/encoder-opmode-2.png" style="width: 45em;"/></a>
+</div>
+</div>
+<p>As a note, <strong>RUN_WITHOUT_ENCODER does not disable the encoder. It instead tells the SDK not to use the motor encoder for built-in velocity control</strong>. We will go over what this means in a later section, but for now, know that it turns the motor back on so we can use it after the encoder is reset.</p>
+<p>Now we have our position (in counts) relative to the starting angle of the encoder. We can make a quick program to see this in action. Here, we use a motor encoder plugged into a port named “Arm Motor” in the hardware configuration.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="d80dbaf6-6b33-4500-8284-5c7949e24555" name="f440b0fd-0fc6-42b4-9faf-53805b2c1bb6" type="radio"/>
+<label class="sd-tab-label" data-sync-id="java" for="d80dbaf6-6b33-4500-8284-5c7949e24555">
+Java</label><div class="sd-tab-content docutils">
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nn">org.firstinspires.ftc.teamcode</span><span class="p">;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">com.qualcomm.robotcore.eventloop.opmode.LinearOpMode</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">com.qualcomm.robotcore.eventloop.opmode.TeleOp</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">com.qualcomm.robotcore.hardware.DcMotor</span><span class="p">;</span>
+<span class="nd">@TeleOp</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">EncoderOpmode</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">LinearOpMode</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">runOpMode</span><span class="p">()</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">InterruptedException</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Find a motor in the hardware map named "Arm Motor"</span>
+<span class="w">        </span><span class="n">DcMotor</span><span class="w"> </span><span class="n">motor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hardwareMap</span><span class="p">.</span><span class="na">dcMotor</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">"Arm Motor"</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Reset the motor encoder so that it reads zero ticks</span>
+<span class="w">        </span><span class="n">motor</span><span class="p">.</span><span class="na">setMode</span><span class="p">(</span><span class="n">DcMotor</span><span class="p">.</span><span class="na">RunMode</span><span class="p">.</span><span class="na">STOP_AND_RESET_ENCODER</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Turn the motor back on, required if you use STOP_AND_RESET_ENCODER</span>
+<span class="w">        </span><span class="n">motor</span><span class="p">.</span><span class="na">setMode</span><span class="p">(</span><span class="n">DcMotor</span><span class="p">.</span><span class="na">RunMode</span><span class="p">.</span><span class="na">RUN_WITHOUT_ENCODER</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">waitForStart</span><span class="p">();</span>
+
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">opModeIsActive</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// Get the current position of the motor</span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">motor</span><span class="p">.</span><span class="na">getCurrentPosition</span><span class="p">();</span>
+
+<span class="w">            </span><span class="c1">// Show the position of the motor on telemetry</span>
+<span class="w">            </span><span class="n">telemetry</span><span class="p">.</span><span class="na">addData</span><span class="p">(</span><span class="s">"Encoder Position"</span><span class="p">,</span><span class="w"> </span><span class="n">position</span><span class="p">);</span>
+<span class="w">            </span><span class="n">telemetry</span><span class="p">.</span><span class="na">update</span><span class="p">();</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<input id="1b6a77cc-7dd5-45de-a4de-ca6c4aaad8e9" name="f440b0fd-0fc6-42b4-9faf-53805b2c1bb6" type="radio"/>
+<label class="sd-tab-label" data-sync-id="blocks" for="1b6a77cc-7dd5-45de-a4de-ca6c4aaad8e9">
+Blocks</label><div class="sd-tab-content docutils">
+<a class="reference internal image-reference" href="../../../_images/encoder-opmode-3.png"><img alt="../../../_images/encoder-opmode-3.png" class="align-center" src="../../../_images/encoder-opmode-3.png" style="width: 45em;"/></a>
+</div>
+</div>
+<p>If you run the above OpMode and turn the encoder, you should see the values change as you move. If you rotate the shaft back to where it started, you will see the number return to (very close to) zero. As an exercise, rotate the shaft one full revolution (360) degrees and note down the number.</p>
+<p>There is one more thing we can do with encoders. While knowing the number of counts something moved is useful, oftentimes one will need a different number, like the number of revolutions the encoder has turned or the angle it is at. To determine these, we need a constant, the encoders Counts Per Revolution or CPR. For external encoders, this number is often provided in a datasheet. For motors, it will generally be on the product page, although some motors (most notably the Rev Ultraplanetary Gearbox) do not provide it plainly.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can calculate a motor’s Counts Per Revolution by taking the base motor’s Counts Per Revolution and multiplying it by the gearbox ratio. Be careful to use the actual gearbox ratio when doing this! For example, a 5:1 Ultraplanetary motor would have a count per revolution of 28 * (5.23) = 146.44 because the base motor has 28 Counts Per Revolution and the 5:1 gearbox actually has a 5.23:1 gear ratio. Remember, when using two gearboxes on top of each other, you multiply the gear ratios together.</p>
+</div>
+<p>In the following example, we divide the encoder position by its counts per revolution to obtain the number of revolutions the encoder has rotated. You have to replace [Your Counts Per Revolution Here] with the counts per revolution of your motor, found on its product page or calculated using the above tip.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="abe1c5b7-c138-40cc-bfd1-b31a86b0166a" name="945043f9-9227-4d8e-845c-82bf9795400a" type="radio"/>
+<label class="sd-tab-label" data-sync-id="java" for="abe1c5b7-c138-40cc-bfd1-b31a86b0166a">
+Java</label><div class="sd-tab-content docutils">
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w"> </span><span class="n">CPR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">Your</span><span class="w"> </span><span class="n">Counts</span><span class="w"> </span><span class="n">Per</span><span class="w"> </span><span class="n">Revolution</span><span class="w"> </span><span class="n">Here</span><span class="o">]</span><span class="p">;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">motor</span><span class="p">.</span><span class="na">getCurrentPosition</span><span class="p">();</span>
+<span class="kt">double</span><span class="w"> </span><span class="n">revolutions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">position</span><span class="o">/</span><span class="n">CPR</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<input id="f7550938-98f3-4eb7-a64f-d2d626601a55" name="945043f9-9227-4d8e-845c-82bf9795400a" type="radio"/>
+<label class="sd-tab-label" data-sync-id="blocks" for="f7550938-98f3-4eb7-a64f-d2d626601a55">
+Blocks</label><div class="sd-tab-content docutils">
+<a class="reference internal image-reference" href="../../../_images/encoder-opmode-4.png"><img alt="../../../_images/encoder-opmode-4.png" class="align-center" src="../../../_images/encoder-opmode-4.png" style="width: 45em;"/></a>
+</div>
+</div>
+<p>There is one more number we can get: the angle of the shaft. Calculating this number is very simple. We can multiply the number of rotations by 360 (since there are 360 degrees in one revolution). You might notice that this number can go above 360 as the shaft rotates multiple times. As such, we introduce angleNormalized, which will always be between 0 and 360.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="f4648a31-6597-4155-a588-072e6f31d566" name="de3188a4-e625-4448-97af-e7df0ab14af8" type="radio"/>
+<label class="sd-tab-label" data-sync-id="java" for="f4648a31-6597-4155-a588-072e6f31d566">
+Java</label><div class="sd-tab-content docutils">
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w"> </span><span class="n">CPR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">Your</span><span class="w"> </span><span class="n">Counts</span><span class="w"> </span><span class="n">Per</span><span class="w"> </span><span class="n">Revolution</span><span class="w"> </span><span class="n">Here</span><span class="o">]</span><span class="p">;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">motor</span><span class="p">.</span><span class="na">getCurrentPosition</span><span class="p">();</span>
+<span class="kt">double</span><span class="w"> </span><span class="n">revolutions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">position</span><span class="o">/</span><span class="n">CPR</span><span class="p">;</span>
+
+<span class="kt">double</span><span class="w"> </span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">revolutions</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">360</span><span class="p">;</span>
+<span class="kt">double</span><span class="w"> </span><span class="n">angleNormalized</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">angle</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">360</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<input id="6d3f8bac-4d0d-459c-9de3-df5e15e3eb56" name="de3188a4-e625-4448-97af-e7df0ab14af8" type="radio"/>
+<label class="sd-tab-label" data-sync-id="blocks" for="6d3f8bac-4d0d-459c-9de3-df5e15e3eb56">
+Blocks</label><div class="sd-tab-content docutils">
+<a class="reference internal image-reference" href="../../../_images/encoder-opmode-5.png"><img alt="../../../_images/encoder-opmode-5.png" class="align-center" src="../../../_images/encoder-opmode-5.png" style="width: 45em;"/></a>
+</div>
+</div>
+<p>Putting it all together, we get the following testing program.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="2f8e7627-c3a4-4c57-b4e3-dbd9ef12badc" name="b8900526-3de8-40f4-895f-9da87d5b528a" type="radio"/>
+<label class="sd-tab-label" data-sync-id="java" for="2f8e7627-c3a4-4c57-b4e3-dbd9ef12badc">
+Java</label><div class="sd-tab-content docutils">
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nn">org.firstinspires.ftc.teamcode</span><span class="p">;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">com.qualcomm.robotcore.eventloop.opmode.LinearOpMode</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">com.qualcomm.robotcore.eventloop.opmode.TeleOp</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">com.qualcomm.robotcore.hardware.DcMotor</span><span class="p">;</span>
+<span class="nd">@TeleOp</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">EncoderOpmode</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">LinearOpMode</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">runOpMode</span><span class="p">()</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">InterruptedException</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Find a motor in the hardware map named "Arm Motor"</span>
+<span class="w">        </span><span class="n">DcMotor</span><span class="w"> </span><span class="n">motor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hardwareMap</span><span class="p">.</span><span class="na">dcMotor</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">"Arm Motor"</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Reset the motor encoder so that it reads zero ticks</span>
+<span class="w">        </span><span class="n">motor</span><span class="p">.</span><span class="na">setMode</span><span class="p">(</span><span class="n">DcMotor</span><span class="p">.</span><span class="na">RunMode</span><span class="p">.</span><span class="na">STOP_AND_RESET_ENCODER</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// Turn the motor back on, required if you use STOP_AND_RESET_ENCODER</span>
+<span class="w">        </span><span class="n">motor</span><span class="p">.</span><span class="na">setMode</span><span class="p">(</span><span class="n">DcMotor</span><span class="p">.</span><span class="na">RunMode</span><span class="p">.</span><span class="na">RUN_WITHOUT_ENCODER</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">waitForStart</span><span class="p">();</span>
+
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">opModeIsActive</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">double</span><span class="w"> </span><span class="n">CPR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">Your</span><span class="w"> </span><span class="n">Counts</span><span class="w"> </span><span class="n">Per</span><span class="w"> </span><span class="n">Revolution</span><span class="w"> </span><span class="n">Here</span><span class="o">]</span><span class="p">;</span>
+
+<span class="w">            </span><span class="c1">// Get the current position of the motor</span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">motor</span><span class="p">.</span><span class="na">getCurrentPosition</span><span class="p">();</span>
+<span class="w">            </span><span class="kt">double</span><span class="w"> </span><span class="n">revolutions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">position</span><span class="o">/</span><span class="n">CPR</span><span class="p">;</span>
+
+<span class="w">            </span><span class="kt">double</span><span class="w"> </span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">revolutions</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">360</span><span class="p">;</span>
+<span class="w">            </span><span class="kt">double</span><span class="w"> </span><span class="n">angleNormalized</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">angle</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">360</span><span class="p">;</span>
+
+<span class="w">            </span><span class="c1">// Show the position of the motor on telemetry</span>
+<span class="w">            </span><span class="n">telemetry</span><span class="p">.</span><span class="na">addData</span><span class="p">(</span><span class="s">"Encoder Position"</span><span class="p">,</span><span class="w"> </span><span class="n">position</span><span class="p">);</span>
+<span class="w">            </span><span class="n">telemetry</span><span class="p">.</span><span class="na">addData</span><span class="p">(</span><span class="s">"Encoder Revolutions"</span><span class="p">,</span><span class="w"> </span><span class="n">revolutions</span><span class="p">);</span>
+<span class="w">            </span><span class="n">telemetry</span><span class="p">.</span><span class="na">addData</span><span class="p">(</span><span class="s">"Encoder Angle (Degrees)"</span><span class="p">,</span><span class="w"> </span><span class="n">angle</span><span class="p">);</span>
+<span class="w">            </span><span class="n">telemetry</span><span class="p">.</span><span class="na">addData</span><span class="p">(</span><span class="s">"Encoder Angle - Normalized (Degrees)"</span><span class="p">,</span><span class="w"> </span><span class="n">angleNormalized</span><span class="p">);</span>
+<span class="w">            </span><span class="n">telemetry</span><span class="p">.</span><span class="na">update</span><span class="p">();</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<input id="9f7085c6-d4af-4d8e-93d4-b5f9200aee04" name="b8900526-3de8-40f4-895f-9da87d5b528a" type="radio"/>
+<label class="sd-tab-label" data-sync-id="blocks" for="9f7085c6-d4af-4d8e-93d4-b5f9200aee04">
+Blocks</label><div class="sd-tab-content docutils">
+<p><a class="reference download internal" download="" href="../../../_downloads/28804290d0e1b02ee618d609f5bdc044/encoder-opmode.blk"><code class="xref download docutils literal notranslate"><span class="pre">Blocks</span> <span class="pre">file</span> <span class="pre">download</span></code></a></p>
+<a class="reference internal image-reference" href="../../../_images/encoder-opmode-complete.png"><img alt="../../../_images/encoder-opmode-complete.png" class="align-center" src="../../../_images/encoder-opmode-complete.png" style="width: 45em;"/></a>
+</div>
+</div>
+</section>
+<section id="tracking-wheels-and-spools">
+<h3>Tracking Wheels and Spools<a class="headerlink" href="#tracking-wheels-and-spools" title="Permalink to this headline">#</a></h3>
+<p>Up to this point, we have mostly been working with motors rotating something. However, many mechanisms in FTC are linear, and it can be desirable to measure these in a linear unit as well. Fortunately, this is very straightforward. All we need to know is the diameter of the object we are measuring.</p>
+<p>Be careful when selecting your diameter. For wheels, it is the outer diameter of the wheel, but for spools, it is the inner diameter of the spool, where the string rests. For chain and belts, it is the “pitch diameter” of the sprocket or pulley.</p>
+<p>From here, we can calculate the circumference (the length of the arc of the circle, or the distance the wheel/spool will travel in one rotation)</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="6e7a7815-638e-433b-8f8d-2e88ca3333d8" name="ef369997-52c1-476a-87bd-7d33fe4b0e86" type="radio"/>
+<label class="sd-tab-label" data-sync-id="java" for="6e7a7815-638e-433b-8f8d-2e88ca3333d8">
+Java</label><div class="sd-tab-content docutils">
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kt">double</span><span class="w"> </span><span class="n">diameter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="p">;</span><span class="w"> </span><span class="c1">// Replace with your wheel/spool's diameter</span>
+<span class="kt">double</span><span class="w"> </span><span class="n">circumference</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Math</span><span class="p">.</span><span class="na">PI</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">diameter</span><span class="p">;</span>
+
+<span class="kt">double</span><span class="w"> </span><span class="n">distance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">circumference</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">revolutions</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<input id="c5d58e24-1999-40ed-81e9-ed71c252cc65" name="ef369997-52c1-476a-87bd-7d33fe4b0e86" type="radio"/>
+<label class="sd-tab-label" data-sync-id="blocks" for="c5d58e24-1999-40ed-81e9-ed71c252cc65">
+Blocks</label><div class="sd-tab-content docutils">
+<a class="reference internal image-reference" href="../../../_images/spool-encoder-opmode-1.png"><img alt="../../../_images/spool-encoder-opmode-1.png" class="align-center" src="../../../_images/spool-encoder-opmode-1.png" style="width: 45em;"/></a>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Units are very important when dealing with FTC programming, so make sure they are always consistent! Whatever units you use for the diameter are the units for your calculated distance. So if you measure your diameter in inches, the reported distance will also be in inches.</p>
+</div>
+<p>Putting this all together with our previous testing program, we get</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="9996f725-f965-4865-a8e9-89b08d026a4b" name="ba018f9a-aa32-4142-b579-cdab2fb59c8c" type="radio"/>
+<label class="sd-tab-label" data-sync-id="java" for="9996f725-f965-4865-a8e9-89b08d026a4b">
+Java</label><div class="sd-tab-content docutils">
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nn">org.firstinspires.ftc.teamcode</span><span class="p">;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">com.qualcomm.robotcore.eventloop.opmode.LinearOpMode</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">com.qualcomm.robotcore.eventloop.opmode.TeleOp</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">com.qualcomm.robotcore.hardware.DcMotor</span><span class="p">;</span>
+<span class="nd">@TeleOp</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">SpoolEncoderOpmode</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">LinearOpMode</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="nd">@Override</span>
+<span class="w">   </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">runOpMode</span><span class="p">()</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">InterruptedException</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// Find a motor in the hardware map named "Arm Motor"</span>
+<span class="w">      </span><span class="n">DcMotor</span><span class="w"> </span><span class="n">motor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hardwareMap</span><span class="p">.</span><span class="na">dcMotor</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">"Arm Motor"</span><span class="p">);</span>
+
+<span class="w">      </span><span class="c1">// Reset the motor encoder so that it reads zero ticks</span>
+<span class="w">      </span><span class="n">motor</span><span class="p">.</span><span class="na">setMode</span><span class="p">(</span><span class="n">DcMotor</span><span class="p">.</span><span class="na">RunMode</span><span class="p">.</span><span class="na">STOP_AND_RESET_ENCODER</span><span class="p">);</span>
+
+<span class="w">      </span><span class="c1">// Turn the motor back on, required if you use STOP_AND_RESET_ENCODER</span>
+<span class="w">      </span><span class="n">motor</span><span class="p">.</span><span class="na">setMode</span><span class="p">(</span><span class="n">DcMotor</span><span class="p">.</span><span class="na">RunMode</span><span class="p">.</span><span class="na">RUN_WITHOUT_ENCODER</span><span class="p">);</span>
+
+<span class="w">      </span><span class="n">waitForStart</span><span class="p">();</span>
+
+<span class="w">      </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">opModeIsActive</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">double</span><span class="w"> </span><span class="n">CPR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">Your</span><span class="w"> </span><span class="n">Counts</span><span class="w"> </span><span class="n">Per</span><span class="w"> </span><span class="n">Revolution</span><span class="w"> </span><span class="n">Here</span><span class="o">]</span><span class="p">;</span>
+
+<span class="w">            </span><span class="kt">double</span><span class="w"> </span><span class="n">diameter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="p">;</span><span class="w"> </span><span class="c1">// Replace with your wheel/spool's diameter</span>
+<span class="w">            </span><span class="kt">double</span><span class="w"> </span><span class="n">circumference</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Math</span><span class="p">.</span><span class="na">PI</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">diameter</span><span class="p">;</span>
+
+<span class="w">            </span><span class="c1">// Get the current position of the motor</span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">motor</span><span class="p">.</span><span class="na">getCurrentPosition</span><span class="p">();</span>
+<span class="w">            </span><span class="kt">double</span><span class="w"> </span><span class="n">revolutions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">position</span><span class="o">/</span><span class="n">CPR</span><span class="p">;</span>
+
+<span class="w">            </span><span class="kt">double</span><span class="w"> </span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">revolutions</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">360</span><span class="p">;</span>
+<span class="w">            </span><span class="kt">double</span><span class="w"> </span><span class="n">angleNormalized</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">angle</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">360</span><span class="p">;</span>
+
+<span class="w">            </span><span class="kt">double</span><span class="w"> </span><span class="n">distance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">circumference</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">revolutions</span><span class="p">;</span>
+
+<span class="w">            </span><span class="c1">//Show the position of the motor on telemetry</span>
+<span class="w">            </span><span class="n">telemetry</span><span class="p">.</span><span class="na">addData</span><span class="p">(</span><span class="s">"Encoder Position"</span><span class="p">,</span><span class="w"> </span><span class="n">position</span><span class="p">);</span>
+<span class="w">            </span><span class="n">telemetry</span><span class="p">.</span><span class="na">addData</span><span class="p">(</span><span class="s">"Encoder Revolutions"</span><span class="p">,</span><span class="w"> </span><span class="n">revolutions</span><span class="p">);</span>
+<span class="w">            </span><span class="n">telemetry</span><span class="p">.</span><span class="na">addData</span><span class="p">(</span><span class="s">"Encoder Angle (Degrees)"</span><span class="p">,</span><span class="w"> </span><span class="n">angle</span><span class="p">);</span>
+<span class="w">            </span><span class="n">telemetry</span><span class="p">.</span><span class="na">addData</span><span class="p">(</span><span class="s">"Encoder Angle - Normalized (Degrees)"</span><span class="p">,</span><span class="w"> </span><span class="n">angleNormalized</span><span class="p">);</span>
+<span class="w">            </span><span class="n">telemetry</span><span class="p">.</span><span class="na">addData</span><span class="p">(</span><span class="s">"Linear Distance"</span><span class="p">,</span><span class="w"> </span><span class="n">distance</span><span class="p">);</span>
+<span class="w">            </span><span class="n">telemetry</span><span class="p">.</span><span class="na">update</span><span class="p">();</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">   </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<input id="6147c860-3887-41bb-b17a-04cc930c85b6" name="ba018f9a-aa32-4142-b579-cdab2fb59c8c" type="radio"/>
+<label class="sd-tab-label" data-sync-id="blocks" for="6147c860-3887-41bb-b17a-04cc930c85b6">
+Blocks</label><div class="sd-tab-content docutils">
+<p><a class="reference download internal" download="" href="../../../_downloads/38c6be7155c5671975a3181566f6597b/spool-encoder-opmode.blk"><code class="xref download docutils literal notranslate"><span class="pre">Blocks</span> <span class="pre">file</span> <span class="pre">download</span></code></a></p>
+<a class="reference internal image-reference" href="../../../_images/spool-encoder-opmode-complete.png"><img alt="../../../_images/spool-encoder-opmode-complete.png" class="align-center" src="../../../_images/spool-encoder-opmode-complete.png" style="width: 45em;"/></a>
+</div>
+</div>
+</section>
+<section id="running-motors-with-encoders">
+<h3>Running Motors With Encoders<a class="headerlink" href="#running-motors-with-encoders" title="Permalink to this headline">#</a></h3>
+<p>We’ve learned how to read encoder values, but how do you set where you want to go and tell the motor to go there?</p>
+<p>Earlier, we learned about the RUN_WITHOUT_ENCODER mode for the motor. We can use another motor mode, RUN_TO_POSITION, to tell the motor to run to a specific position in ticks, like so:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="4f0bfe48-7abd-41c1-aadd-e7a8a8f0ec78" name="229822d9-81a9-4731-9593-a55d434cc001" type="radio"/>
+<label class="sd-tab-label" data-sync-id="java" for="4f0bfe48-7abd-41c1-aadd-e7a8a8f0ec78">
+Java</label><div class="sd-tab-content docutils">
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">DcMotor</span><span class="w"> </span><span class="n">motor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hardwareMap</span><span class="p">.</span><span class="na">dcmotor</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">"Arm Motor"</span><span class="p">);</span>
+<span class="n">motor</span><span class="p">.</span><span class="na">setMode</span><span class="p">(</span><span class="n">DcMotor</span><span class="p">.</span><span class="na">RunMode</span><span class="p">.</span><span class="na">RUN_TO_POSITION</span><span class="p">);</span><span class="w"> </span><span class="c1">// Tells the motor to run to the specific position</span>
+</pre></div>
+</div>
+</div>
+<input id="9a9e223e-efc7-47f4-bc7e-3612ec5e7275" name="229822d9-81a9-4731-9593-a55d434cc001" type="radio"/>
+<label class="sd-tab-label" data-sync-id="blocks" for="9a9e223e-efc7-47f4-bc7e-3612ec5e7275">
+Blocks</label><div class="sd-tab-content docutils">
+<a class="reference internal image-reference" href="../../../_images/arm-opmode-1.png"><img alt="../../../_images/arm-opmode-1.png" class="align-center" src="../../../_images/arm-opmode-1.png" style="width: 45em;"/></a>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can find out more about run modes at the <a class="reference external" href="https://docs.revrobotics.com/duo-control/programming/using-encoder-feedback">official REV Robotics Documentation page</a></p>
+</div>
+<p>However, before we tell the motor to go to a position, we have to tell the motor what position to run to. <strong>Note that this value must be an integer</strong>. Let’s amend the above code to do that.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Setting the motor to RUN_TO_POSITION mode before setting a target position will throw an error. Be careful not to do that!</p>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="f984fa38-6e76-40a6-919b-a60d9095c276" name="28da845e-42b5-42ee-a241-074a9aaf1566" type="radio"/>
+<label class="sd-tab-label" data-sync-id="java" for="f984fa38-6e76-40a6-919b-a60d9095c276">
+Java</label><div class="sd-tab-content docutils">
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">DcMotor</span><span class="w"> </span><span class="n">motor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hardwareMap</span><span class="p">.</span><span class="na">dcmotor</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">"Arm Motor"</span><span class="p">);</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">desiredPosition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1000</span><span class="p">;</span><span class="w"> </span><span class="c1">// The position (in ticks) that you want the motor to move to</span>
+<span class="n">motor</span><span class="p">.</span><span class="na">setTargetPosition</span><span class="p">(</span><span class="n">desiredPosition</span><span class="p">);</span><span class="w"> </span><span class="c1">// Tells the motor that the position it should go to is desiredPosition</span>
+<span class="n">motor</span><span class="p">.</span><span class="na">setMode</span><span class="p">(</span><span class="n">DcMotor</span><span class="p">.</span><span class="na">RunMode</span><span class="p">.</span><span class="na">RUN_TO_POSITION</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<input id="93e09ec1-bdf9-4c9b-a11d-7687c34a6e56" name="28da845e-42b5-42ee-a241-074a9aaf1566" type="radio"/>
+<label class="sd-tab-label" data-sync-id="blocks" for="93e09ec1-bdf9-4c9b-a11d-7687c34a6e56">
+Blocks</label><div class="sd-tab-content docutils">
+<a class="reference internal image-reference" href="../../../_images/arm-opmode-2.png"><img alt="../../../_images/arm-opmode-2.png" class="align-center" src="../../../_images/arm-opmode-2.png" style="width: 45em;"/></a>
+</div>
+</div>
+<p>This code tells the motor to move to 1000 ticks, using a PID loop to control the motor’s position. You can read more about PID loops <a class="reference external" href="https://gm0.org/en/latest/docs/software/concepts/control-loops.html#pid">here.</a></p>
+<p>We can cap the speed that the motor runs at using the following code:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="bddce45b-ede3-46b0-b64e-55c36976ffb3" name="12c7d523-d7e6-41fa-b938-adb2c0511f9d" type="radio"/>
+<label class="sd-tab-label" data-sync-id="java" for="bddce45b-ede3-46b0-b64e-55c36976ffb3">
+Java</label><div class="sd-tab-content docutils">
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">DcMotor</span><span class="w"> </span><span class="n">motor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hardwareMap</span><span class="p">.</span><span class="na">dcmotor</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">"Arm Motor"</span><span class="p">);</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">desiredPosition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1000</span><span class="p">;</span><span class="w"> </span><span class="c1">// The position (in ticks) that you want the motor to move to</span>
+<span class="n">motor</span><span class="p">.</span><span class="na">setTargetPosition</span><span class="p">(</span><span class="n">desiredPosition</span><span class="p">);</span><span class="w"> </span><span class="c1">// Tells the motor that the position it should go to is desiredPosition</span>
+<span class="n">motor</span><span class="p">.</span><span class="na">setMode</span><span class="p">(</span><span class="n">DcMotor</span><span class="p">.</span><span class="na">RunMode</span><span class="p">.</span><span class="na">RUN_TO_POSITION</span><span class="p">);</span>
+<span class="n">motor</span><span class="p">.</span><span class="na">setPower</span><span class="p">(</span><span class="mf">0.5</span><span class="p">);</span><span class="w"> </span><span class="c1">// Sets the maximum power that the motor can go at</span>
+</pre></div>
+</div>
+</div>
+<input id="20331076-d40a-43ce-959f-e3c09ab0b591" name="12c7d523-d7e6-41fa-b938-adb2c0511f9d" type="radio"/>
+<label class="sd-tab-label" data-sync-id="blocks" for="20331076-d40a-43ce-959f-e3c09ab0b591">
+Blocks</label><div class="sd-tab-content docutils">
+<a class="reference internal image-reference" href="../../../_images/arm-opmode-3.png"><img alt="../../../_images/arm-opmode-3.png" class="align-center" src="../../../_images/arm-opmode-3.png" style="width: 45em;"/></a>
+</div>
+</div>
+<p>Now, let’s use this information to control an arm in an OpMode.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="628ba7ca-749d-4c84-b8a9-d026cd33c7a7" name="854d57d3-f607-4afa-9d64-cb5c7463e76f" type="radio"/>
+<label class="sd-tab-label" data-sync-id="java" for="628ba7ca-749d-4c84-b8a9-d026cd33c7a7">
+Java</label><div class="sd-tab-content docutils">
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nn">org.firstinspires.ftc.teamcode.Tests</span><span class="p">;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">com.qualcomm.robotcore.eventloop.opmode.LinearOpMode</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">com.qualcomm.robotcore.eventloop.opmode.TeleOp</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">com.qualcomm.robotcore.hardware.DcMotor</span><span class="p">;</span>
+
+<span class="nd">@TeleOp</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">ArmOpMode</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">LinearOpMode</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="nd">@Override</span>
+<span class="w">   </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">runOpMode</span><span class="p">()</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">InterruptedException</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// Position of the arm when it's lifted</span>
+<span class="w">      </span><span class="kt">int</span><span class="w"> </span><span class="n">armUpPosition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1000</span><span class="p">;</span>
+
+<span class="w">      </span><span class="c1">// Position of the arm when it's down</span>
+<span class="w">      </span><span class="kt">int</span><span class="w"> </span><span class="n">armDownPosition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="w">      </span><span class="c1">// Find a motor in the hardware map named "Arm Motor"</span>
+<span class="w">      </span><span class="n">DcMotor</span><span class="w"> </span><span class="n">armMotor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hardwareMap</span><span class="p">.</span><span class="na">dcMotor</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="s">"Arm Motor"</span><span class="p">);</span>
+
+<span class="w">      </span><span class="c1">// Reset the motor encoder so that it reads zero ticks</span>
+<span class="w">      </span><span class="n">armMotor</span><span class="p">.</span><span class="na">setMode</span><span class="p">(</span><span class="n">DcMotor</span><span class="p">.</span><span class="na">RunMode</span><span class="p">.</span><span class="na">STOP_AND_RESET_ENCODER</span><span class="p">);</span>
+
+<span class="w">      </span><span class="c1">// Sets the starting position of the arm to the down position</span>
+<span class="w">      </span><span class="n">armMotor</span><span class="p">.</span><span class="na">setTargetPosition</span><span class="p">(</span><span class="n">armDownPosition</span><span class="p">);</span>
+<span class="w">      </span><span class="n">armMotor</span><span class="p">.</span><span class="na">setMode</span><span class="p">(</span><span class="n">DcMotor</span><span class="p">.</span><span class="na">RunMode</span><span class="p">.</span><span class="na">RUN_TO_POSITION</span><span class="p">);</span>
+
+<span class="w">      </span><span class="n">waitForStart</span><span class="p">();</span>
+
+<span class="w">      </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">opModeIsActive</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// If the A button is pressed, raise the arm</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">gamepad1</span><span class="p">.</span><span class="na">a</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">               </span><span class="n">armMotor</span><span class="p">.</span><span class="na">setTargetPosition</span><span class="p">(</span><span class="n">armUpPosition</span><span class="p">);</span>
+<span class="w">               </span><span class="n">armMotor</span><span class="p">.</span><span class="na">setMode</span><span class="p">(</span><span class="n">DcMotor</span><span class="p">.</span><span class="na">RunMode</span><span class="p">.</span><span class="na">RUN_TO_POSITION</span><span class="p">);</span>
+<span class="w">               </span><span class="n">armMotor</span><span class="p">.</span><span class="na">setPower</span><span class="p">(</span><span class="mf">0.5</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+
+<span class="w">            </span><span class="c1">// If the B button is pressed, lower the arm</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">gamepad1</span><span class="p">.</span><span class="na">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">               </span><span class="n">armMotor</span><span class="p">.</span><span class="na">setTargetPosition</span><span class="p">(</span><span class="n">armDownPosition</span><span class="p">);</span>
+<span class="w">               </span><span class="n">armMotor</span><span class="p">.</span><span class="na">setMode</span><span class="p">(</span><span class="n">DcMotor</span><span class="p">.</span><span class="na">RunMode</span><span class="p">.</span><span class="na">RUN_TO_POSITION</span><span class="p">);</span>
+<span class="w">               </span><span class="n">armMotor</span><span class="p">.</span><span class="na">setPower</span><span class="p">(</span><span class="mf">0.5</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+
+<span class="w">            </span><span class="c1">// Get the current position of the armMotor</span>
+<span class="w">            </span><span class="kt">double</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">armMotor</span><span class="p">.</span><span class="na">getCurrentPosition</span><span class="p">();</span>
+
+<span class="w">            </span><span class="c1">// Get the target position of the armMotor</span>
+<span class="w">            </span><span class="kt">double</span><span class="w"> </span><span class="n">desiredPosition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">armMotor</span><span class="p">.</span><span class="na">getTargetPosition</span><span class="p">();</span>
+
+<span class="w">            </span><span class="c1">// Show the position of the armMotor on telemetry</span>
+<span class="w">            </span><span class="n">telemetry</span><span class="p">.</span><span class="na">addData</span><span class="p">(</span><span class="s">"Encoder Position"</span><span class="p">,</span><span class="w"> </span><span class="n">position</span><span class="p">);</span>
+
+<span class="w">            </span><span class="c1">// Show the target position of the armMotor on telemetry</span>
+<span class="w">            </span><span class="n">telemetry</span><span class="p">.</span><span class="na">addData</span><span class="p">(</span><span class="s">"Desired Position"</span><span class="p">,</span><span class="w"> </span><span class="n">desiredPosition</span><span class="p">);</span>
+
+<span class="w">            </span><span class="n">telemetry</span><span class="p">.</span><span class="na">update</span><span class="p">();</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">   </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<input id="f553a583-3d9a-4f6d-9e8d-2e928cf3d8c5" name="854d57d3-f607-4afa-9d64-cb5c7463e76f" type="radio"/>
+<label class="sd-tab-label" data-sync-id="blocks" for="f553a583-3d9a-4f6d-9e8d-2e928cf3d8c5">
+Blocks</label><div class="sd-tab-content docutils">
+<p><a class="reference download internal" download="" href="../../../_downloads/a5f1b6af696434d01e60b42e4fa25f6b/arm-opmode.blk"><code class="xref download docutils literal notranslate"><span class="pre">Blocks</span> <span class="pre">file</span> <span class="pre">download</span></code></a></p>
+<a class="reference internal image-reference" href="../../../_images/arm-opmode-complete.png"><img alt="../../../_images/arm-opmode-complete.png" class="align-center" src="../../../_images/arm-opmode-complete.png" style="width: 45em;"/></a>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="bulk-reads.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Bulk Reads</div>
+              </div>
+              <svg><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="using-telemetry.html">
+              <svg><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Using Telemetry</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; Game Manual 0 Contributors |  Hosting Graciously Provided By //Copperforge
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            Contents
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Encoders</a><ul>
+<li><a class="reference internal" href="#what-are-encoders">What Are Encoders?</a><ul>
+<li><a class="reference internal" href="#relative-encoders">Relative Encoders</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#terminology">Terminology</a></li>
+<li><a class="reference internal" href="#programming-encoders">Programming Encoders</a><ul>
+<li><a class="reference internal" href="#reading-encoders">Reading Encoders</a></li>
+<li><a class="reference internal" href="#tracking-wheels-and-spools">Tracking Wheels and Spools</a></li>
+<li><a class="reference internal" href="#running-motors-with-encoders">Running Motors With Encoders</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/scripts/furo.js"></script>
+    <script src="../../../_static/js/hoverxref.js"></script>
+    <script src="../../../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../../../_static/js/micromodal.min.js"></script>
+    <script src="../../../_static/design-tabs.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </body>
+</html>

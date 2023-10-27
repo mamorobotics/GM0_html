@@ -1,0 +1,609 @@
+<!doctype html>
+<html class="no-js">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+<meta property="og:title" content="Wiring Guide" />
+  
+<meta property="og:type" content="website" />
+  
+<meta property="og:url" content="docs/power-and-electronics/wiring.html" />
+  
+<meta property="og:site_name" content="Game Manual 0" />
+  
+<meta property="og:description" content="Why does wiring matter?: Have you ever looked inside your robot and thought “what a mess of wires”? Wiring is extremely important in FTC, but is often overlooked or hastily done the hour before com..." />
+  
+<meta property="og:image" content="https://raw.githubusercontent.com/gamemanual0/gm0/main/source/_static/assets/gm0-logo.png" />
+  
+<meta property="og:image:alt" content="Game Manual 0" />
+  
+<meta property="og:ignore_canonical" content="true" />
+<meta name="theme-color" content="#F47F27" /><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Connectors and Wires" href="connectors-and-wires.html" /><link rel="prev" title="Electronics and Motion Components" href="index.html" />
+
+    <link rel="shortcut icon" href="../../_static/gm0-logo.ico"/><meta name="generator" content="sphinx-4.5.0, furo 2022.04.07"/>
+        <title>Wiring Guide - Game Manual 0</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?digest=68f4518137b9aefe99b631505a2064c3c42c9852" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/micromodal.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  --font-stack: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+  --admonition-font-size: 1rem;
+  --admonition-title-font-size: 1rem;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-background-primary: #1f2022;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-background-primary: #1f2022;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">Game Manual 0</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo only-light" src="../../_static/assets/gm0-logo.png" alt="Light Logo"/>
+    <img class="sidebar-logo only-dark" src="../../_static/assets/gm0-logo_white.png" alt="Dark Logo"/>
+  </div>
+  
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Game Manual 0 Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../mission-statement.html">Mission Statement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../start-here.html">Start Here</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../know-your-lingo.html">Know Your Lingo</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../being-a-team/index.html">Being a Team</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../being-a-team/starting-a-team.html">Starting a Team</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../being-a-team/team-organization.html">Team Organization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../being-a-team/collaboration-and-efficiency.html">Collaboration and Efficiency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../being-a-team/outreach-basics.html">Outreach Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../being-a-team/pitching-your-team.html">Pitching Your Team</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../design-skills/index.html">Design Skills</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../design-skills/engineering-design-process.html">Engineering Design Process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../design-skills/design-strategy.html">Design Strategy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../design-skills/cad.html">Computer-aided design (CAD)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../design-skills/cad-tutorials.html">CAD Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../design-skills/design-glossary.html">Design Glossary</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../hardware-components/index.html">Hardware Components</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../hardware-components/kit-and-hardware-guide/index.html">Kit and Hardware Guide</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../hardware-components/kit-and-hardware-guide/gobilda.html">goBILDA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../hardware-components/kit-and-hardware-guide/rev-robotics.html">REV Robotics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../hardware-components/kit-and-hardware-guide/tetrix.html">TETRIX</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../hardware-components/kit-and-hardware-guide/actobotics.html">Actobotics (Discontinued)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../hardware-components/kit-and-hardware-guide/custom.html">Custom</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../hardware-components/kit-and-hardware-guide/kit-glossary.html">Kit Glossary</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../hardware-components/tools-list.html">Tools List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../hardware-components/tips-and-tricks.html">Tips and Tricks</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../custom-manufacturing/index.html">Custom Manufacturing</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../custom-manufacturing/materials-guide.html">Materials Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../custom-manufacturing/3d-printing.html">3D Printing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../custom-manufacturing/machining.html">Machining</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../custom-manufacturing/laser-cutting.html">Laser Cutting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../custom-manufacturing/manufacturing-glossary.html">Manufacturing Glossary</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../common-mechanisms/index.html">Common Mechanisms</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../common-mechanisms/design-tradeoffs.html">Design Tradeoffs</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../common-mechanisms/drivetrains/index.html">Drivetrains</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../common-mechanisms/drivetrains/tank.html">Tank (Skid-Steer) Drivetrains</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../common-mechanisms/drivetrains/holonomic.html">Holonomic Drivetrains</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../common-mechanisms/drivetrains/drivetrain-gallery.html">Sample Drivetrains</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../common-mechanisms/power-transmission/index.html">Power Transmission</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../common-mechanisms/power-transmission/motion-mounting.html">Motion Mounting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../common-mechanisms/power-transmission/direct-drive.html">Direct Drive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../common-mechanisms/power-transmission/gears.html">Gears</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../common-mechanisms/power-transmission/chain.html">Roller Chain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../common-mechanisms/power-transmission/belt.html">Timing Belt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../common-mechanisms/power-transmission/power-transmission-glossary.html">Power Transmission Glossary</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../common-mechanisms/linear-motion-guide/index.html">Linear Motion Guide</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../common-mechanisms/linear-motion-guide/drawer-slides.html">Drawer Slides</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../common-mechanisms/linear-motion-guide/extrusion-slides.html">Extrusion Slides</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../common-mechanisms/linear-motion-guide/linear-bearing-slides.html">Linear Bearing Slides</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../common-mechanisms/linear-motion-guide/custom.html">Custom Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../common-mechanisms/linear-motion-guide/lead-screws.html">Lead Screws</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../common-mechanisms/linear-motion-guide/rack-and-pinion.html">Rack and Pinion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../common-mechanisms/linear-motion-guide/rigging.html">Rigging</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../common-mechanisms/arms.html">Arms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../common-mechanisms/linkages.html">Linkages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../common-mechanisms/passive-intake-claw.html">Passive Intake/Claw</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../common-mechanisms/active-intake/index.html">Active Intake</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../common-mechanisms/active-intake/principles-of-an-intake.html">Principles of an Intake</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../common-mechanisms/active-intake/types-of-intakes.html">Types of Intake</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../common-mechanisms/transfers/index.html">Transfers</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" role="switch" type="checkbox"/><label for="toctree-checkbox-11"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../common-mechanisms/transfers/transfer-design.html">Transfer Design Fundamentals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../common-mechanisms/transfers/transfer-types.html">Types of Transfers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../common-mechanisms/dead-wheels.html">Dead Wheels</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../common-mechanisms/turrets/index.html">Turrets</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" role="switch" type="checkbox"/><label for="toctree-checkbox-12"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../common-mechanisms/turrets/full-turret.html">Full Turrets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../common-mechanisms/turrets/mini-turret.html">Mini Turrets</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">Electronics and Motion Components</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" role="switch" type="checkbox"/><label for="toctree-checkbox-13"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Wiring Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="connectors-and-wires.html">Connectors and Wires</a></li>
+<li class="toctree-l2"><a class="reference internal" href="control-system.html">Control Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="driver-station-guide.html">Driver Station Guide</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="motor-guide/index.html">Motor Guide</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" role="switch" type="checkbox"/><label for="toctree-checkbox-14"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="motor-guide/choosing-motor.html">Choosing a Motor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="motor-guide/gearbox-anatomy.html">Gearbox Internals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="motor-guide/wiring-mounting-motors.html">Motor Wiring And Mounting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="motor-guide/motor-power.html">Motor Power</a></li>
+<li class="toctree-l3"><a class="reference internal" href="motor-guide/motor-glossary.html">Motor Glossary</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="servo-guide/index.html">Servo Guide</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" role="switch" type="checkbox"/><label for="toctree-checkbox-15"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="servo-guide/choosing-servo.html">Choosing a Servo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="servo-guide/usage-tips.html">Servo Usage Tips</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sensor-glossary.html">Sensor Glossary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tips-and-tricks.html">Tips and Tricks</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../software/index.html">Software</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" role="switch" type="checkbox"/><label for="toctree-checkbox-16"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../software/getting-started/index.html">Getting Started</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" role="switch" type="checkbox"/><label for="toctree-checkbox-17"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../software/getting-started/fundamental-concepts.html">Fundamental Concepts of Programming</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/getting-started/options-for-programming.html">Options for Programming</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/getting-started/linear-opmode-vs-opmode.html">LinearOpMode vs OpMode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/getting-started/common-hardware-components.html">Reading and Writing to Hardware</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/getting-started/using-android-studio.html">Using Android Studio</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/getting-started/common-issues.html">Common Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../software/tutorials/index.html">Tutorials</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" role="switch" type="checkbox"/><label for="toctree-checkbox-18"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../software/tutorials/mecanum-drive.html">Mecanum TeleOp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/tutorials/gamepad.html">Gamepad Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/tutorials/using-telemetry.html">Using Telemetry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/tutorials/encoders.html">Encoders</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/tutorials/bulk-reads.html">Bulk Reads</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/tutorials/vision.html">Computer Vision</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../software/concepts/index.html">Programming Concepts</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" role="switch" type="checkbox"/><label for="toctree-checkbox-19"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../software/concepts/control-loops.html">Control Loops</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/concepts/finite-state-machines.html">Finite State Machines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/concepts/kinematics.html">Kinematics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/concepts/odometry.html">Odometry</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../software/adv-control-system/index.html">Advanced Control System</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" role="switch" type="checkbox"/><label for="toctree-checkbox-20"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../software/adv-control-system/control-system-internals.html">Control System Electronics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/adv-control-system/sdk-communication.html">SDK Communication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/adv-control-system/sdk-motors.html">SDK Motors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/adv-control-system/sdk-servos.html">SDK Servos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/adv-control-system/sdk-sensors.html">SDK Sensors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/adv-control-system/lynx-module.html">Lynx Module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../software/software-glossary.html">Software Glossary</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../awards/index.html">Awards</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" role="switch" type="checkbox"/><label for="toctree-checkbox-21"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../awards/award-types.html">Award Categories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../awards/portfolio.html">Engineering Portfolio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../awards/judging-presentation.html">The Judging Process and Presentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../awards/notebook.html">Notebook Designs and Decisions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../useful-resources.html">Useful Resources</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../appendix/index.html">Appendix</a><input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" role="switch" type="checkbox"/><label for="toctree-checkbox-22"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../appendix/gallery.html">Gallery Of Robot Designs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../appendix/vendor-list.html">Vendor List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../appendix/vendor-guide.html">Vendor Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../appendix/license.html">License</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../contributing/index.html">Contributor’s Guide</a><input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" role="switch" type="checkbox"/><label for="toctree-checkbox-23"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/style-guide.html">Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/methods-of-contributing.html">Methods of Contributing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../contributing/contributors.html">Contributors</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container"><div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="wiring-guide">
+<h1>Wiring Guide<a class="headerlink" href="#wiring-guide" title="Permalink to this headline">#</a></h1>
+<section id="why-does-wiring-matter">
+<h2>Why does wiring matter?<a class="headerlink" href="#why-does-wiring-matter" title="Permalink to this headline">#</a></h2>
+<p>Have you ever looked inside your robot and thought “what a mess of wires”? Wiring is extremely important in FTC, but is often overlooked or hastily done the hour before competition starts. However, time spent in wiring the robot properly is crucial to the performance and maintenance of the robot.</p>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>It is highly discouraged for teams to overlook wiring, but many new teams seem to disregard it or put little thought into wiring the robot properly.</p>
+</div>
+<p>While tedious and often no fun, wiring can mean the difference between a win and loss. The best robot in the world won’t be able to work if a wire is loose or gets tangled up in the middle of a match. Thus it is imperative that wiring is purposefully thought out when designing and building a robot.</p>
+</section>
+<section id="firstreg-ftc-wiring-guide">
+<h2><em>FIRST</em>® FTC Wiring Guide<a class="headerlink" href="#firstreg-ftc-wiring-guide" title="Permalink to this headline">#</a></h2>
+<p><em>FIRST</em>® has created a wiring guide to help teams with tasks like crimping cables, soldering connections, and ESD mitigation that won’t be covered in this guide. Once you read up on electronics and wiring here, look at the <a class="reference external" href="https://www.firstinspires.org/sites/default/files/uploads/resource_library/ftc/robot-wiring-guide.pdf">FTC Wiring Guide</a> for the best practices and more tips &amp; tricks. In addition, <em>FIRST</em>® has written an <a class="reference external" href="https://www.firstinspires.org/sites/default/files/uploads/resource_library/ftc/analysis-esd-mitigation-echin.pdf">ESD Mitigation Whitepaper</a> that is worth taking a look at.</p>
+</section>
+<section id="general-advice">
+<h2>General Advice<a class="headerlink" href="#general-advice" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><strong>Always label wires! When bunched up, you may not know which wire goes into which port</strong>.</p></li>
+<li><p>Tie together loose wires, and better yet, tie that bunch of wires to a structural component. This will ensure that wires don’t interfere with your mechanisms.</p></li>
+<li><p><strong>Pay attention to port numbers!</strong> The rev hub will often have multiple ports per connector on the REV hub. <a class="reference external" href="https://docs.revrobotics.com/duo-control/control-system-overview/port-pinouts">REV has a pinout guide to avoid confusion</a>.</p></li>
+<li><p><strong>Treat every wire connection as a point of failure</strong>. Therefore, use electrical tape to tape up and insulate connections and utilize strain relief as much as possible.</p></li>
+<li><p><strong>Strain relief</strong> should be used everywhere possible. It is highly recommended for teams to use products like the <a class="hoverxref tooltip reference internal" href="index.html#term-USB-Retention-Mount"><span class="xref std std-term">REV USB Retention Mount</span></a>, as well as 3D printing strain relief methods for devices such as the Expansion Hub and robot controller phones.</p></li>
+<li><p><strong>DO NOT solder a wire before crimping it</strong>. Solder can “creep” and losing connection is possible, possibly leading to fire.</p></li>
+<li><p><strong>Keep all wire runs as short as possible</strong> to prevent entanglement and improve wire management.</p></li>
+<li><p><strong>When using data/sensor cables, keep them away from motors.</strong> This will reduce electromagnetic interference (EMI). Add a ferrite bead if possible.</p></li>
+<li><p><strong>Crimped connectors are generally better than soldered connectors</strong>, as solder joints can break easier than a crimped connection.</p></li>
+<li><p><strong>Keep wires tucked away from moving mechanisms,</strong> and ensure that you will not be at risk of a mechanism snagging a wire. This is a proper application of materials such as acrylic, which allow drivers to see inside the robot while keeping wires out of the way of other robots/game pieces. It is advised for teams to purchase removable velcro ties or cable ties to aid with cable management.</p></li>
+<li><p><strong>For power wires, lower</strong> <a class="hoverxref tooltip reference internal" href="index.html#term-Gauge"><span class="xref std std-term">gauge</span></a> <strong>(larger size) wires are preferable.</strong> This means a lower resistance across the wire and higher power throughput. This is negligible for data wires, however.</p></li>
+<li><p><strong>Small wires and cables are fragile.</strong> Treat them as such, and don’t put them in an area where they will constantly be hit by another object. Larger power cables can take much more abuse.</p></li>
+<li><p><strong>Ensure that your wires are kept out of pinch points</strong> where another mechanism could sandwich the wire. This is especially important in arms or mechanisms that are hinged.</p></li>
+</ul>
+<figure class="align-default" id="id1">
+<a class="reference internal image-reference" href="../../_images/bad-wiring.png"><img alt="An example of poor wiring" class="align-center" src="../../_images/bad-wiring.png" style="width: 25em;"/></a>
+<figcaption>
+<p><span class="caption-text">Bad example of wiring!</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<a class="reference internal image-reference" href="../../_images/731-wiring-1.png"><img alt="An example of good wiring by 731" class="align-center" src="../../_images/731-wiring-1.png" style="width: 25em;"/></a>
+<figure class="align-default" id="id2">
+<a class="reference internal image-reference" href="../../_images/731-wiring-2.png"><img alt="An example of good wiring by 731" class="align-center" src="../../_images/731-wiring-2.png" style="width: 25em;"/></a>
+<figcaption>
+<p><span class="caption-text">Good example of wiring by 731 Wannabee Strange, Rover Ruckus</span><a class="headerlink" href="#id2" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id3">
+<a class="reference internal image-reference" href="../../_images/8417-wiring.png"><img alt="An example of good wiring by 8417" class="align-center" src="../../_images/8417-wiring.png" style="width: 25em;"/></a>
+<figcaption>
+<p><span class="caption-text">Good example of wiring by 8417 ‘Lectric Legends</span><a class="headerlink" href="#id3" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id4">
+<a class="reference internal image-reference" href="../../_images/7244-wiring.png"><img alt="An example of good wiring by 7244" class="align-center" src="../../_images/7244-wiring.png" style="width: 25em;"/></a>
+<figcaption>
+<p><span class="caption-text">Good example of wiring by 7244 Out of the Box Robotics</span><a class="headerlink" href="#id4" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>When wiring, also take the time to plan out a specific layout for your wires and how they will run throughout the robot. Take the time to lay out something like an electronics panel if necessary! When building the robot, devote adequate space to wiring. This could mean mounting a PVC pipe and running wires from the back end of the robot through it, or simply using velcro or zipties.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Make sure that wires are as short as possible to reduce the risk of entanglement.</p>
+</div>
+<p>However, as components move out of the robot, the wires move with it. Tying down every loose inch will result in wire disconnecting. Wiring is the art of finding the perfect balance between shortest length and allowing enough freedom as mechanisms need.</p>
+<p><strong>It is also recommended for electronics to be mounted on a nonconductive material such as wood to prevent ESD</strong>.</p>
+<figure class="align-default" id="id5">
+<a class="reference internal image-reference" href="../../_images/3736-electronics-on-plastic.png"><img alt="An example of good wiring on a non-conductive surface by 3736" class="align-center" src="../../_images/3736-electronics-on-plastic.png" style="width: 25em;"/></a>
+<figcaption>
+<p><span class="caption-text">3736 Serious Business</span><a class="headerlink" href="#id5" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="specific-recommendations">
+<h2>Specific Recommendations<a class="headerlink" href="#specific-recommendations" title="Permalink to this headline">#</a></h2>
+<section id="module-power">
+<h3>Module Power<a class="headerlink" href="#module-power" title="Permalink to this headline">#</a></h3>
+<p>Be aware, <a class="hoverxref tooltip reference internal" href="connectors-and-wires.html#term-XT30"><span class="xref std std-term">XT30</span></a> connectors can wear out significantly faster than <a class="hoverxref tooltip reference internal" href="connectors-and-wires.html#term-Anderson-PowerPole"><span class="xref std std-term">PowerPole</span></a> connectors. Additionally, because <a class="hoverxref tooltip reference internal" href="connectors-and-wires.html#term-XT30"><span class="xref std std-term">XT30</span></a> connectors are soldered, they can break much easier than <a class="hoverxref tooltip reference internal" href="connectors-and-wires.html#term-Anderson-PowerPole"><span class="xref std std-term">PowerPole</span></a> connections.</p>
+<p>Cabling for module power should be at least 14awg, if not 12awg. Keep in mind that it must be stranded, not solid, wire.</p>
+</section>
+<section id="motor-power">
+<h3>Motor Power<a class="headerlink" href="#motor-power" title="Permalink to this headline">#</a></h3>
+<p>Cabling for motor power should be between 16awg and 12awg. Again, stranded, not solid, wire.</p>
+<p>Some motors (like the <a class="hoverxref tooltip reference internal" href="motor-guide/motor-glossary.html#term-HD-Hex-Motor"><span class="xref std std-term">REV HD Hex</span></a> and <a class="hoverxref tooltip reference internal" href="motor-guide/motor-glossary.html#term-Core-Hex-Motor"><span class="xref std std-term">Core Hex</span></a>) will have removable power connectors on the back, while other motors (like the <a class="hoverxref tooltip reference internal" href="motor-guide/motor-glossary.html#term-NeveRest-Motor"><span class="xref std std-term">Andymark NeveRests</span></a>) will have a cable permanently soldered on the back. It is much more convenient to have a connector on the back, or failing that, have a very short plug on the back of the motor. Once your wires are run and secured, taking them out won’t be fun.</p>
+</section>
+<section id="servo-wires">
+<h3>Servo Wires<a class="headerlink" href="#servo-wires" title="Permalink to this headline">#</a></h3>
+<p>Using heavy-duty extension wires are recommended.</p>
+<p>Tape the connections between extension wires and servo wires with electrical tape. This is as the connections can become loose over time and are easy to pull out.</p>
+<p>The VEX Motor Controller 29 has the wrong gender connector on the 3-pin end. You are required to either use an adapter cable, or add the right connector to the wires (recommended). <strong>Be sure to protect the MC29, as it is fragile and prone to failure if it takes impact from another object</strong>.</p>
+</section>
+<section id="usb">
+<h3>USB<a class="headerlink" href="#usb" title="Permalink to this headline">#</a></h3>
+<p>USB is generally a strong connector, but is prone to wearing out over time. Refrain from plugging/unplugging these cables more than necessary, especially on the RC/DS phones.</p>
+<p>USB loves strain relief. To keep disconnects low, tie down cables to leave as little loose cabling on the robot as possible.</p>
+</section>
+<section id="sensor-wires-encoder-wires">
+<h3>Sensor Wires/Encoder Wires<a class="headerlink" href="#sensor-wires-encoder-wires" title="Permalink to this headline">#</a></h3>
+<p>Sensor wires and their connectors can be incredibly fragile. Use caution when routing, and keep slack on the connector end when adding strain relief to the cable.</p>
+<p>The JST data connectors on the REV Expansion Hub and Control Hub have +5v, GND, and two data pins. If you are using a digital or analog sensor that does not use I2C, you can use a Y cable that gives two sensors off of one port.</p>
+</section>
+</section>
+<section id="miscellaneous">
+<h2>Miscellaneous<a class="headerlink" href="#miscellaneous" title="Permalink to this headline">#</a></h2>
+<dl class="simple">
+<dt>REV Grounding Strap</dt><dd><p>The <a class="hoverxref tooltip reference internal" href="index.html#term-Grounding-Strap"><span class="xref std std-term">REV Grounding Strap</span></a> is currently the only legal way to ground your robot. Attach the end to the metal part of your robot frame, and plug the <a class="hoverxref tooltip reference internal" href="connectors-and-wires.html#term-XT30"><span class="xref std std-term">XT30</span></a> connector end into a free <a class="hoverxref tooltip reference internal" href="connectors-and-wires.html#term-XT30"><span class="xref std std-term">XT30</span></a> port on your robot.</p>
+</dd>
+<dt>Power distribution blocks/panels</dt><dd><p>The REV Power Distribution Block allows teams to have more than four <a class="hoverxref tooltip reference internal" href="connectors-and-wires.html#term-XT30"><span class="xref std std-term">XT30</span></a> connectors (2 on each Expansion Hub). The block can be connected to the Servo Power Module to boost voltage for servos.</p>
+</dd>
+<dt>Dryer sheets</dt><dd><p>Dryer sheets can be used to wipe down the robot after every match in order to reduce static buildup. This is not directly recommended by <em>FIRST</em>® or any vendor, but our empirical evidence throughout the years suggests that it helps, or at the very least, can’t hurt to do so. However, dryer sheets may or may not be on the boundary of legality, as grounding the robot to the ground is illegal.</p>
+</dd>
+<dt>Staticide/static spray</dt><dd><p>Staticide is a spray that helps to keep static off of the robot. Please be sure to spray your robot before an event and not during the event.</p>
+</dd>
+<dt>Common causes of static</dt><dd><ul class="simple">
+<li><p>Every single contact point of your robot to the floor will increase the amount of static buildup.</p></li>
+<li><p>Too much turning scrub (or traction when wheels try to turn). This is possible if a 4WD or 6WD (no center drop) with all traction wheels is used.</p></li>
+<li><p>A conductive part dragging along the ground. For example, try not to have an intake touch the ground when the robot is moving as much as possible. Foam wheels and foam rollers are a common culprit.</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="connectors-and-wires.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Connectors and Wires</div>
+              </div>
+              <svg><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="index.html">
+              <svg><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Electronics and Motion Components</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; Game Manual 0 Contributors |  Hosting Graciously Provided By //Copperforge
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            Contents
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Wiring Guide</a><ul>
+<li><a class="reference internal" href="#why-does-wiring-matter">Why does wiring matter?</a></li>
+<li><a class="reference internal" href="#firstreg-ftc-wiring-guide"><em>FIRST</em>® FTC Wiring Guide</a></li>
+<li><a class="reference internal" href="#general-advice">General Advice</a></li>
+<li><a class="reference internal" href="#specific-recommendations">Specific Recommendations</a><ul>
+<li><a class="reference internal" href="#module-power">Module Power</a></li>
+<li><a class="reference internal" href="#motor-power">Motor Power</a></li>
+<li><a class="reference internal" href="#servo-wires">Servo Wires</a></li>
+<li><a class="reference internal" href="#usb">USB</a></li>
+<li><a class="reference internal" href="#sensor-wires-encoder-wires">Sensor Wires/Encoder Wires</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#miscellaneous">Miscellaneous</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/scripts/furo.js"></script>
+    <script src="../../_static/js/hoverxref.js"></script>
+    <script src="../../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../../_static/js/micromodal.min.js"></script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </body>
+</html>

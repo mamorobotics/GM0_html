@@ -1,0 +1,691 @@
+<!doctype html>
+<html class="no-js">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+<meta property="og:title" content="Holonomic Drivetrains" />
+  
+<meta property="og:type" content="website" />
+  
+<meta property="og:url" content="docs/common-mechanisms/drivetrains/holonomic.html" />
+  
+<meta property="og:site_name" content="Game Manual 0" />
+  
+<meta property="og:description" content="Mecanum Drive: Mecanum drivetrains consist of four mecanum wheels which are powered independently by one motor. This configuration angles the velocity of each wheel, allowing the robot to strafe. T..." />
+  
+<meta property="og:image" content="https://raw.githubusercontent.com/gamemanual0/gm0/main/source/_static/assets/gm0-logo.png" />
+  
+<meta property="og:image:alt" content="Game Manual 0" />
+  
+<meta property="og:ignore_canonical" content="true" />
+<meta name="theme-color" content="#F47F27" /><link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" /><link rel="next" title="Sample Drivetrains" href="drivetrain-gallery.html" /><link rel="prev" title="Tank (Skid-Steer) Drivetrains" href="tank.html" />
+
+    <link rel="shortcut icon" href="../../../_static/gm0-logo.ico"/><meta name="generator" content="sphinx-4.5.0, furo 2022.04.07"/>
+        <title>Holonomic Drivetrains - Game Manual 0</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?digest=68f4518137b9aefe99b631505a2064c3c42c9852" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/micromodal.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  --font-stack: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+  --admonition-font-size: 1rem;
+  --admonition-title-font-size: 1rem;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-background-primary: #1f2022;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-background-primary: #1f2022;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../../index.html"><div class="brand">Game Manual 0</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../../index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo only-light" src="../../../_static/assets/gm0-logo.png" alt="Light Logo"/>
+    <img class="sidebar-logo only-dark" src="../../../_static/assets/gm0-logo_white.png" alt="Dark Logo"/>
+  </div>
+  
+  
+</a><form class="sidebar-search-container" method="get" action="../../../search.html" role="search">
+  <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Game Manual 0 Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../mission-statement.html">Mission Statement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../start-here.html">Start Here</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../know-your-lingo.html">Know Your Lingo</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../being-a-team/index.html">Being a Team</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../being-a-team/starting-a-team.html">Starting a Team</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../being-a-team/team-organization.html">Team Organization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../being-a-team/collaboration-and-efficiency.html">Collaboration and Efficiency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../being-a-team/outreach-basics.html">Outreach Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../being-a-team/pitching-your-team.html">Pitching Your Team</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../design-skills/index.html">Design Skills</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../design-skills/engineering-design-process.html">Engineering Design Process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../design-skills/design-strategy.html">Design Strategy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../design-skills/cad.html">Computer-aided design (CAD)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../design-skills/cad-tutorials.html">CAD Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../design-skills/design-glossary.html">Design Glossary</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../hardware-components/index.html">Hardware Components</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../hardware-components/kit-and-hardware-guide/index.html">Kit and Hardware Guide</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../hardware-components/kit-and-hardware-guide/gobilda.html">goBILDA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../hardware-components/kit-and-hardware-guide/rev-robotics.html">REV Robotics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../hardware-components/kit-and-hardware-guide/tetrix.html">TETRIX</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../hardware-components/kit-and-hardware-guide/actobotics.html">Actobotics (Discontinued)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../hardware-components/kit-and-hardware-guide/custom.html">Custom</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../hardware-components/kit-and-hardware-guide/kit-glossary.html">Kit Glossary</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../hardware-components/tools-list.html">Tools List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../hardware-components/tips-and-tricks.html">Tips and Tricks</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../custom-manufacturing/index.html">Custom Manufacturing</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../custom-manufacturing/materials-guide.html">Materials Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../custom-manufacturing/3d-printing.html">3D Printing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../custom-manufacturing/machining.html">Machining</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../custom-manufacturing/laser-cutting.html">Laser Cutting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../custom-manufacturing/manufacturing-glossary.html">Manufacturing Glossary</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../index.html">Common Mechanisms</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../design-tradeoffs.html">Design Tradeoffs</a></li>
+<li class="toctree-l2 current has-children"><a class="reference internal" href="index.html">Drivetrains</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="tank.html">Tank (Skid-Steer) Drivetrains</a></li>
+<li class="toctree-l3 current current-page"><a class="current reference internal" href="#">Holonomic Drivetrains</a></li>
+<li class="toctree-l3"><a class="reference internal" href="drivetrain-gallery.html">Sample Drivetrains</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../power-transmission/index.html">Power Transmission</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../power-transmission/motion-mounting.html">Motion Mounting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../power-transmission/direct-drive.html">Direct Drive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../power-transmission/gears.html">Gears</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../power-transmission/chain.html">Roller Chain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../power-transmission/belt.html">Timing Belt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../power-transmission/power-transmission-glossary.html">Power Transmission Glossary</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../linear-motion-guide/index.html">Linear Motion Guide</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linear-motion-guide/drawer-slides.html">Drawer Slides</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linear-motion-guide/extrusion-slides.html">Extrusion Slides</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linear-motion-guide/linear-bearing-slides.html">Linear Bearing Slides</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linear-motion-guide/custom.html">Custom Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linear-motion-guide/lead-screws.html">Lead Screws</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linear-motion-guide/rack-and-pinion.html">Rack and Pinion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linear-motion-guide/rigging.html">Rigging</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../arms.html">Arms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linkages.html">Linkages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../passive-intake-claw.html">Passive Intake/Claw</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../active-intake/index.html">Active Intake</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../active-intake/principles-of-an-intake.html">Principles of an Intake</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../active-intake/types-of-intakes.html">Types of Intake</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../transfers/index.html">Transfers</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" role="switch" type="checkbox"/><label for="toctree-checkbox-11"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../transfers/transfer-design.html">Transfer Design Fundamentals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../transfers/transfer-types.html">Types of Transfers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../dead-wheels.html">Dead Wheels</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../turrets/index.html">Turrets</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" role="switch" type="checkbox"/><label for="toctree-checkbox-12"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../turrets/full-turret.html">Full Turrets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../turrets/mini-turret.html">Mini Turrets</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../power-and-electronics/index.html">Electronics and Motion Components</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" role="switch" type="checkbox"/><label for="toctree-checkbox-13"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../power-and-electronics/wiring.html">Wiring Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../power-and-electronics/connectors-and-wires.html">Connectors and Wires</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../power-and-electronics/control-system.html">Control Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../power-and-electronics/driver-station-guide.html">Driver Station Guide</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../power-and-electronics/motor-guide/index.html">Motor Guide</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" role="switch" type="checkbox"/><label for="toctree-checkbox-14"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../power-and-electronics/motor-guide/choosing-motor.html">Choosing a Motor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../power-and-electronics/motor-guide/gearbox-anatomy.html">Gearbox Internals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../power-and-electronics/motor-guide/wiring-mounting-motors.html">Motor Wiring And Mounting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../power-and-electronics/motor-guide/motor-power.html">Motor Power</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../power-and-electronics/motor-guide/motor-glossary.html">Motor Glossary</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../power-and-electronics/servo-guide/index.html">Servo Guide</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" role="switch" type="checkbox"/><label for="toctree-checkbox-15"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../power-and-electronics/servo-guide/choosing-servo.html">Choosing a Servo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../power-and-electronics/servo-guide/usage-tips.html">Servo Usage Tips</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../power-and-electronics/sensor-glossary.html">Sensor Glossary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../power-and-electronics/tips-and-tricks.html">Tips and Tricks</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../software/index.html">Software</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" role="switch" type="checkbox"/><label for="toctree-checkbox-16"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../software/getting-started/index.html">Getting Started</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" role="switch" type="checkbox"/><label for="toctree-checkbox-17"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../software/getting-started/fundamental-concepts.html">Fundamental Concepts of Programming</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/getting-started/options-for-programming.html">Options for Programming</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/getting-started/linear-opmode-vs-opmode.html">LinearOpMode vs OpMode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/getting-started/common-hardware-components.html">Reading and Writing to Hardware</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/getting-started/using-android-studio.html">Using Android Studio</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/getting-started/common-issues.html">Common Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../software/tutorials/index.html">Tutorials</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" role="switch" type="checkbox"/><label for="toctree-checkbox-18"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../software/tutorials/mecanum-drive.html">Mecanum TeleOp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/tutorials/gamepad.html">Gamepad Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/tutorials/using-telemetry.html">Using Telemetry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/tutorials/encoders.html">Encoders</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/tutorials/bulk-reads.html">Bulk Reads</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/tutorials/vision.html">Computer Vision</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../software/concepts/index.html">Programming Concepts</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" role="switch" type="checkbox"/><label for="toctree-checkbox-19"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../software/concepts/control-loops.html">Control Loops</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/concepts/finite-state-machines.html">Finite State Machines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/concepts/kinematics.html">Kinematics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/concepts/odometry.html">Odometry</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../software/adv-control-system/index.html">Advanced Control System</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" role="switch" type="checkbox"/><label for="toctree-checkbox-20"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../software/adv-control-system/control-system-internals.html">Control System Electronics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/adv-control-system/sdk-communication.html">SDK Communication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/adv-control-system/sdk-motors.html">SDK Motors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/adv-control-system/sdk-servos.html">SDK Servos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/adv-control-system/sdk-sensors.html">SDK Sensors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/adv-control-system/lynx-module.html">Lynx Module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../software/software-glossary.html">Software Glossary</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../awards/index.html">Awards</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" role="switch" type="checkbox"/><label for="toctree-checkbox-21"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../awards/award-types.html">Award Categories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../awards/portfolio.html">Engineering Portfolio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../awards/judging-presentation.html">The Judging Process and Presentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../awards/notebook.html">Notebook Designs and Decisions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../useful-resources.html">Useful Resources</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../appendix/index.html">Appendix</a><input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" role="switch" type="checkbox"/><label for="toctree-checkbox-22"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../appendix/gallery.html">Gallery Of Robot Designs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../appendix/vendor-list.html">Vendor List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../appendix/vendor-guide.html">Vendor Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../appendix/license.html">License</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../contributing/index.html">Contributor’s Guide</a><input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" role="switch" type="checkbox"/><label for="toctree-checkbox-23"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../contributing/style-guide.html">Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../contributing/methods-of-contributing.html">Methods of Contributing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../contributing/contributors.html">Contributors</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container"><div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="holonomic-drivetrains">
+<h1>Holonomic Drivetrains<a class="headerlink" href="#holonomic-drivetrains" title="Permalink to this headline">#</a></h1>
+<section id="mecanum-drive">
+<h2>Mecanum Drive<a class="headerlink" href="#mecanum-drive" title="Permalink to this headline">#</a></h2>
+<p>Mecanum drivetrains consist of four mecanum wheels which are powered independently by one motor. This configuration angles the velocity of each wheel, allowing the robot to strafe.</p>
+<div class="admonition-term admonition">
+<p class="admonition-title">Term</p>
+<dl class="glossary">
+<dt id="term-Mecanum-Wheel">Mecanum Wheel<a class="headerlink" href="#term-Mecanum-Wheel" title="Permalink to this term">#</a></dt><dd><p>Mecanum wheels are a special type of wheel that enable maneuverability and holonomic strafing as opposed to traditional wheels. They consist of a series of rubber rollers rotated 45 degrees to either the left or right.</p>
+<p>In a conventional mecanum drivetrain, running the wheels on one diagonal in the opposite direction to those on the other diagonal causes sideways movement. Combinations of these wheel motions allow for vehicle motion in any direction with any vehicle rotation (including no rotation at all).</p>
+</dd>
+</dl>
+</div>
+<p>The primary advantage to mecanum drive is the maneuverability it affords, especially because the robot can strafe instead of turn and drive. The rollers on mecanum wheels form a 45 degree angle with the wheel’s axis of rotation, which means that mecanum drivetrains can’t strafe as fast as they can drive forward.</p>
+<p>This can be explained by discussing the forces involved. When each wheel rotates, it applies a friction force to the ground, which moves the robot. When moving forward, both sets of left wheels rotate in the same direction at the same speed, and both sets of right wheels rotate in the same direction at the same speed, meaning that the forces do not oppose each other. However, when strafing, neither the two left wheels nor the two right wheels are rotating at the same speed. In many cases, they even rotate in opposite directions.</p>
+<p>These two opposing forces cause the rollers to slip more and more, which angles the robot’s velocity at the expense of traction (more slipping results in a loss of speed). However, the wheels do still slip when moving forward but not as drastically as they do when strafing.</p>
+<p>This is the primary disadvantage to mecanum drivetrains: they tend not to have much pushing power and thus, are vulnerable to defense by a sturdy tank drive.</p>
+<p>Due to the fact that mecanum wheels are more likely to slip because of the diagonal rollers, an optional addition to mecanum drives is a separate odometry mechanism in order to track the robot’s location during autonomous.</p>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>It is important to note that in order to maximize the efficiency and stability of mecanum drives, when viewed from above, the rollers of each wheel should point towards the center of the robot, forming an X shape, rather than a rhombus.</p>
+<p>The primary reason for this is that it allows the drivetrain to turn significantly faster than it would otherwise be able to. When using the suggested setup, when viewed from the robot’s underside, the rollers form a rhombus. This allows the force applied by the wheels on the ground to act tangent to the turn radius, leading to faster turning.</p>
+<p>See <a class="reference external" href="https://www.youtube.com/watch?v=xgWf_t8owI0&amp;t=3152s">this video</a> and <a class="reference external" href="https://youtu.be/YJaX3vQ6kHw?t=123">this other video</a> for a more in depth explanation.</p>
+</div>
+<section id="advantages">
+<h3>Advantages<a class="headerlink" href="#advantages" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Fantastic maneuverability and agility due to strafing, can avoid defense very well</p></li>
+<li><p>Good acceleration, can have high top speed</p></li>
+<li><p>Very versatile drivetrain for nearly any game</p></li>
+</ul>
+</section>
+<section id="disadvantages">
+<h3>Disadvantages<a class="headerlink" href="#disadvantages" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Suffers in traction, as mecanum rollers have a lower coefficient of friction than traction wheels; cannot traverse terrain</p></li>
+<li><p>Able to be pushed around on defense</p></li>
+<li><p>Wheels must be powered independently, so there is no redundancy</p></li>
+</ul>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+CAD Examples of Mecanum Drive (Click to expand)<div class="sd-summary-down docutils">
+<svg aria-hidden="true" class="sd-octicon sd-octicon-chevron-down" height="1.5em" version="1.1" viewbox="0 0 24 24" width="1.5em"><path d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z" fill-rule="evenodd"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg aria-hidden="true" class="sd-octicon sd-octicon-chevron-up" height="1.5em" version="1.1" viewbox="0 0 24 24" width="1.5em"><path d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z" fill-rule="evenodd"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<div class="sd-tab-set docutils">
+<input checked="checked" id="01cfc927-e951-4edf-8c9f-31bbc7ea8a50" name="61e5af0e-99f9-4e61-af52-20cc6bb99bfa" type="radio"/>
+<label class="sd-tab-label" for="01cfc927-e951-4edf-8c9f-31bbc7ea8a50">
+goBILDA COTS</label><div class="sd-tab-content docutils">
+<script src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js" type="module"></script>
+<model-viewer alt="goBILDA COTS Mecanum Drive" ar="" ar-modes="webxr scene-viewer quick-look" camera-controls="" enable-pan="" seamless-poster="" shadow-intensity="1" src="https://cdn.statically.io/gh/gamemanual0/3d-models/main/Mecanum/gobildaCots.glb" style="width:100%; height:500px;overflow:auto; --poster-color: transparent"></model-viewer><p class="sd-card-text"><a class="reference external" href="https://cad.onshape.com/documents/45549489f570f3694569a2df/w/85ff26b9fca4988ebc4df3b4/e/df9bcea72fcdd7e4aee4134b">Click here to explore this model in OnShape online CAD</a></p>
+</div>
+<input id="d1732545-b9ab-4d76-84b0-e31ab0a2e830" name="61e5af0e-99f9-4e61-af52-20cc6bb99bfa" type="radio"/>
+<label class="sd-tab-label" for="d1732545-b9ab-4d76-84b0-e31ab0a2e830">
+REV COTS</label><div class="sd-tab-content docutils">
+<model-viewer alt="REV COTS Mecanum Drive" ar="" ar-modes="webxr scene-viewer quick-look" camera-controls="" enable-pan="" seamless-poster="" shadow-intensity="1" src="https://cdn.statically.io/gh/gamemanual0/3d-models/main/Mecanum/REV-Mec-Drive-Assem.glb" style="width:100%; height:500px;overflow:auto; --poster-color: transparent"></model-viewer><p class="sd-card-text"><a class="reference external" href="https://cad.onshape.com/documents/45549489f570f3694569a2df/w/85ff26b9fca4988ebc4df3b4/e/b8d4a6cfe4f26c5170f40a6c">Click here to explore this model in OnShape online CAD</a></p>
+</div>
+<input id="93248cc3-2be4-48f3-9fde-bf669569ada8" name="61e5af0e-99f9-4e61-af52-20cc6bb99bfa" type="radio"/>
+<label class="sd-tab-label" for="93248cc3-2be4-48f3-9fde-bf669569ada8">
+goBILDA Custom</label><div class="sd-tab-content docutils">
+<model-viewer alt="Gobilda Custom Mecanum Drive" ar="" ar-modes="webxr scene-viewer quick-look" camera-controls="" enable-pan="" seamless-poster="" shadow-intensity="1" src="https://cdn.statically.io/gh/gamemanual0/3d-models/main/Mecanum/gobildaCustom.glb" style="width:100%; height:500px;overflow:auto; --poster-color: transparent"></model-viewer><p class="sd-card-text"><a class="reference external" href="https://cad.onshape.com/documents/45549489f570f3694569a2df/w/85ff26b9fca4988ebc4df3b4/e/cc2df2fbce0e9ca393696b54">Click here to explore this model in OnShape online CAD</a></p>
+</div>
+<input id="87477d82-bda8-4835-bdcc-b977e9939822" name="61e5af0e-99f9-4e61-af52-20cc6bb99bfa" type="radio"/>
+<label class="sd-tab-label" for="87477d82-bda8-4835-bdcc-b977e9939822">
+REV Custom</label><div class="sd-tab-content docutils">
+<model-viewer alt="Gobilda Custom Mecanum Drive" ar="" ar-modes="webxr scene-viewer quick-look" camera-controls="" enable-pan="" seamless-poster="" shadow-intensity="1" src="https://cdn.statically.io/gh/gamemanual0/3d-models/main/Mecanum/revCustom.glb" style="width:100%; height:500px;overflow:auto; --poster-color: transparent"></model-viewer><p class="sd-card-text"><a class="reference external" href="https://cad.onshape.com/documents/45549489f570f3694569a2df/w/85ff26b9fca4988ebc4df3b4/e/40c3266dab2e444011cce79c">Click here to explore this model in OnShape online CAD</a></p>
+</div>
+</div>
+</div>
+</details><figure class="align-default" id="id5">
+<a class="reference internal image-reference" href="../../../_images/gobilda-mecanum-direction.png"><img alt="Diagram of mecanum directions" class="align-center" src="../../../_images/gobilda-mecanum-direction.png" style="width: 100%;"/></a>
+<figcaption>
+<p><span class="caption-text">Configuration for mecanum wheels, courtesy goBILDA</span><a class="headerlink" href="#id5" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="mecanum-wheels-miniguide">
+<h3>Mecanum Wheels Miniguide<a class="headerlink" href="#mecanum-wheels-miniguide" title="Permalink to this headline">#</a></h3>
+<p>One of the most important features of a mecanum wheel is the mechanism that allows the roller to spin—either <a class="hoverxref tooltip reference internal" href="../../hardware-components/kit-and-hardware-guide/kit-glossary.html#term-Bushing"><span class="xref std std-term">bushings</span></a> or <a class="hoverxref tooltip reference internal" href="../../hardware-components/kit-and-hardware-guide/kit-glossary.html#term-Ball-Bearing"><span class="xref std std-term">ball bearings</span></a>. Mecanums which use ball bearings strafe better than those which use bushings, as the rollers can spin with less friction.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In the past, some teams have invested in 6 inch diameter mecanum wheels. These are generally much more expensive and generally do not provide significant performance benefits. We highly recommend sticking with wheels that are between 3 and 4 inches in diameter.</p>
+</div>
+<section id="recommended">
+<h4>Recommended<a class="headerlink" href="#recommended" title="Permalink to this headline">#</a></h4>
+<p>These wheels are the gold standard of mecanum wheels, if you are buying new mecanum wheels there is very little reason to buy any mecanum wheels not from this section.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.gobilda.com/96mm-mecanum-wheel-set-70a-durometer-bearing-supported-rollers/">goBILDA Mecanum Wheels v2</a> ($127.49 with team discount): The goBILDA v2 Mecanum Wheels are the gold standard for teams wanting a quality design in all aspects. They feature a 96mm diameter and a thickness of 38mm, with ball bearing supported, 70A durometer rollers that provide excellent strafing performance. With the use of recessed 16x16mm and 32x32mm holes, these wheels have the largest amount of mounting options and can fit all shaft styles commonly used in FTC.</p></li>
+<li><p><a class="reference external" href="https://www.revrobotics.com/rev-45-1655/">REV Robotics Mecanum Wheels</a> ($127.50 with team discount): The REV Robotics Mecanum Wheels come in at only 75mm in diameter, providing a smaller mecanum wheel option to FTC teams; however, they are not the thinnest option at 40.8mm thick. They feature ball bearing supported rollers that provide exceptional strafing capabilities and traction. The hole pattern featured on these wheels is compatible with Andymark Nubs as well as the REV Robotics Universal Hex Adapter v2 (which is included); however, in order to use other shaft options the use of an adapter or physical modification will likely be required.</p></li>
+</ul>
+</section>
+<section id="viable">
+<h4>Viable<a class="headerlink" href="#viable" title="Permalink to this headline">#</a></h4>
+<p>These mecanums have acceptable performance but there is very little reason to buy them at this point, as they have been superseded by better ones. If you already own them, they are a viable option, but consider looking at some of the mecanums from the <a class="reference internal" href="#recommended">Recommended</a> section.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.robotshop.com/en/100mm-mecanum-wheel-set.html">Nexus Ball Bearing Mecanum Wheels</a> ($134.00): These wheels are 100 mm in diameter and 59 mm wide. They strafe excellently because of the use of ball bearings. However, they are more expensive, take up more space, have less traction, and are harder to mount to than the recommended wheels.</p></li>
+<li><p><a class="reference external" href="https://www.gobilda.com/96mm-mecanum-wheel-set-70a-durometer-bearing-supported-rollers/">goBILDA Mecanum Wheels v1</a> (discontinued): These wheels are very similar to the Nexus Ball Bearing Mecanum Wheels, but with a different color scheme and better mounting options.</p></li>
+<li><p><a class="reference external" href="https://www.andymark.com/products/4-in-hd-mecanum-wheel-set-options">Andymark Heavy Duty Mecanum Wheels</a> ($225): These are easily the most expensive mecanums on the list. These wheels are 4” in diameter and 1.65” wide. These are bushing based mecanums, so while they strafe decently they still perform worse than bearing based ones. They have a good amount of traction, more than the Nexus bearing or bushing wheels.</p></li>
+<li><p><a class="reference external" href="https://www.robotshop.com/en/100mm-aluminum-mecanum-wheel-set.html">Nexus Bushing Mecanum Wheels</a> ($80.00): This is the Nexus Ball Bearing Mecanum Wheel with bushings instead of ball bearings. There is not much to say about them except that they strafe decently but worse than the ball bearing based equivalent.</p></li>
+</ul>
+</section>
+<section id="not-recommended">
+<h4>Not Recommended<a class="headerlink" href="#not-recommended" title="Permalink to this headline">#</a></h4>
+<p>There is almost no reason to use these mecanum wheels—they perform very poorly and are not much cheaper than those in the <a class="reference internal" href="#recommended">Recommended</a> section. We cannot recommend the use of these on an FTC robot, if at all possible replace them with mecanums from the <a class="reference internal" href="#recommended">Recommended</a> section.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.pitsco.com/TETRIX-MAX-Mecanum-Wheels">TETRIX Mecanum Wheels</a> ($149.00): These mecanums are designed with a bushing based, hard plastic roller which in turn creates poor strafing performance. The integrated hub is a set screw based design with a round bore, causing unreliability as well as taking up extra space.</p></li>
+<li><p><a class="reference external" href="https://www.andymark.com/products/4-in-standard-mecanum-wheel-set">Andymark Standard Duty Mecanum Wheels</a> ($77.00): These wheels barely strafe and are super fragile.</p></li>
+</ul>
+<figure class="align-default" id="id6">
+<a class="reference internal image-reference" href="../../../_images/8103-mecanum.png"><img alt="8103 Null Robotics's mecanum drivetrain render" class="align-center" src="../../../_images/8103-mecanum.png" style="width: 25em;"/></a>
+<figcaption>
+<p><span class="caption-text">8103 Null Robotics, Rover Ruckus, <strong>using Nexus mecanum bearing</strong></span><a class="headerlink" href="#id6" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id7">
+<a class="reference internal image-reference" href="../../../_images/731-mecanum.png"><img alt="731 Wannabee Strange's mecanum drivetrain render" class="align-center" src="../../../_images/731-mecanum.png" style="width: 25em;"/></a>
+<figcaption>
+<p><span class="caption-text">731 Wannabee Strange, Rover Ruckus, using <strong>AndyMark HD mecanum wheels</strong></span><a class="headerlink" href="#id7" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+</section>
+<section id="x-drive">
+<h2>X-Drive<a class="headerlink" href="#x-drive" title="Permalink to this headline">#</a></h2>
+<p>X-Drive is a holonomic omni-wheel based drivetrain. This type of drive involves mounting 4 omni wheels at the corner of the robot at a 45 degree angle.</p>
+<p>One notable difference between X-Drive and mecanum is strafe speed. While, as mentioned in the mecanum section, the ratio of strafe speed to forward speed is noticeably less than 1, the ratio on an X-Drive is exactly 1 due to the rotational symmetry of the wheel placement. This means that an X-Drive bot’s strafe speed and forward speed are equivalent. The drivetrains are slower, however, when strafing at 45° (approximately <span class="math notranslate nohighlight">\(\frac{\sqrt{2}}{2}\)</span> of its forward speed).</p>
+<p>Even though X-drive has good turning and acceleration, the main downside to the drive is packaging/form factor. Packaging refers to how easy/convenient the drivetrain fits into the overall design of the robot.</p>
+<p>Ideally, the drivetrain should take up as little space as possible to make it easier to design mechanisms around. Because the omni wheels are offset, packaging a X-Drive is more difficult than other types of holonomic drive like mecanum or H-Drive. Also because of the strange packaging, it is relatively difficult to cleanly transfer power from the motors to wheels, meaning that most X-Drives end up being direct-driven, which is bad for the lifespan of the motor gearbox.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When using X-Drive, the robot moves forwards/backwards/straight side-to-side <span class="math notranslate nohighlight">\(\sqrt{2}\)</span> times faster than a drivetrain with wheels in the normal orientation (with the same gear ratio and wheel size).</p>
+<p>For an explanation of why exactly this is, see <a class="reference external" href="https://www.chiefdelphi.com/t/paper-mecanum-and-omni-kinematic-and-force-analysis/106153">this analysis</a>.</p>
+</div>
+<section id="id1">
+<h3>Advantages<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Good maneuverability and agility</p></li>
+<li><p>Good acceleration</p></li>
+</ul>
+</section>
+<section id="id2">
+<h3>Disadvantages<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Prone to defense, pushed around easily</p></li>
+<li><p>Often uses direct drive due to awkward form factor</p></li>
+</ul>
+<figure class="align-default" id="id8">
+<a class="reference internal image-reference" href="../../../_images/731-xdrive.png"><img alt="731 Wannabee Strange's X-Drive" class="align-center" src="../../../_images/731-xdrive.png" style="width: 25em;"/></a>
+<figcaption>
+<p><span class="caption-text">731 Wannabee Strange, Velocity Vortex</span><a class="headerlink" href="#id8" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id9">
+<a class="reference internal image-reference" href="../../../_images/5040-xdrive.png"><img alt="5040 Nuts and Bolts's X-Drive" class="align-center" src="../../../_images/5040-xdrive.png" style="width: 25em;"/></a>
+<figcaption>
+<p><span class="caption-text">5040 Nuts and Bolts, Relic Recovery</span><a class="headerlink" href="#id9" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="h-drive">
+<h2>H-Drive<a class="headerlink" href="#h-drive" title="Permalink to this headline">#</a></h2>
+<p>H-Drive (also known as U-drive, depending on the configuration) is a holonomic type drive that uses all omni wheels. H-Drive relies on a set of “strafer wheels” that are perpendicular to the forward/backward wheels to achieve strafing. H-Drive is similar to a fusion of a tank drivetrain while retaining the maneuverability and strafing of holonomic drivetrains.</p>
+<p>H-Drive is theoretically very easy to code, but most teams employ some sort of gyro correction to strafe straight, although it is not necessary with proper weight distribution.</p>
+<p>H-Drive has a number of possible motor configurations - 1 or 2 motors can be put on each forward drive pod, and one or two motors can be put on the strafe wheels. In the configuration with one motor on each forward drive pod, H-Drive has slightly reduced acceleration compared to mecanum drive.</p>
+<p>For the highest possible reliability, many FRC® teams will suspend their strafe wheels on a rocker system to ensure that all wheels are in contact with the ground while the robot is not strafing.</p>
+<p>By far the biggest advantage of H-drive is its ability to accommodate multiple motor distributions. For instance, if you want to dedicate only 3 motors to your mechanisms and you have a motor left over, using a 1 strafe motor, 4 drive motor configuration is absolutely viable. Or if you dedicate 5 motors for your mechanisms, H-drive with 2 drive motors and 1 strafe motor is definitely optimal.</p>
+<section id="id3">
+<h3>Advantages<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Combines tank and holonomic drivetrain advantages</p></li>
+<li><p>Can be used with 3 or 5 motors</p></li>
+<li><p>Good traction and top speed</p></li>
+<li><p>Great maneuverability and agility</p></li>
+</ul>
+</section>
+<section id="id4">
+<h3>Disadvantages<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Strafing is slightly less effective than mecanum</p></li>
+<li><p>Complex suspension occasionally needed, depending on design</p></li>
+</ul>
+<figure class="align-default" id="id10">
+<a class="reference internal image-reference" href="../../../_images/9804-hdrive.jpg"><img alt="9804 Bomb Squad's H-Drive" class="align-center" src="../../../_images/9804-hdrive.jpg" style="width: 25em;"/></a>
+<figcaption>
+<p><span class="caption-text">9804 Bomb Squad, Relic Recovery</span><a class="headerlink" href="#id10" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="drivetrain-gallery.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Sample Drivetrains</div>
+              </div>
+              <svg><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="tank.html">
+              <svg><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Tank (Skid-Steer) Drivetrains</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; Game Manual 0 Contributors |  Hosting Graciously Provided By //Copperforge
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            Contents
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Holonomic Drivetrains</a><ul>
+<li><a class="reference internal" href="#mecanum-drive">Mecanum Drive</a><ul>
+<li><a class="reference internal" href="#advantages">Advantages</a></li>
+<li><a class="reference internal" href="#disadvantages">Disadvantages</a></li>
+<li><a class="reference internal" href="#mecanum-wheels-miniguide">Mecanum Wheels Miniguide</a><ul>
+<li><a class="reference internal" href="#recommended">Recommended</a></li>
+<li><a class="reference internal" href="#viable">Viable</a></li>
+<li><a class="reference internal" href="#not-recommended">Not Recommended</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#x-drive">X-Drive</a><ul>
+<li><a class="reference internal" href="#id1">Advantages</a></li>
+<li><a class="reference internal" href="#id2">Disadvantages</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#h-drive">H-Drive</a><ul>
+<li><a class="reference internal" href="#id3">Advantages</a></li>
+<li><a class="reference internal" href="#id4">Disadvantages</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/scripts/furo.js"></script>
+    <script src="../../../_static/js/hoverxref.js"></script>
+    <script src="../../../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../../../_static/js/micromodal.min.js"></script>
+    <script src="../../../_static/design-tabs.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </body>
+</html>

@@ -1,0 +1,736 @@
+<!doctype html>
+<html class="no-js">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+<meta property="og:title" content="Control Loops" />
+  
+<meta property="og:type" content="website" />
+  
+<meta property="og:url" content="docs/software/concepts/control-loops.html" />
+  
+<meta property="og:site_name" content="Game Manual 0" />
+  
+<meta property="og:description" content="Control loops are software used to operate power transmission systems (such as a drivetrain or linear slide) in a fast and controlled fashion. Not only do control loops let you run mechanisms quick..." />
+  
+<meta property="og:image" content="https://raw.githubusercontent.com/gamemanual0/gm0/main/source/_static/assets/gm0-logo.png" />
+  
+<meta property="og:image:alt" content="Game Manual 0" />
+  
+<meta property="og:ignore_canonical" content="true" />
+<meta name="theme-color" content="#F47F27" /><link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" /><link rel="next" title="Finite State Machines" href="finite-state-machines.html" /><link rel="prev" title="Programming Concepts" href="index.html" />
+
+    <link rel="shortcut icon" href="../../../_static/gm0-logo.ico"/><meta name="generator" content="sphinx-4.5.0, furo 2022.04.07"/>
+        <title>Control Loops - Game Manual 0</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?digest=68f4518137b9aefe99b631505a2064c3c42c9852" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/micromodal.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  --font-stack: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+  --admonition-font-size: 1rem;
+  --admonition-title-font-size: 1rem;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-background-primary: #1f2022;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-background-primary: #1f2022;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../../index.html"><div class="brand">Game Manual 0</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../../index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo only-light" src="../../../_static/assets/gm0-logo.png" alt="Light Logo"/>
+    <img class="sidebar-logo only-dark" src="../../../_static/assets/gm0-logo_white.png" alt="Dark Logo"/>
+  </div>
+  
+  
+</a><form class="sidebar-search-container" method="get" action="../../../search.html" role="search">
+  <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Game Manual 0 Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../mission-statement.html">Mission Statement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../start-here.html">Start Here</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../know-your-lingo.html">Know Your Lingo</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../being-a-team/index.html">Being a Team</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../being-a-team/starting-a-team.html">Starting a Team</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../being-a-team/team-organization.html">Team Organization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../being-a-team/collaboration-and-efficiency.html">Collaboration and Efficiency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../being-a-team/outreach-basics.html">Outreach Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../being-a-team/pitching-your-team.html">Pitching Your Team</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../design-skills/index.html">Design Skills</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../design-skills/engineering-design-process.html">Engineering Design Process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../design-skills/design-strategy.html">Design Strategy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../design-skills/cad.html">Computer-aided design (CAD)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../design-skills/cad-tutorials.html">CAD Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../design-skills/design-glossary.html">Design Glossary</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../hardware-components/index.html">Hardware Components</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../hardware-components/kit-and-hardware-guide/index.html">Kit and Hardware Guide</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../hardware-components/kit-and-hardware-guide/gobilda.html">goBILDA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../hardware-components/kit-and-hardware-guide/rev-robotics.html">REV Robotics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../hardware-components/kit-and-hardware-guide/tetrix.html">TETRIX</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../hardware-components/kit-and-hardware-guide/actobotics.html">Actobotics (Discontinued)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../hardware-components/kit-and-hardware-guide/custom.html">Custom</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../hardware-components/kit-and-hardware-guide/kit-glossary.html">Kit Glossary</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../hardware-components/tools-list.html">Tools List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../hardware-components/tips-and-tricks.html">Tips and Tricks</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../custom-manufacturing/index.html">Custom Manufacturing</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../custom-manufacturing/materials-guide.html">Materials Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../custom-manufacturing/3d-printing.html">3D Printing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../custom-manufacturing/machining.html">Machining</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../custom-manufacturing/laser-cutting.html">Laser Cutting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../custom-manufacturing/manufacturing-glossary.html">Manufacturing Glossary</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../common-mechanisms/index.html">Common Mechanisms</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../common-mechanisms/design-tradeoffs.html">Design Tradeoffs</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../common-mechanisms/drivetrains/index.html">Drivetrains</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../common-mechanisms/drivetrains/tank.html">Tank (Skid-Steer) Drivetrains</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../common-mechanisms/drivetrains/holonomic.html">Holonomic Drivetrains</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../common-mechanisms/drivetrains/drivetrain-gallery.html">Sample Drivetrains</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../common-mechanisms/power-transmission/index.html">Power Transmission</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../common-mechanisms/power-transmission/motion-mounting.html">Motion Mounting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../common-mechanisms/power-transmission/direct-drive.html">Direct Drive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../common-mechanisms/power-transmission/gears.html">Gears</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../common-mechanisms/power-transmission/chain.html">Roller Chain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../common-mechanisms/power-transmission/belt.html">Timing Belt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../common-mechanisms/power-transmission/power-transmission-glossary.html">Power Transmission Glossary</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../common-mechanisms/linear-motion-guide/index.html">Linear Motion Guide</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../common-mechanisms/linear-motion-guide/drawer-slides.html">Drawer Slides</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../common-mechanisms/linear-motion-guide/extrusion-slides.html">Extrusion Slides</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../common-mechanisms/linear-motion-guide/linear-bearing-slides.html">Linear Bearing Slides</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../common-mechanisms/linear-motion-guide/custom.html">Custom Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../common-mechanisms/linear-motion-guide/lead-screws.html">Lead Screws</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../common-mechanisms/linear-motion-guide/rack-and-pinion.html">Rack and Pinion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../common-mechanisms/linear-motion-guide/rigging.html">Rigging</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../common-mechanisms/arms.html">Arms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../common-mechanisms/linkages.html">Linkages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../common-mechanisms/passive-intake-claw.html">Passive Intake/Claw</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../common-mechanisms/active-intake/index.html">Active Intake</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../common-mechanisms/active-intake/principles-of-an-intake.html">Principles of an Intake</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../common-mechanisms/active-intake/types-of-intakes.html">Types of Intake</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../common-mechanisms/transfers/index.html">Transfers</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" role="switch" type="checkbox"/><label for="toctree-checkbox-11"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../common-mechanisms/transfers/transfer-design.html">Transfer Design Fundamentals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../common-mechanisms/transfers/transfer-types.html">Types of Transfers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../common-mechanisms/dead-wheels.html">Dead Wheels</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../common-mechanisms/turrets/index.html">Turrets</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" role="switch" type="checkbox"/><label for="toctree-checkbox-12"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../common-mechanisms/turrets/full-turret.html">Full Turrets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../common-mechanisms/turrets/mini-turret.html">Mini Turrets</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../power-and-electronics/index.html">Electronics and Motion Components</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" role="switch" type="checkbox"/><label for="toctree-checkbox-13"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../power-and-electronics/wiring.html">Wiring Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../power-and-electronics/connectors-and-wires.html">Connectors and Wires</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../power-and-electronics/control-system.html">Control Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../power-and-electronics/driver-station-guide.html">Driver Station Guide</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../power-and-electronics/motor-guide/index.html">Motor Guide</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" role="switch" type="checkbox"/><label for="toctree-checkbox-14"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../power-and-electronics/motor-guide/choosing-motor.html">Choosing a Motor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../power-and-electronics/motor-guide/gearbox-anatomy.html">Gearbox Internals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../power-and-electronics/motor-guide/wiring-mounting-motors.html">Motor Wiring And Mounting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../power-and-electronics/motor-guide/motor-power.html">Motor Power</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../power-and-electronics/motor-guide/motor-glossary.html">Motor Glossary</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../power-and-electronics/servo-guide/index.html">Servo Guide</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" role="switch" type="checkbox"/><label for="toctree-checkbox-15"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../power-and-electronics/servo-guide/choosing-servo.html">Choosing a Servo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../power-and-electronics/servo-guide/usage-tips.html">Servo Usage Tips</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../power-and-electronics/sensor-glossary.html">Sensor Glossary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../power-and-electronics/tips-and-tricks.html">Tips and Tricks</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../index.html">Software</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" role="switch" type="checkbox"/><label for="toctree-checkbox-16"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="../getting-started/index.html">Getting Started</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" role="switch" type="checkbox"/><label for="toctree-checkbox-17"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting-started/fundamental-concepts.html">Fundamental Concepts of Programming</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting-started/options-for-programming.html">Options for Programming</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting-started/linear-opmode-vs-opmode.html">LinearOpMode vs OpMode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting-started/common-hardware-components.html">Reading and Writing to Hardware</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting-started/using-android-studio.html">Using Android Studio</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting-started/common-issues.html">Common Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../tutorials/index.html">Tutorials</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" role="switch" type="checkbox"/><label for="toctree-checkbox-18"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/mecanum-drive.html">Mecanum TeleOp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/gamepad.html">Gamepad Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/using-telemetry.html">Using Telemetry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/encoders.html">Encoders</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/bulk-reads.html">Bulk Reads</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/vision.html">Computer Vision</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current has-children"><a class="reference internal" href="index.html">Programming Concepts</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" role="switch" type="checkbox"/><label for="toctree-checkbox-19"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l3 current current-page"><a class="current reference internal" href="#">Control Loops</a></li>
+<li class="toctree-l3"><a class="reference internal" href="finite-state-machines.html">Finite State Machines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="kinematics.html">Kinematics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="odometry.html">Odometry</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../adv-control-system/index.html">Advanced Control System</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" role="switch" type="checkbox"/><label for="toctree-checkbox-20"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../adv-control-system/control-system-internals.html">Control System Electronics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../adv-control-system/sdk-communication.html">SDK Communication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../adv-control-system/sdk-motors.html">SDK Motors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../adv-control-system/sdk-servos.html">SDK Servos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../adv-control-system/sdk-sensors.html">SDK Sensors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../adv-control-system/lynx-module.html">Lynx Module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../software-glossary.html">Software Glossary</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../awards/index.html">Awards</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" role="switch" type="checkbox"/><label for="toctree-checkbox-21"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../awards/award-types.html">Award Categories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../awards/portfolio.html">Engineering Portfolio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../awards/judging-presentation.html">The Judging Process and Presentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../awards/notebook.html">Notebook Designs and Decisions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../useful-resources.html">Useful Resources</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../appendix/index.html">Appendix</a><input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" role="switch" type="checkbox"/><label for="toctree-checkbox-22"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../appendix/gallery.html">Gallery Of Robot Designs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../appendix/vendor-list.html">Vendor List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../appendix/vendor-guide.html">Vendor Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../appendix/license.html">License</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../contributing/index.html">Contributor’s Guide</a><input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" role="switch" type="checkbox"/><label for="toctree-checkbox-23"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../contributing/style-guide.html">Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../contributing/methods-of-contributing.html">Methods of Contributing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../contributing/contributors.html">Contributors</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container"><div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="control-loops">
+<h1>Control Loops<a class="headerlink" href="#control-loops" title="Permalink to this headline">#</a></h1>
+<p>Control loops are software used to operate power transmission systems (such as a drivetrain or linear slide) in a fast and controlled fashion. Not only do control loops let you run mechanisms quickly without fear of losing control, in many cases, they help preserve the longevity of mechanisms by reducing rapid change of applied motor voltage.</p>
+<section id="what-is-error">
+<h2>What is Error?<a class="headerlink" href="#what-is-error" title="Permalink to this headline">#</a></h2>
+<p>The first thing that must be defined when discussing control loops is the concept of error.</p>
+<p>Error is defined as the difference between where you are and where you want to be. For instance, say you tell your drivetrain to drive at 30 inches per second, but in actuality, at a time, the drivetrain is driving at 28 inches per second. Since <span class="math notranslate nohighlight">\(30-28=2\)</span>, the error of the drivetrain’s speed at this time <span class="math notranslate nohighlight">\(T\)</span> is 2 inches per second. In other words, at a time <span class="math notranslate nohighlight">\(t=T\)</span>, <span class="math notranslate nohighlight">\(e(t)=2\)</span>.</p>
+</section>
+<section id="pid">
+<h2>PID<a class="headerlink" href="#pid" title="Permalink to this headline">#</a></h2>
+<p>A PID controller (or Proportional Integral Derivative controller) is a control loop that solely uses error to control the system. PID is a form of a <strong>feedback control loop</strong>, or <strong>closed loop control</strong>. This means that data about the variable you are controlling is required in order for the loop to control that variable. In this case, information about the <strong>error</strong> of the system is required to control the system with a PID controller.</p>
+<section id="the-optional-calculus">
+<h3>The Optional Calculus<a class="headerlink" href="#the-optional-calculus" title="Permalink to this headline">#</a></h3>
+<p>The following equation represents the rigorous mathematical definition of the output of a PID controller <span class="math notranslate nohighlight">\(f\)</span> at any given time <span class="math notranslate nohighlight">\(t\)</span>:</p>
+<div class="math-wrapper"><div class="math notranslate nohighlight">
+\[f(t) = K_p e(t) + K_i \int_o^t e(t) \mathrm{d}t + K_d \frac{\mathrm{d}e(t)}{\mathrm{d}t}\]</div></div>
+<p>where <span class="math notranslate nohighlight">\(K_p\)</span>, <span class="math notranslate nohighlight">\(K_i\)</span>, and <span class="math notranslate nohighlight">\(K_d\)</span> are constants and <span class="math notranslate nohighlight">\(e(t)\)</span>, as previously mentioned, is the error in the system.</p>
+<p>If you have no experience with calculus, don’t worry; while PID is fundamentally rooted in calculus, you do not need any calculus experience to be able to understand it, only basic algebra. However, you are still urged to read the rest of the section regardless of calculus experience, as the formula alone doesn’t tell you why it works.</p>
+</section>
+<section id="simplification-of-the-pid-formula">
+<h3>Simplification of the PID formula<a class="headerlink" href="#simplification-of-the-pid-formula" title="Permalink to this headline">#</a></h3>
+<p>Here is a simplified version of the PID formula: <span class="math notranslate nohighlight">\(f(t)=K_p P(t)+K_i I(t)+K_d D(t)\)</span></p>
+<p>All we have done is simply take the full formula and replaced part of the terms with functions: <span class="math notranslate nohighlight">\(P(t)\)</span>, <span class="math notranslate nohighlight">\(I(t)\)</span>, and <span class="math notranslate nohighlight">\(D(t)\)</span>.</p>
+</section>
+<section id="the-proportional-term">
+<h3>The Proportional Term<a class="headerlink" href="#the-proportional-term" title="Permalink to this headline">#</a></h3>
+<p>The first component of the function, <span class="math notranslate nohighlight">\(K_p P(t)\)</span>, is by far the most simple and easy to understand, as <span class="math notranslate nohighlight">\(P(t) = e(t)\)</span>. For the sake of example, let’s pretend that <span class="math notranslate nohighlight">\(K_i=0\)</span> and <span class="math notranslate nohighlight">\(K_d=0\)</span> (a PID controller with only a proportional constant is known as a <strong>P controller</strong>). How will the system behave? Well, if the error is large, the output will be large. Likewise, if the error is small, the output will be small. Also, ideally, given enough time, the system always approaches its destination, assuming <span class="math notranslate nohighlight">\(K_p\)</span> is of the correct sign.</p>
+<p>Say we apply this to a drivetrain. You want to drive a distance <span class="math notranslate nohighlight">\(D\)</span>, and you decide to set your motor powers using a P controller to accomplish this. In this case, your error is how far away the robot is from the desired location. As you start to drive forward, your error is large, so you drive forward quickly, which is desirable. After all, you aren’t concerned with overshooting the target yet if you are far away from it.</p>
+<p>But as the robot’s distance to the target approaches 0, you will start to slow down, gaining more control over the robot. Once the error is zero, ideally, the robot will stop, and you have reached your destination. If you happen to overshoot, the error will become negative, and the robot will backtrack, repeating the process.</p>
+</section>
+<section id="the-derivative-term">
+<h3>The Derivative Term<a class="headerlink" href="#the-derivative-term" title="Permalink to this headline">#</a></h3>
+<p>This term, <span class="math notranslate nohighlight">\(K_d D(t)\)</span>, is intended to dampen the rate of change of the error. In other words, it tries to keep the error constant. How is this done?</p>
+<p>Well, for those of you with calculus under your belt, <span class="math notranslate nohighlight">\(D(t)=\frac{de(t)}{dt}\)</span>. For those without calculus experience, it represents how fast the error is changing. Graphically, <span class="math notranslate nohighlight">\(D(t)\)</span> is simply the slope of the error at any given time <span class="math notranslate nohighlight">\(t\)</span>.</p>
+<p>This slope can be calculated by keeping track of the error over successive iterations of the control loop. One iteration occurs at time <span class="math notranslate nohighlight">\(t_n\)</span> with an error of <span class="math notranslate nohighlight">\(e(t_n)\)</span>. At the next iteration, the time is <span class="math notranslate nohighlight">\(t_{n+1}\)</span> with an error of <span class="math notranslate nohighlight">\(e(t_{n+1})\)</span>. Thus, to find <span class="math notranslate nohighlight">\(D(t)\)</span>, simply find the slope of <span class="math notranslate nohighlight">\(e(t)\)</span> given these two points.</p>
+</section>
+<section id="the-integral-term">
+<h3>The Integral Term<a class="headerlink" href="#the-integral-term" title="Permalink to this headline">#</a></h3>
+<p>Admittedly, the integral term is the least important term for FTC PID control loops. With a properly tuned <span class="math notranslate nohighlight">\(K_p\)</span> and <span class="math notranslate nohighlight">\(K_d\)</span>, you often can just set <span class="math notranslate nohighlight">\(K_i\)</span> to 0 and call it a day.</p>
+<p>However, it can still be useful in some cases. Just like the derivative term, the integral term intends to correct for overshoot. if the system thinks it reached its destination, it will stop, even when, in fact, the error is not yet 0. Perhaps the motor is no longer being supplied enough power to move. Well, given enough time, the integral term will increase the output (in this case, motor power), causing movement towards the destination.</p>
+<p>To explain without calculus, the integral term essentially sums the error over a specific interval of time. To do this, error in each loop iteration is added to a variable (in this case, <span class="math notranslate nohighlight">\(I(t)\)</span>).</p>
+<p>However, summing error this way has an unfortunate side effect: the longer the loop takes to complete one iteration, the more slowly this sum increases, which is obviously not desirable, as we don’t want lag to affect how the robot moves. To compensate for this, before the error is added to <span class="math notranslate nohighlight">\(I(t)\)</span>, it is multiplied by how long the previous loop took to-complete, or <span class="math notranslate nohighlight">\(t_{n+1}-t_n\)</span>, preventing lag from making the system sum more slowly.</p>
+<p>So say the robot stops short of the target. The P and D combination aren’t strong enough to move it forward to the destination. You can either tune <span class="math notranslate nohighlight">\(K_p\)</span> and <span class="math notranslate nohighlight">\(K_d\)</span> to compensate (<strong>this is recommended</strong>), or you can add the integral term to increase output (<strong>this works too, but requires more attention and tuning to achieve the same result</strong>).</p>
+</section>
+<section id="pid-pseudocode">
+<h3>PID Pseudocode<a class="headerlink" href="#pid-pseudocode" title="Permalink to this headline">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+   <span class="n">current_time</span> <span class="o">=</span> <span class="n">get_current_time</span><span class="p">()</span>
+   <span class="n">current_error</span> <span class="o">=</span> <span class="n">desire_position</span><span class="o">-</span><span class="n">current_position</span>
+
+   <span class="n">p</span> <span class="o">=</span> <span class="n">k_p</span> <span class="o">*</span> <span class="n">current_error</span>
+
+   <span class="n">i</span> <span class="o">+=</span> <span class="n">k_i</span> <span class="o">*</span> <span class="p">(</span><span class="n">current_error</span> <span class="o">*</span> <span class="p">(</span><span class="n">current_time</span> <span class="o">-</span> <span class="n">previous_time</span><span class="p">))</span>
+
+   <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="n">max_i</span><span class="p">:</span>
+       <span class="n">i</span> <span class="o">=</span> <span class="n">max_i</span>
+   <span class="k">elif</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="o">-</span><span class="n">max_i</span><span class="p">:</span>
+       <span class="n">i</span> <span class="o">=</span> <span class="o">-</span><span class="n">max_i</span>
+
+   <span class="n">D</span> <span class="o">=</span> <span class="n">k_d</span> <span class="o">*</span> <span class="p">(</span><span class="n">current_error</span> <span class="o">-</span> <span class="n">previous_error</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">current_time</span> <span class="o">-</span> <span class="n">previous_time</span><span class="p">)</span>
+
+   <span class="n">output</span> <span class="o">=</span> <span class="n">p</span> <span class="o">+</span> <span class="n">i</span> <span class="o">+</span> <span class="n">d</span>
+
+   <span class="n">previous_error</span> <span class="o">=</span> <span class="n">current_error</span>
+   <span class="n">previous_time</span> <span class="o">=</span> <span class="n">current_time</span>
+</pre></div>
+</div>
+</section>
+<section id="tuning-a-pid-loop">
+<h3>Tuning a PID Loop<a class="headerlink" href="#tuning-a-pid-loop" title="Permalink to this headline">#</a></h3>
+<p>The most important thing to know while tuning a PID loop is how each of the terms affects the output. This can allow you to see which gains need to be adjusted.</p>
+<p>For example, if the target is not reached but instead the setpoint begins to oscillate around the target, it means there is not enough D gain. If the target is eventually reached, albeit very slowly, that means there is not enough P gain or the D gain is too high.</p>
+<p>In brief, the P variable drives the error towards zero, the I variable corrects for steady state error, and the D variable dampens the effects of the P variable, more so as error approaches zero, which prevents overshoot.</p>
+<p>The most common method for tuning a PID controller is as follows:</p>
+<ol class="arabic simple">
+<li><p>Set the I and D gains to zero</p></li>
+<li><p>Increase the P gain until there are oscillations around the target</p></li>
+<li><p>Increase the D gain until no overshoot occurs</p></li>
+<li><p>If there is steady state error, increase the I gain until it is corrected</p></li>
+</ol>
+<p>An important thing to note is that most systems do not need both I and D control. Generally, systems without a lot of friction do not need an I term, but will need more D control. Systems with a lot of friction, on the other hand, generally do not need D control because the friction facilitates deceleration but need I control because the friction prevents the system from reaching the target otherwise.</p>
+<p>For a more in-depth explanation, <a class="reference external" href="https://blog.wesleyac.com/posts/intro-to-control-part-two-pid-tuning">click here</a></p>
+</section>
+<section id="built-in-pid-controller">
+<h3>Built-In PID Controller<a class="headerlink" href="#built-in-pid-controller" title="Permalink to this headline">#</a></h3>
+<p>For situations where one needs to control the velocity or position of a single motor, the built in PID controller can be used.
+PID can be enabled by changing the run mode to <code class="docutils literal notranslate"><span class="pre">RUN_USING_ENCODER</span></code></p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Many misunderstand the use of <code class="docutils literal notranslate"><span class="pre">RUN_USING_ENCODER</span></code>, many may mistake that it is necessary to use this mode for the encoders to work at all, but this is not true. Instead, <code class="docutils literal notranslate"><span class="pre">RUN_USING_ENCODER</span></code> enables velocity feedback using the encoder. If you are using an external PID controller such as one that you implement, generally, it is recommended that you use <code class="docutils literal notranslate"><span class="pre">RUN_WITHOUT_ENCODER</span></code>.</p>
+</div>
+<p>For official documentation on the built in PID controller, <a class="reference external" href="https://docs.revrobotics.com/duo-control/programming/using-encoder-feedback">see here</a></p>
+</section>
+<section id="debugging-built-in-pid-controller">
+<h3>Debugging Built-In PID Controller<a class="headerlink" href="#debugging-built-in-pid-controller" title="Permalink to this headline">#</a></h3>
+<div class="table-wrapper"><table class="docutils align-default">
+<colgroup>
+<col style="width: 26%"/>
+<col style="width: 74%"/>
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Problem</p></th>
+<th class="head"><p>Solution</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Motor goes at Full Speed regardless of velocity setpoint</p></td>
+<td><p>Most of the time this occurs when one of two things occurs:</p>
+<p>#1: Your encoder is not connected properly.</p>
+<blockquote>
+<div><p>Diagnosis: Log your encoder position to telemetry, if the position oscillates between 0 - 1 make sure you have the correct cable and it is seated correctly.</p>
+</div></blockquote>
+<p>#2: Your motor is going in the wrong direction.</p>
+<blockquote>
+<div><p>Diagnosis: Log your velocity to telemetry, if you have a positive reference velocity and the output is negative or vice versa then your motor is plugged in backwards.</p>
+</div></blockquote>
+</td>
+</tr>
+<tr class="row-odd"><td><p>Motor does not reach full speed with <code class="docutils literal notranslate"><span class="pre">.setPower</span></code></p></td>
+<td><p>Use the <code class="docutils literal notranslate"><span class="pre">.setVelocity</span></code> method as part of DcMotorEx or use <code class="docutils literal notranslate"><span class="pre">RUN_WITHOUT_ENCODER</span></code> with an external PID controller.</p></td>
+</tr>
+</tbody>
+</table></div>
+</section>
+<section id="pid-controller-sample-rate">
+<h3>PID Controller Sample Rate<a class="headerlink" href="#pid-controller-sample-rate" title="Permalink to this headline">#</a></h3>
+<p>For teams who desire the most performance out of their PID controller,
+it is essential to consider the Sample rate of the controller.
+The Sample rate is when the controller updates its output given new sensor data.
+Higher Sample rates allow for more stable control and allow for the usage of more significant PID coefficients to reduce settling time. See this <a class="reference external" href="https://www.youtube.com/watch?v=fusr9eTceEo&amp;t=133s">video</a> to see how sample rate effects stability in a practical motor control example.
+The inbuilt PID controller is locked at a 20hz refresh rate (50ms sample rate). Many top FTC teams optimize their robot loops to run at up to 80hz,
+achieving <em>much</em> more stable control with an external PID.</p>
+</section>
+</section>
+<section id="feedforward-control">
+<h2>Feedforward Control<a class="headerlink" href="#feedforward-control" title="Permalink to this headline">#</a></h2>
+<p>Feedforward control is a method of what is known as “open-loop” control. This is the opposite of closed-loop control and the primary difference is that feedforward does not actively use sensors to control the system.  Instead it “predicts” the desired input based on a model.</p>
+<p>Typically feedforward is used to control either rates of change or combat known disturbances from your system.</p>
+<p>Feedforward is very powerful because it is immune to noise or other sensor errors.  This is because it is not actively measuring the system, but instead predicting the desired input. However, this also means that it is not very good at correcting for errors. This is why it is often used in conjunction with a closed-loop controller such as PID.</p>
+<section id="kv-ka-feedforward-model">
+<h3>Kv Ka Feedforward Model<a class="headerlink" href="#kv-ka-feedforward-model" title="Permalink to this headline">#</a></h3>
+<p>The most common feedforward and the one used by libraries such as road-runner is the Kv-Ka feedforward model:</p>
+<div class="math-wrapper"><div class="math notranslate nohighlight">
+\[f(t) = K_v \cdot \text{Velocity} + K_a \cdot \text{Acceleration}\]</div></div>
+<p>Where <span class="math notranslate nohighlight">\(K_v\)</span> is the velocity gain, <span class="math notranslate nohighlight">\(K_a\)</span> is the acceleration gain, and <span class="math notranslate nohighlight">\(f(t)\)</span> is the feedforward output sent to your motors.</p>
+<p>These gains can be estimated by giving the controller a series of ramp inputs (such as those computed with a motion profile), measuring the output, and then changing these gains till the robot matches the desired motion.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The gains will change based on the robot’s mass, friction, and other factors.
+It is recommended to re-estimate these gains every time you make a significant change to your robot.</p>
+</div>
+</section>
+<section id="kv-ka-feedforward-pseudocode">
+<h3>Kv Ka Feedforward Pseudocode<a class="headerlink" href="#kv-ka-feedforward-pseudocode" title="Permalink to this headline">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+     <span class="n">targetVelocity</span> <span class="o">=</span> <span class="n">getTargetVelocity</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+     <span class="n">targetAcceleration</span> <span class="o">=</span> <span class="n">getTargetAcceleration</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+     <span class="n">output</span> <span class="o">=</span> <span class="n">targetVelocity</span> <span class="o">*</span> <span class="n">Kv</span> <span class="o">+</span> <span class="n">targetAcceleration</span> <span class="o">*</span> <span class="n">Ka</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="static-friction-feedforward">
+<h3>Static Friction Feedforward<a class="headerlink" href="#static-friction-feedforward" title="Permalink to this headline">#</a></h3>
+<p>In every system there is bound to be some amount of static Friction. This means that the robot mechanism will not move until a certain amount of power is applied. This can be modeled by adding a constant feedforward term in the direction you want to move.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+     <span class="n">error</span> <span class="o">=</span> <span class="n">desire_position</span> <span class="o">-</span> <span class="n">current_position</span><span class="p">;</span>
+     <span class="n">sign</span> <span class="o">=</span> <span class="n">signum</span><span class="p">(</span><span class="n">error</span><span class="p">)</span> <span class="c1"># sign of error, will be -1, 0, or 1</span>
+     <span class="n">output</span> <span class="o">=</span> <span class="n">sign</span> <span class="o">*</span> <span class="n">staticFriction</span> <span class="o">+</span> <span class="n">PID</span><span class="p">(</span><span class="n">error</span><span class="p">);</span> <span class="c1"># PID Controller + Friction Feedforward</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="motion-profiles">
+<h2>Motion Profiles<a class="headerlink" href="#motion-profiles" title="Permalink to this headline">#</a></h2>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Motion profiles are <em>not</em> a specific type of control loop, but rather a technique that works well in combination with other control loops such as PID and feedforward.</p>
+</div>
+<p>Motion profiling is a technique popularized in FRC® that is starting to find its way to FTC. A motion profile is a function used to change the speed of a power transmission system in a controlled and consistent way by changing desired speed gradually rather than instantaneously.</p>
+<p>Let’s illustrate this with an example: say you want your drivetrain, which is initially unmoving, to drive forward at full speed. Ordinarily, you would set all drivetrain motors to full power in the code. However, this can be problematic because even though you tell the motors to move at full speed instantaneously, the drivetrain takes time to get to full speed. This can lead to uncontrolled movements which have the potential to make autonomous less consistent and, perhaps more importantly, damage mechanisms.</p>
+<p>Motion profiling attempts to solve this issue.</p>
+<section id="advantages">
+<h3>Advantages<a class="headerlink" href="#advantages" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>More controlled and predictable movements</p></li>
+<li><p>Reduces rapid change of applied motor voltage</p></li>
+</ul>
+</section>
+<section id="disadvantages">
+<h3>Disadvantages<a class="headerlink" href="#disadvantages" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Can be slower</p></li>
+</ul>
+<p>There are two main types of motion profiles: <strong>Trapezoidal</strong> profiles and <strong>S-Curve</strong> profiles. Trapezoidal profiles accelerate the system at a constant rate, and S-Curve profiles assume jerk (the speed acceleration changes) is constant. Given that S-Curve profiles are not optimal for controlling 2d trajectories (such as driving) and exist to reduce slippage (which usually only occurs when driving in FTC), trapezoidal profiles are recommended for most FTC applications.</p>
+<p>Trapezoidal profiles get their name from the shape of the graph of velocity over time:</p>
+<figure class="align-default" id="id1">
+<a class="reference internal image-reference" href="../../../_images/trapezoidal-motion-profiling-graph.png"><img alt="The position over time, velocity over time, and acceleration over time graphs for a trapezoidal motion profile" class="align-center" src="../../../_images/trapezoidal-motion-profiling-graph.png" style="width: 25em;"/></a>
+<figcaption>
+<p><span class="caption-text">These are the “magic functions” for velocity and acceleration over time alluded to in the feedforward section.</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Here is some pseudocode for a trapezoidal profile:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+   <span class="n">current_velocity</span> <span class="o">=</span> <span class="n">get_current_velocity</span><span class="p">()</span>
+   <span class="n">current_time</span> <span class="o">=</span> <span class="n">get_current_time</span><span class="p">()</span>
+
+   <span class="n">direction_multiplier</span> <span class="o">=</span> <span class="mi">1</span>
+
+   <span class="k">if</span> <span class="n">position_error</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+       <span class="n">direction_multiplier</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+
+   <span class="c1"># if maximum speed has not been reached</span>
+   <span class="k">if</span> <span class="n">MAXIMUM_SPEED</span> <span class="o">&gt;</span> <span class="nb">abs</span><span class="p">(</span><span class="n">current_velocity</span><span class="p">):</span>
+       <span class="n">output_velocity</span> <span class="o">=</span> <span class="n">current_velocity</span> <span class="o">+</span> <span class="n">direction_multiplier</span> <span class="o">*</span> <span class="n">MAX_ACCELERATION</span> <span class="o">*</span> <span class="p">(</span><span class="n">current_time</span> <span class="o">-</span> <span class="n">previous_time</span><span class="p">)</span>
+       <span class="n">output_acceleration</span> <span class="o">=</span> <span class="n">MAX_ACCELERATION</span>
+
+   <span class="c1">#if maximum speed has been reached, stay there for now</span>
+   <span class="k">else</span><span class="p">:</span>
+       <span class="n">outputVelocity</span> <span class="o">=</span> <span class="n">MAXIMUM_SPEED</span>
+       <span class="n">outputAcceleration</span> <span class="o">=</span> <span class="mi">0</span>
+
+   <span class="c1">#if we are close enough to the object to begin slowing down</span>
+   <span class="k">if</span> <span class="n">position_error</span> <span class="o">&lt;=</span> <span class="p">(</span><span class="n">output_velocity</span> <span class="o">*</span> <span class="n">output_velocity</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">MAX_ACCELERATION</span><span class="p">)):</span>
+       <span class="n">output_velocity</span> <span class="o">=</span> <span class="n">current_velocity</span> <span class="o">-</span> <span class="n">direction_multiplier</span> <span class="o">*</span> <span class="n">MAX_ACCELERATION</span> <span class="o">*</span> <span class="p">(</span><span class="n">current_time</span> <span class="o">-</span> <span class="n">previous_time</span><span class="p">)</span>
+       <span class="n">output_acceleration</span> <span class="o">=</span> <span class="o">-</span><span class="n">MAX_ACCELERATION</span>
+
+   <span class="n">previous_time</span> <span class="o">=</span> <span class="n">current_time</span>
+</pre></div>
+</div>
+<p>The results of the above pseudocode are then used in a feedforward and / or PID loop to control the position of the system in a smooth and predictable way.</p>
+<p>A more advanced example of the math for motion profile generation as used in the <a class="reference external" href="https://github.com/acmerobotics/road-runner">Road Runner library</a> can be found in this <a class="reference external" href="https://mybinder.org/v2/gh/acmerobotics/road-runner/HEAD?filepath=doc%2Fnotebook%2Froad-runner-lite.ipynb">Jupyter Notebook</a>.</p>
+</section>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="finite-state-machines.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Finite State Machines</div>
+              </div>
+              <svg><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="index.html">
+              <svg><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Programming Concepts</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; Game Manual 0 Contributors |  Hosting Graciously Provided By //Copperforge
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            Contents
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Control Loops</a><ul>
+<li><a class="reference internal" href="#what-is-error">What is Error?</a></li>
+<li><a class="reference internal" href="#pid">PID</a><ul>
+<li><a class="reference internal" href="#the-optional-calculus">The Optional Calculus</a></li>
+<li><a class="reference internal" href="#simplification-of-the-pid-formula">Simplification of the PID formula</a></li>
+<li><a class="reference internal" href="#the-proportional-term">The Proportional Term</a></li>
+<li><a class="reference internal" href="#the-derivative-term">The Derivative Term</a></li>
+<li><a class="reference internal" href="#the-integral-term">The Integral Term</a></li>
+<li><a class="reference internal" href="#pid-pseudocode">PID Pseudocode</a></li>
+<li><a class="reference internal" href="#tuning-a-pid-loop">Tuning a PID Loop</a></li>
+<li><a class="reference internal" href="#built-in-pid-controller">Built-In PID Controller</a></li>
+<li><a class="reference internal" href="#debugging-built-in-pid-controller">Debugging Built-In PID Controller</a></li>
+<li><a class="reference internal" href="#pid-controller-sample-rate">PID Controller Sample Rate</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#feedforward-control">Feedforward Control</a><ul>
+<li><a class="reference internal" href="#kv-ka-feedforward-model">Kv Ka Feedforward Model</a></li>
+<li><a class="reference internal" href="#kv-ka-feedforward-pseudocode">Kv Ka Feedforward Pseudocode</a></li>
+<li><a class="reference internal" href="#static-friction-feedforward">Static Friction Feedforward</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#motion-profiles">Motion Profiles</a><ul>
+<li><a class="reference internal" href="#advantages">Advantages</a></li>
+<li><a class="reference internal" href="#disadvantages">Disadvantages</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/scripts/furo.js"></script>
+    <script src="../../../_static/js/hoverxref.js"></script>
+    <script src="../../../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../../../_static/js/micromodal.min.js"></script>
+    <script src="../../../_static/design-tabs.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </body>
+</html>

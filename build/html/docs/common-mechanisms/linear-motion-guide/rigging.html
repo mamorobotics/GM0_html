@@ -1,0 +1,793 @@
+<!doctype html>
+<html class="no-js">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+<meta property="og:title" content="Rigging" />
+  
+<meta property="og:type" content="website" />
+  
+<meta property="og:url" content="docs/common-mechanisms/linear-motion-guide/rigging.html" />
+  
+<meta property="og:site_name" content="Game Manual 0" />
+  
+<meta property="og:description" content="Rigging refers to the way that string, belt, or chain is set up to extend and retract a linear extension. This is an important and time-consuming requirement for any team that uses linear extension..." />
+  
+<meta property="og:image" content="https://raw.githubusercontent.com/gamemanual0/gm0/main/source/_static/assets/gm0-logo.png" />
+  
+<meta property="og:image:alt" content="Game Manual 0" />
+  
+<meta property="og:ignore_canonical" content="true" />
+<meta name="theme-color" content="#F47F27" /><link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" /><link rel="next" title="Arms" href="../arms.html" /><link rel="prev" title="Rack and Pinion" href="rack-and-pinion.html" />
+
+    <link rel="shortcut icon" href="../../../_static/gm0-logo.ico"/><meta name="generator" content="sphinx-4.5.0, furo 2022.04.07"/>
+        <title>Rigging - Game Manual 0</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?digest=68f4518137b9aefe99b631505a2064c3c42c9852" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/micromodal.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo-extensions.css?digest=30d1aed668e5c3a91c3e3bf6a60b675221979f0e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  --font-stack: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+  --admonition-font-size: 1rem;
+  --admonition-title-font-size: 1rem;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-background-primary: #1f2022;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  --color-background-primary: #1f2022;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../../index.html"><div class="brand">Game Manual 0</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../../index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo only-light" src="../../../_static/assets/gm0-logo.png" alt="Light Logo"/>
+    <img class="sidebar-logo only-dark" src="../../../_static/assets/gm0-logo_white.png" alt="Dark Logo"/>
+  </div>
+  
+  
+</a><form class="sidebar-search-container" method="get" action="../../../search.html" role="search">
+  <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Game Manual 0 Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../mission-statement.html">Mission Statement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../start-here.html">Start Here</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../know-your-lingo.html">Know Your Lingo</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../being-a-team/index.html">Being a Team</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../being-a-team/starting-a-team.html">Starting a Team</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../being-a-team/team-organization.html">Team Organization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../being-a-team/collaboration-and-efficiency.html">Collaboration and Efficiency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../being-a-team/outreach-basics.html">Outreach Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../being-a-team/pitching-your-team.html">Pitching Your Team</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../design-skills/index.html">Design Skills</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../design-skills/engineering-design-process.html">Engineering Design Process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../design-skills/design-strategy.html">Design Strategy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../design-skills/cad.html">Computer-aided design (CAD)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../design-skills/cad-tutorials.html">CAD Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../design-skills/design-glossary.html">Design Glossary</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../hardware-components/index.html">Hardware Components</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../hardware-components/kit-and-hardware-guide/index.html">Kit and Hardware Guide</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../hardware-components/kit-and-hardware-guide/gobilda.html">goBILDA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../hardware-components/kit-and-hardware-guide/rev-robotics.html">REV Robotics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../hardware-components/kit-and-hardware-guide/tetrix.html">TETRIX</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../hardware-components/kit-and-hardware-guide/actobotics.html">Actobotics (Discontinued)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../hardware-components/kit-and-hardware-guide/custom.html">Custom</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../hardware-components/kit-and-hardware-guide/kit-glossary.html">Kit Glossary</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../hardware-components/tools-list.html">Tools List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../hardware-components/tips-and-tricks.html">Tips and Tricks</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../custom-manufacturing/index.html">Custom Manufacturing</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../custom-manufacturing/materials-guide.html">Materials Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../custom-manufacturing/3d-printing.html">3D Printing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../custom-manufacturing/machining.html">Machining</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../custom-manufacturing/laser-cutting.html">Laser Cutting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../custom-manufacturing/manufacturing-glossary.html">Manufacturing Glossary</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../index.html">Common Mechanisms</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../design-tradeoffs.html">Design Tradeoffs</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../drivetrains/index.html">Drivetrains</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../drivetrains/tank.html">Tank (Skid-Steer) Drivetrains</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../drivetrains/holonomic.html">Holonomic Drivetrains</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../drivetrains/drivetrain-gallery.html">Sample Drivetrains</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../power-transmission/index.html">Power Transmission</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../power-transmission/motion-mounting.html">Motion Mounting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../power-transmission/direct-drive.html">Direct Drive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../power-transmission/gears.html">Gears</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../power-transmission/chain.html">Roller Chain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../power-transmission/belt.html">Timing Belt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../power-transmission/power-transmission-glossary.html">Power Transmission Glossary</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current has-children"><a class="reference internal" href="index.html">Linear Motion Guide</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="drawer-slides.html">Drawer Slides</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extrusion-slides.html">Extrusion Slides</a></li>
+<li class="toctree-l3"><a class="reference internal" href="linear-bearing-slides.html">Linear Bearing Slides</a></li>
+<li class="toctree-l3"><a class="reference internal" href="custom.html">Custom Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lead-screws.html">Lead Screws</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rack-and-pinion.html">Rack and Pinion</a></li>
+<li class="toctree-l3 current current-page"><a class="current reference internal" href="#">Rigging</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../arms.html">Arms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../linkages.html">Linkages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../passive-intake-claw.html">Passive Intake/Claw</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../active-intake/index.html">Active Intake</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../active-intake/principles-of-an-intake.html">Principles of an Intake</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../active-intake/types-of-intakes.html">Types of Intake</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../transfers/index.html">Transfers</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" role="switch" type="checkbox"/><label for="toctree-checkbox-11"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../transfers/transfer-design.html">Transfer Design Fundamentals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../transfers/transfer-types.html">Types of Transfers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../dead-wheels.html">Dead Wheels</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../turrets/index.html">Turrets</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" role="switch" type="checkbox"/><label for="toctree-checkbox-12"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../turrets/full-turret.html">Full Turrets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../turrets/mini-turret.html">Mini Turrets</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../power-and-electronics/index.html">Electronics and Motion Components</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" role="switch" type="checkbox"/><label for="toctree-checkbox-13"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../power-and-electronics/wiring.html">Wiring Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../power-and-electronics/connectors-and-wires.html">Connectors and Wires</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../power-and-electronics/control-system.html">Control Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../power-and-electronics/driver-station-guide.html">Driver Station Guide</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../power-and-electronics/motor-guide/index.html">Motor Guide</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" role="switch" type="checkbox"/><label for="toctree-checkbox-14"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../power-and-electronics/motor-guide/choosing-motor.html">Choosing a Motor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../power-and-electronics/motor-guide/gearbox-anatomy.html">Gearbox Internals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../power-and-electronics/motor-guide/wiring-mounting-motors.html">Motor Wiring And Mounting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../power-and-electronics/motor-guide/motor-power.html">Motor Power</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../power-and-electronics/motor-guide/motor-glossary.html">Motor Glossary</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../power-and-electronics/servo-guide/index.html">Servo Guide</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" role="switch" type="checkbox"/><label for="toctree-checkbox-15"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../power-and-electronics/servo-guide/choosing-servo.html">Choosing a Servo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../power-and-electronics/servo-guide/usage-tips.html">Servo Usage Tips</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../power-and-electronics/sensor-glossary.html">Sensor Glossary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../power-and-electronics/tips-and-tricks.html">Tips and Tricks</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../software/index.html">Software</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" role="switch" type="checkbox"/><label for="toctree-checkbox-16"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../software/getting-started/index.html">Getting Started</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" role="switch" type="checkbox"/><label for="toctree-checkbox-17"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../software/getting-started/fundamental-concepts.html">Fundamental Concepts of Programming</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/getting-started/options-for-programming.html">Options for Programming</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/getting-started/linear-opmode-vs-opmode.html">LinearOpMode vs OpMode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/getting-started/common-hardware-components.html">Reading and Writing to Hardware</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/getting-started/using-android-studio.html">Using Android Studio</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/getting-started/common-issues.html">Common Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../software/tutorials/index.html">Tutorials</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" role="switch" type="checkbox"/><label for="toctree-checkbox-18"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../software/tutorials/mecanum-drive.html">Mecanum TeleOp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/tutorials/gamepad.html">Gamepad Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/tutorials/using-telemetry.html">Using Telemetry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/tutorials/encoders.html">Encoders</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/tutorials/bulk-reads.html">Bulk Reads</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/tutorials/vision.html">Computer Vision</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../software/concepts/index.html">Programming Concepts</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" role="switch" type="checkbox"/><label for="toctree-checkbox-19"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../software/concepts/control-loops.html">Control Loops</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/concepts/finite-state-machines.html">Finite State Machines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/concepts/kinematics.html">Kinematics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/concepts/odometry.html">Odometry</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../software/adv-control-system/index.html">Advanced Control System</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" role="switch" type="checkbox"/><label for="toctree-checkbox-20"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../software/adv-control-system/control-system-internals.html">Control System Electronics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/adv-control-system/sdk-communication.html">SDK Communication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/adv-control-system/sdk-motors.html">SDK Motors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/adv-control-system/sdk-servos.html">SDK Servos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/adv-control-system/sdk-sensors.html">SDK Sensors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/adv-control-system/lynx-module.html">Lynx Module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../software/software-glossary.html">Software Glossary</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../awards/index.html">Awards</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" role="switch" type="checkbox"/><label for="toctree-checkbox-21"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../awards/award-types.html">Award Categories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../awards/portfolio.html">Engineering Portfolio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../awards/judging-presentation.html">The Judging Process and Presentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../awards/notebook.html">Notebook Designs and Decisions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../useful-resources.html">Useful Resources</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../appendix/index.html">Appendix</a><input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" role="switch" type="checkbox"/><label for="toctree-checkbox-22"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../appendix/gallery.html">Gallery Of Robot Designs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../appendix/vendor-list.html">Vendor List</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../appendix/vendor-guide.html">Vendor Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../appendix/license.html">License</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../contributing/index.html">Contributor’s Guide</a><input class="toctree-checkbox" id="toctree-checkbox-23" name="toctree-checkbox-23" role="switch" type="checkbox"/><label for="toctree-checkbox-23"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../contributing/style-guide.html">Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../contributing/methods-of-contributing.html">Methods of Contributing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../contributing/contributors.html">Contributors</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container"><div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="rigging">
+<h1>Rigging<a class="headerlink" href="#rigging" title="Permalink to this headline">#</a></h1>
+<p>Rigging refers to the way that string, belt, or chain is set up to extend and retract a linear extension. This is an important and time-consuming requirement for any team that uses linear extension, so be sure to spend adequate time on it.</p>
+<figure class="align-default" id="id1">
+<a class="reference internal image-reference" href="../../../_images/7236-elevator-rigging.png"><img alt="The rigging for 7236's elevator in Rover Ruckus" class="align-center" src="../../../_images/7236-elevator-rigging.png" style="width: 10em;"/></a>
+<figcaption>
+<p><span class="caption-text">Example rigging setup from team 7236 Recharged Green.
+This setup utilizes a continuous stringing setup for the first stage and a
+cascaded belt-driven second stage.</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<section id="general-rigging-tips">
+<h2>General Rigging Tips<a class="headerlink" href="#general-rigging-tips" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Rig your extension string when the extension is retracted, and your retract string when the extension is at maximum extension</p></li>
+<li><p>Clamping a string with a bolt instead of tying it around something makes it much easier to quickly change the tension of a string</p></li>
+<li><p>If tying an abrasive material string, like kevlar, around a plastic part, you can tie the string around a washer to distribute the loads across the hole in the pulley instead of tying it directly into a hole in the pulley</p></li>
+<li><p>Its generally easier to start from the side with the pulley and go to the end of the slides then the other way around</p></li>
+</ul>
+</section>
+<section id="continuous-rigging">
+<h2>Continuous Rigging<a class="headerlink" href="#continuous-rigging" title="Permalink to this headline">#</a></h2>
+<p><strong>Generally recommended</strong></p>
+<p>Continuous rigging entails rigging one long <strong>extension string</strong>, originating from a motor-powered spool, to the top of the base stage, then to the bottom of the first stage, then to the top of the first stage, then to the bottom of the second stage, etc. A <strong>retraction string</strong>, originating from a second spool on the same axis as the extension spool, is then anchored to the top stage. When the motor rotates one direction, the extension spool reels in the extension string, so it becomes shorter. In doing so, the distance between the top of one stage and the bottom of the next stage decreases, causing the system to extend.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The last stage always extends and retracts before the other stages (this can be either an advantage or a disadvantage, depending on the application).</p>
+</div>
+<p>Once the last stage hits its limit, the next to last stage extends outwards, and so on; the pattern repeats until every stage is fully extended. When the motor spins <strong>in the opposite direction</strong>, the retraction string is reeled in, pulling the top stage closer to its starting position until the system is back where it started. For the retraction string, it is often necessary to add an extra pulley near the back of the extension. This is because the retraction will only retract to the farthest point, which generally is the spool. However, the spool may not be mounted at the very back of the robot - thus an extra pulley is needed. Note that for this to work, the extension string should be wrapped around the spool in the opposite direction of the retraction string. Thus, if the extension is wrapped clockwise, the retraction must be wrapped counterclockwise.</p>
+<p>Here are some additional considerations when rigging a continuous system.</p>
+<ul class="simple">
+<li><p>As a general rule, continuous spools can be powered by a system with a
+relatively low gear ratio.</p></li>
+<li><p>The extension string and retraction string <strong>do not need to be separate
+strings, but it is much easier to tension the system if they are separate</strong>.</p></li>
+<li><p>The extension spool and retraction spool should be the same diameter.</p></li>
+<li><p>You need to make sure, as with any time you work with strings and pulleys,
+that you are pulling the string straight. Any amount of misalignment can lead to the string coming off of your pulley.</p></li>
+<li><p>The width and diameter of your spool should be enough such that once fully
+wounded, your string never overlaps.
+The reason for this is because when the string starts to overlap,
+this can change the diameter of your spool,
+causing the tension in the string to change.</p></li>
+</ul>
+<figure class="align-default" id="id2">
+<a class="reference internal image-reference" href="../../../_images/continuous-extension.png"><img alt="A diagram of continuous rigging" class="align-center" src="../../../_images/continuous-extension.png" style="width: 25em;"/></a>
+<figcaption>
+<p><span class="caption-text">Continuous rigging diagram</span><a class="headerlink" href="#id2" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="cascade-rigging">
+<h2>Cascade Rigging<a class="headerlink" href="#cascade-rigging" title="Permalink to this headline">#</a></h2>
+<p><strong>Generally recommended</strong></p>
+<p>Cascade rigging is a bit more complicated than continuous rigging. Much like continuous rigging, an extension string originating from a spool is rigged to the top of the base, running down to the bottom of the first stage. However, instead of being rigged to the top of the stage, the extension string is anchored to the bottom of the first stage. A second extension string, anchored to the top of the base, is rigged to the top of the first stage and anchored at the bottom of the second stage. The pattern continues until all stages have been rigged.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The number of strings required to extend is equal to the number of stages in the system.</p>
+</div>
+<p>When the motor rotates one direction, the extension spool reels in the first string, decreasing the distance between the base and the bottom of the first stage. This pushes the second string forward, decreasing the distance between the top of the first stage and the bottom of the second stage, and so on. Note that unlike continuous rigging, <strong>every stage moves at the same time</strong>. The second stage moves 2 times as fast as the first stage relative to the base, the third 3 times as fast, and so on.</p>
+<p>A cascaded system can be retracted in three ways: using continuous retraction, elastic retraction, or reverse-cascade retraction.</p>
+<figure class="align-default" id="id3">
+<a class="reference internal image-reference" href="../../../_images/cascade-extension.png"><img alt="A diagram of cascade rigging" class="align-center" src="../../../_images/cascade-extension.png" style="width: 25em;"/></a>
+<figcaption>
+<p><span class="caption-text">Cascade rigging diagram</span><a class="headerlink" href="#id3" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="retraction-options">
+<h2>Retraction Options<a class="headerlink" href="#retraction-options" title="Permalink to this headline">#</a></h2>
+<section id="continuous-retraction">
+<h3>Continuous Retraction<a class="headerlink" href="#continuous-retraction" title="Permalink to this headline">#</a></h3>
+<p>As the name suggests, continuous retraction utilizes inverted continuous rigging to retract the slides. There are two main methods of doing this, <strong>free floating retraction</strong> where a string is run from the last stage directly back to the spool, and <strong>with slide retraction</strong> where the string is run in an inverse continuous pattern. Generally, <strong>with slide retraction</strong> should be used with extensions going outside the robot frame to prevent entanglement, and <strong>free floating retraction</strong> should only be used with purely vertical slides.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If continuous retraction is being used with cascade extension, the two spools cannot be the same diameter. If the variable <span class="math notranslate nohighlight">\(N\)</span> is the number of stages in the system, the diameter of the cascade extension spool must be <span class="math notranslate nohighlight">\(N\)</span> <strong>times smaller</strong> than the continuous retraction spool.</p>
+</div>
+<figure class="align-default" id="id4">
+<a class="reference internal image-reference" href="../../../_images/continuous-retraction.png"><img alt="A diagram of continuous retraction" class="align-center" src="../../../_images/continuous-retraction.png" style="width: 25em;"/></a>
+<figcaption>
+<p><span class="caption-text">Continuous Retraction</span><a class="headerlink" href="#id4" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If free floating retraction is used, <strong>make sure your retract string is always parallel to the slides</strong>. If the string is misaligned, it can pull on your slide and cause excess bending forces on the stages.</p>
+</div>
+<p>Advantages:</p>
+<ul class="simple">
+<li><p>Simplest retraction rigging</p></li>
+</ul>
+<p>Disadvantages:</p>
+<ul class="simple">
+<li><p>Can become tangled if free floating</p></li>
+<li><p>Requires different sized spools if used with cascade retraction</p></li>
+</ul>
+</section>
+<section id="elastic-retraction">
+<h3>Elastic Retraction<a class="headerlink" href="#elastic-retraction" title="Permalink to this headline">#</a></h3>
+<p>Instead of retracting using a retraction spool, one common way to retract is to attach a piece of elastic (commonly surgical tubing) to the last stage. The elastic applies a force on the last stage that is counteracted by the motor when extending. However, when retracting, the motor reels the last slide back in. While this is the retraction method recommended by many kit slide manuals, this method is not recommended.</p>
+<p>Advantages:</p>
+<ul class="simple">
+<li><p>There is only one string to tension, instead of multiple, so tensioning is simpler.</p></li>
+<li><p>The elastic automatically tensions the extension string.</p></li>
+</ul>
+<p>Disadvantages:</p>
+<ul class="simple">
+<li><p>Since the elastic applies a force to the slide at all times, this force opposes the force applied by the motor when extending the slides. <strong>Thus, elastic retraction decreases extension speed considerably</strong>.</p></li>
+<li><p>The elastic does not apply a constant force at all times. It applies force proportional to the amount that the slide is extended, so retraction may not be smooth and controlled, like other rigging methods.</p></li>
+<li><p>It is very easy to unwind your extension spool when using elastic retraction.</p></li>
+</ul>
+</section>
+<section id="cascade-retraction">
+<h3>Cascade Retraction<a class="headerlink" href="#cascade-retraction" title="Permalink to this headline">#</a></h3>
+<p>Cascade retraction entails simply rigging another set of cascade string that can retract the system when engaged (see the image below).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If cascade retraction is being used with continuous extension, the two spools cannot be the same diameter. If the variable <span class="math notranslate nohighlight">\(N\)</span> is the number of stages in the system, the diameter of the continuous extension spool must be <span class="math notranslate nohighlight">\(N\)</span> <strong>times bigger</strong> than the cascade retraction spool.</p>
+</div>
+<p>Advantages:</p>
+<ul class="simple">
+<li><p>Very space-efficient</p></li>
+<li><p>All stages retract at the same speed at the same time</p></li>
+</ul>
+<p>Disadvantages:</p>
+<ul class="simple">
+<li><p>Requires more string (less strings to tension, less strings that can become loose)</p></li>
+<li><p>Requires different sized spools if used with cascade extension</p></li>
+</ul>
+<figure class="align-default" id="id5">
+<a class="reference internal image-reference" href="../../../_images/cascade-retraction.png"><img alt="A diagram of cascade retraction" class="align-center" src="../../../_images/cascade-retraction.png" style="width: 25em;"/></a>
+<figcaption>
+<p><span class="caption-text">Cascade retraction</span><a class="headerlink" href="#id5" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Additional Considerations:</p>
+<ul class="simple">
+<li><p>If the system has only one stage, cascade rigging is <strong>identical to continuous rigging</strong></p></li>
+<li><p>Unlike continuous rigging, each time a new stage is added to a cascaded system, the gear ratio required to maintain the same extension speed increases. For instance, if 2 stages are added to a 1 stage cascaded lift that is geared at a ratio of 3:1, the ratio must increase by a factor of <span class="math notranslate nohighlight">\(\frac{2+1}{1}\)</span> to maintain the same speed, changing the ratio to 9:1.</p></li>
+<li><p>One disadvantage of cascade rigging is that each string must be kept tensioned. This is still the case with continuous rigging, but you have many more strings to keep track of, as tension must be maintained on all of them.</p></li>
+<li><p>You need to make sure, as with any time you work with strings and pulleys, that you are pulling the string straight. Any amount of misalignment can lead to the string coming off of your pulley.</p></li>
+</ul>
+</section>
+</section>
+<section id="belt-driven-slides">
+<h2>Belt-driven slides<a class="headerlink" href="#belt-driven-slides" title="Permalink to this headline">#</a></h2>
+<p>One increasingly popular alternative to traditional string-based rigging is belt-driven slides. This can be done continuously or using cascade rigging.</p>
+<section id="advantages-over-string">
+<h3>Advantages over string<a class="headerlink" href="#advantages-over-string" title="Permalink to this headline">#</a></h3>
+<p>Unlike string, belts used on slides never need to be tensioned. As discussed in the linear motion section, in order for string-driven slides to remain efficient, string tension must be maintained. Naturally, string loosens over time, so you either need a mechanism that can provide extra tension (a spring) or manually tighten string, which can get a bit tedious (especially for cascade rigging).</p>
+<p>However, belts do not have this issue. They tend not to stretch over time, meaning complex external tensioners are rarely needed. Belts are also on an automatic one to one loop, meaning that for every inch you pull in on the extension side, you always feed back out that inch on the retraction side, and vise versa. While this might not seem like a big deal, if a string winds itself up on a spool and overlaps at any point, the diameter of the spool changes, making the two spools out of sync.</p>
+</section>
+<section id="disadvantages-over-string">
+<h3>Disadvantages over string<a class="headerlink" href="#disadvantages-over-string" title="Permalink to this headline">#</a></h3>
+<p>The main disadvantage of belt-driven slides is the amount of space they take up. Simply put, belt pulleys take up much more room than the 4mm thick, 12mm diameter pulley bearings REV sells. When using belt-driven slides, pulleys are at least double that thickness and have a considerably larger diameter, meaning each stage must be thicker.</p>
+<figure class="align-default" id="id6">
+<a class="reference internal image-reference" href="../../../_images/7236-continuous-belt.png"><img alt="7236's Rover Ruckus' robot's belt rigging" class="align-center" src="../../../_images/7236-continuous-belt.png" style="width: 25em;"/></a>
+<figcaption>
+<p><span class="caption-text">7236 Recharged Green, Rover Ruckus, <strong>continuous</strong> rig</span><a class="headerlink" href="#id6" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id7">
+<a class="reference internal image-reference" href="../../../_images/11190-continuous-belt.jpg"><img alt="11190's Relic Recovery robot's belt rigging" class="align-center" src="../../../_images/11190-continuous-belt.jpg" style="width: 25em;"/></a>
+<figcaption>
+<p><span class="caption-text">11190 Mechadojos, Relic Recovery, continuous belt rig</span><a class="headerlink" href="#id7" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id8">
+<a class="reference internal image-reference" href="../../../_images/5064-cascading-belt-diagram.jpg"><img alt="5064's cascading belt rigging diagram" class="align-center" src="../../../_images/5064-cascading-belt-diagram.jpg" style="width: 25em;"/></a>
+<figcaption>
+<p><span class="caption-text">5064 Aperture Science Rover Ruckus <strong>cascade</strong> belt-driven proof of concept drawing</span><a class="headerlink" href="#id8" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id9">
+<a class="reference internal image-reference" href="../../../_images/5064-cascading-belt.png"><img alt="5064's cascading belt rigging" class="align-center" src="../../../_images/5064-cascading-belt.png" style="width: 25em;"/></a>
+<figcaption>
+<p><span class="caption-text">5064 Aperture Science Rover Ruckus <strong>cascade</strong> belt-driven final version</span><a class="headerlink" href="#id9" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="belt-or-chain-driven-elevators">
+<h2>Belt or chain driven elevators<a class="headerlink" href="#belt-or-chain-driven-elevators" title="Permalink to this headline">#</a></h2>
+<p>Almost ubiquitous in FRC®, belt and chain elevators have existed seemingly forever. The basic premise is to have sprockets or pulleys mounted at the top and bottom of the elevator to the robot superstructure. Then, the belt or chain is hard bolted to the elevator near the bottom sprocket or pulley. When the chain or belt is driven, the elevator will move up and down. It is possible for elevators to have multi stage designs, but powering them will be more complex.</p>
+<figure class="align-default" id="id10">
+<a class="reference internal image-reference" href="../../../_images/7236-belt-driven-elevator.jpg"><img alt="7236's belt driven elevator" class="align-center" src="../../../_images/7236-belt-driven-elevator.jpg" style="width: 25em;"/></a>
+<figcaption>
+<p><span class="caption-text">7236 Recharged Green, Rover Ruckus</span><a class="headerlink" href="#id10" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="tensioners">
+<h2>Tensioners<a class="headerlink" href="#tensioners" title="Permalink to this headline">#</a></h2>
+<p>Tensioning string is one of the most painstaking tasks for a builder in FTC. Ensuring that both sets of slides are tensioned evenly can be an arduous and annoying job. However, adding tensioners to your strings can help solve the uneven tension and ensure that both sides of slides run together. The most common type of tensioner is a spring that can be purchased at a hardware store. It generally will be placed at the end of the string run, near the part that extends farthest out from the robot’s center. By doing so, the string will stretch out when the spool extends the arm, keeping tension so that the string does not detach from the pulleys in the linear slide extension.</p>
+<p>Another form of tensioner can be a spring-loaded pulley. Since the pulley is spring-loaded, it will take up the slack in the string. Alternatively, it is possible to mount a pulley on a piece of extrusion, and slide it so the string is taut.</p>
+<p>There are two main reasons that tensioners are highly recommended in string based linear slides, the first and oftentimes more important one, is that at its core, a run of string is a series of polygons, and as the slide extends the effective size of that polygon changes. Meaning that when fully extended, your slide may require more or less string compared to when halfway extended. Or partially extended. The closer each set of bearings are, the less this impracts string tension.</p>
+<p>Another (but less impactful) thing to keep in mind that spool size changes as string is added/removed from the spool. If the spool radius increases, the speed of the extension will also increase, and torque, which opposes speed, will decrease. Consequently, tension will change as well. Therefore, a bit of slack is inherent in all linear extension designs using string.</p>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>It is highly encouraged that teams have at least one spring tensioner per linear slide set.</p>
+</div>
+<a class="reference internal image-reference" href="../../../_images/13075-slides.png"><img alt="An image of 13075 linear slides" class="align-center" src="../../../_images/13075-slides.png" style="width: 25em;"/></a>
+<figure class="align-default" id="id11">
+<a class="reference internal image-reference" href="../../../_images/13075-string-tensioner.png"><img alt="An image of 13075 linear slide's string tensioner" class="align-center" src="../../../_images/13075-string-tensioner.png" style="width: 25em;"/></a>
+<figcaption>
+<p><span class="caption-text">13075 Coram Deo Robotics, Rover Ruckus, string tensioner</span><a class="headerlink" href="#id11" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="picking-the-right-spool-size">
+<h2>Picking the right spool size<a class="headerlink" href="#picking-the-right-spool-size" title="Permalink to this headline">#</a></h2>
+<p>Spools have a special property that isn’t often discussed, but is extremely useful when creating linear slide systems. Just as the system’s speed and torque can be changed by changing its gear ratio, speed and torque can also be changed by changing the spool size. The motor rotates the spool at a constant angular speed. Thus, the translational speed (the speed of the slide) is proportional to the radius of the spool, and since torque is inversely proportional to speed, changing the spool size changes torque as well.</p>
+<p>This is important to recognize, as changing spool size is often more convenient than changing gear ratio to get the desired combination of speed and torque. To illustrate this, say you have a linear extension system with a 3.7:1 gear ratio. You then decide that a 5:1 gear ratio would provide a more desirable combination of speed and torque than your current 3.7:1 ratio.</p>
+<p>In many cases, instead of swapping gearboxes, it makes more sense to swap out spools to a smaller one. If your spool is currently 2 inches, your new size should be <span class="math notranslate nohighlight">\(\frac{2*3.7}{5}\)</span> inches to achieve the same result.</p>
+<p>You also need to make sure that when fully wrapped on the spool, your cable or string doesn’t overlap. Overlapping can result in a change in spool diameter, which will change the tension in your string.</p>
+</section>
+<section id="cable-management">
+<h2>Cable management<a class="headerlink" href="#cable-management" title="Permalink to this headline">#</a></h2>
+<p>When extending outwards, wire management becomes increasingly important. Obviously, it is a necessity to use wires slightly longer than the extension length. However, it is not recommended that these wires are left unprotected, as they can get tangled or caught in the slides much more easily than with protection.</p>
+<p>In general, teams should ensure that wires never protrude outside the structural parts of the robot, because they can get caught on other robots or game pieces. This can be accomplished by cable ties or Velcro ties, or by using acrylic plate to keep wires inside.</p>
+<p>However, for linear extensions, other forms of cable management are needed. The two types of cable management recommended are cable carrier and retractable coil cord. Refer to the <a class="reference internal" href="../../power-and-electronics/index.html"><span class="doc">Electronics and Wiring</span></a> section for more information.</p>
+<section id="cable-carrier-drag-chain">
+<h3>Cable Carrier/Drag Chain<a class="headerlink" href="#cable-carrier-drag-chain" title="Permalink to this headline">#</a></h3>
+<p>Cable carrier, the standard wire management method within industry, is plastic chain links with a hollow center. Cables are placed inside the chain, allowing the system to extend indefinitely. The links are somewhat stiff yet flexible, allowing cable chain to bend when the extension is retracted and straighten when extended. They typically are stiff enough not to sag excessively when retracted.</p>
+<p>Here are some links to various drag chain products:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.igus.com/info/energy-chains-e2-micro-small-cable-carrier">igus cable carrier</a></p></li>
+<li><p><a class="reference external" href="https://www.amazon.com/uxcell-InnerH-InnerW-Plastic-Carrier/dp/B01LX02PSW/ref=sr_1_1?keywords=drag%2Bchain&amp;qid=1566188144&amp;s=gateway&amp;sr=8-1&amp;th=1">uxcell 10x10mm drag chain, from Amazon</a></p></li>
+</ul>
+<p>Advantages:</p>
+<ul class="simple">
+<li><p>Difficult to get tangled/hooked onto other objects or robots</p></li>
+<li><p>Sturdy and durable</p></li>
+<li><p>Protects wires very well</p></li>
+</ul>
+<p>Disadvantages:</p>
+<ul class="simple">
+<li><p>Large form factor, takes up a lot of space</p></li>
+<li><p>Links need to be added if additional extension is needed</p></li>
+<li><p>Can be on the heavy side, especially with a long length of drag chain</p></li>
+</ul>
+<figure class="align-default" id="id12">
+<a class="reference internal image-reference" href="../../../_images/7236-cable-carrier.png"><img alt="7236's Rover Ruckus robot with cable carriers visible" class="align-center" src="../../../_images/7236-cable-carrier.png" style="width: 25em;"/></a>
+<figcaption>
+<p><span class="caption-text">7236 Recharged Green, Rover Ruckus: Cable carrier on the left side of their horizontal slides and the right side of vertical slides</span><a class="headerlink" href="#id12" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="retractable-coil-cord">
+<h3>Retractable Coil Cord<a class="headerlink" href="#retractable-coil-cord" title="Permalink to this headline">#</a></h3>
+<p>While not common within industry, coil cords are still very common (coil cord is a nearly ubiquitous staple of older telephones). Retractable coil cord is more flexible than cable carriers, stretching when extended.</p>
+<p>Advantages:</p>
+<ul class="simple">
+<li><p>Very space-efficient</p></li>
+<li><p>Flexible and can usually extend to any length needed (unlike cable carriers, no new links ever need to be added)</p></li>
+</ul>
+<p>Disadvantages:</p>
+<ul class="simple">
+<li><p>Can get tangled more easily, as it is less stiff than drag chain</p></li>
+</ul>
+<a class="reference internal image-reference" href="../../../_images/10030-coil-cord-1.png"><img alt="10030's robot's coil cord" class="align-center" src="../../../_images/10030-coil-cord-1.png" style="width: 25em;"/></a>
+<figure class="align-default" id="id13">
+<a class="reference internal image-reference" href="../../../_images/10030-coil-cord-2.png"><img alt="10030's robot's coil cord" class="align-center" src="../../../_images/10030-coil-cord-2.png" style="width: 25em;"/></a>
+<figcaption>
+<p><span class="caption-text">10030 7 Sigma Robotics, Relic Recovery: Coil-cord on horizontal extension mechanism</span><a class="headerlink" href="#id13" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="self-retracting-badge-holder">
+<h3>Self-retracting Badge Holder<a class="headerlink" href="#self-retracting-badge-holder" title="Permalink to this headline">#</a></h3>
+<p>While an uncommon technique, a self-retracting ID Badge holder can help manage wiring on an extension. These are common items; <a class="reference external" href="https://www.amazon.com/OFES-Retractable-Holder-Swivel-Alligator/dp/B07WPRJY9K/">here is one from Amazon</a>.</p>
+<p>This really only works for vertical or near-vertical slides, as there is still some sag in the cable which can easily get entangled if it extends outside of the robot frame.</p>
+<p>To rig a self-retracting badge holder to a wire, mount the hard plastic part of the badge holder to the base of the slides, and mount end of the holder’s string to the wire. The wires should be hard-mounted (using zip ties or whatever your team uses) towards the top of the retracted slide with plenty of slack. For best results, the badge holder should be almost completely retracted (leave a centimeter or two to allow for some slack) when the slide is retracted.</p>
+<p>Advantages:</p>
+<ul class="simple">
+<li><p>Extremely simple and easy to implement</p></li>
+<li><p>Flexible and can usually extend to any length needed (unlike cable carriers, no new links ever need to be added)</p></li>
+</ul>
+<p>Disadvantages:</p>
+<ul class="simple">
+<li><p>Similar to a coil, self-retracting cable management strings can get tangled more easily, as it is less stiff than drag chain</p></li>
+<li><p>Does not work well on long slides (over 2 stages) without substantial engineering work</p></li>
+</ul>
+<a class="reference internal image-reference" href="../../../_images/248-badge-retractor-1.jpg"><img alt="248's robot's badge retractor cable management" class="align-center" src="../../../_images/248-badge-retractor-1.jpg" style="width: 25em;"/></a>
+<figure class="align-default" id="id14">
+<a class="reference internal image-reference" href="../../../_images/248-badge-retractor-2.jpg"><img alt="248's robot's badge retractor cable management" class="align-center" src="../../../_images/248-badge-retractor-2.jpg" style="width: 25em;"/></a>
+<figcaption>
+<p><span class="caption-text">248 Fatal Error, Freight Frenzy: Badge retractor cable management on extension mechanism</span><a class="headerlink" href="#id14" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="../arms.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Arms</div>
+              </div>
+              <svg><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="rack-and-pinion.html">
+              <svg><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Rack and Pinion</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; Game Manual 0 Contributors |  Hosting Graciously Provided By //Copperforge
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            Contents
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Rigging</a><ul>
+<li><a class="reference internal" href="#general-rigging-tips">General Rigging Tips</a></li>
+<li><a class="reference internal" href="#continuous-rigging">Continuous Rigging</a></li>
+<li><a class="reference internal" href="#cascade-rigging">Cascade Rigging</a></li>
+<li><a class="reference internal" href="#retraction-options">Retraction Options</a><ul>
+<li><a class="reference internal" href="#continuous-retraction">Continuous Retraction</a></li>
+<li><a class="reference internal" href="#elastic-retraction">Elastic Retraction</a></li>
+<li><a class="reference internal" href="#cascade-retraction">Cascade Retraction</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#belt-driven-slides">Belt-driven slides</a><ul>
+<li><a class="reference internal" href="#advantages-over-string">Advantages over string</a></li>
+<li><a class="reference internal" href="#disadvantages-over-string">Disadvantages over string</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#belt-or-chain-driven-elevators">Belt or chain driven elevators</a></li>
+<li><a class="reference internal" href="#tensioners">Tensioners</a></li>
+<li><a class="reference internal" href="#picking-the-right-spool-size">Picking the right spool size</a></li>
+<li><a class="reference internal" href="#cable-management">Cable management</a><ul>
+<li><a class="reference internal" href="#cable-carrier-drag-chain">Cable Carrier/Drag Chain</a></li>
+<li><a class="reference internal" href="#retractable-coil-cord">Retractable Coil Cord</a></li>
+<li><a class="reference internal" href="#self-retracting-badge-holder">Self-retracting Badge Holder</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/scripts/furo.js"></script>
+    <script src="../../../_static/js/hoverxref.js"></script>
+    <script src="../../../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../../../_static/js/micromodal.min.js"></script>
+    <script src="../../../_static/design-tabs.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </body>
+</html>
