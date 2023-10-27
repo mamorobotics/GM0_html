@@ -1,11 +1,12 @@
 # GM0_HTML
-==========
+
 This is a version of the GM0 documentation built for HTML, hosted on GitHub Pages. The reason for this was to bypass a network firewall in a location where this is being used. 
 
 ALL credit goes to the Original Creators of GM0, indicated by the fork. This is the link to the [original repo](https://github.com/gamemanual0/gm0). 
 
-Game Manual 0
 =============
+Game Manual 0
+
 ![Docs Badge](https://readthedocs.org/projects/game-manual-zero/badge/) ![CI Badge](https://github.com/gamemanual0/gm0/workflows/CI/badge.svg) ![Link Check](https://github.com/gamemanual0/gm0/workflows/Link%20Check/badge.svg)
 
 Welcome to Game Manual 0 (gm0)!
